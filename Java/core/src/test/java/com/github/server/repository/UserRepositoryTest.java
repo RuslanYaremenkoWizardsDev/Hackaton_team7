@@ -50,9 +50,9 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void findByEmailSecondUser(){
-        User act = repository.findBy(HibernateUtils.getSession(), User.class, "email", "secondUserEmail");
-        User exp = new User(act.getId(), "secondUserLogin", "secondUserEmail", "secondUserPassword", Role.valueOf("USER"));
+    public void findByEmailThirdUser(){
+        User act = repository.findBy(HibernateUtils.getSession(), User.class, "email", "thirdUserEmail");
+        User exp = new User(act.getId(), "thirdUserLogin", "thirdUserEmail", "thirdUserPassword", Role.valueOf("USER"));
         Assert.assertEquals(exp, act);
     }
 
@@ -65,8 +65,8 @@ public class UserRepositoryTest {
 
     @Test
     public void findByEmailSecondAdmin(){
-        User act = repository.findBy(HibernateUtils.getSession(), User.class, "email", "secondUserEmail");
-        User exp = new User(act.getId(), "secondAdminLogin", "secondAdminEmail", "secondAdminPassword", Role.valueOf("ADMIN"));
+        User act = repository.findBy(HibernateUtils.getSession(), User.class, "email", "secondAdminEmail");
+        User exp = new User(act.getId(), "secondAdminLogin", "secondAdminEmail", "secondAdminPassword", act.getRole());
         Assert.assertEquals(exp, act);
     }
 
