@@ -34,16 +34,16 @@ public class Repository<T> implements IRepository<T> {
     }
 
     @Override
-    public void update(Session session, Class<T> clz, T user) {
+    public void update(Session session, Class<T> clz, T entity) {
         Transaction tx1 = session.beginTransaction();
-        session.update(user);
+        session.update(entity);
         tx1.commit();
     }
 
     @Override
-    public void delete(Session session, Class<T> clz, T user) {
+    public void delete(Session session, Class<T> clz, T entity) {
         Transaction tx1 = session.beginTransaction();
-        session.delete(user);
+        session.delete(entity);
         tx1.commit();
     }
 }

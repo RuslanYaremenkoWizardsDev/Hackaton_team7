@@ -3,31 +3,30 @@ package com.github.server.controllers;
 import com.github.server.dto.UserAuthDto;
 import com.github.server.dto.UserRegDto;
 import com.github.server.entity.User;
+import com.github.server.exceptions.JsonParseException;
 import com.github.server.exceptions.UserAlreadyExistException;
-import com.github.server.services.UserService;
-
-import com.github.server.utils.PattenMatcher.*;
-
-import static com.github.server.utils.PattenMatcher.isValidEmail;
+import com.github.server.payload.Token;
+import com.github.server.services.IUserService;
+import com.github.server.utils.JsonHelper;
+import com.github.server.utils.PattenMatcher;
 
 public class UserController implements IUserController{
 
-    private final UserService userService;
+    private final IUserService userService;
 
-    private User user;
-
-    public UserController (UserService userService) {
+    public UserController (IUserService userService) {
         this.userService = userService;
     }
 
     @Override
     public String authorize(UserAuthDto userAuthDto) {
-        if(isValidEmail(userAuthDto.getLogin())){
-            User user = this.userService.findByEmail(userAuthDto.getLogin());
+        User user;
+        if(PattenMatcher.isValidEmail(userAuthDto.getLogin())){
+            user = this.userService.findByEmail(userAuthDto.getLogin());
         } else {
-            User user = this.userService.findByLogin(userAuthDto.getLogin());
+            user = this.userService.findByLogin(userAuthDto.getLogin());
         }
-        return null;
+            return JsonHelper.toJson(new Token(user)).orElseThrow(JsonParseException::new);
         }
 
     @Override
@@ -35,7 +34,7 @@ public class UserController implements IUserController{
         if(this.userService.findByEmail(userRegDto.getEmail()) != null){
             throw new UserAlreadyExistException();
         }
-        userService.insert(user);
+        userService.insert(userRegDto.toUser());
     }
 
 }

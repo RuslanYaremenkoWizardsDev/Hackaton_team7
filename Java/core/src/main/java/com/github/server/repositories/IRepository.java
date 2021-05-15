@@ -10,10 +10,10 @@ public interface IRepository<T> {
 
     T findBy(Session session, Class<T> clz, String field, Object value);
 
-    void save(Session session, Class<T> clz, T user);
+    void save(Session session, Class<T> clz, T entity);
 
-    void update(Session session, Class<T> clz, T user);
+    void update(Session session, Class<T> clz, T entity);
 
-    void delete(Session session, Class<T> clz, T user);
+    void delete(Session session, Class<T> clz, T entity);
 
 }

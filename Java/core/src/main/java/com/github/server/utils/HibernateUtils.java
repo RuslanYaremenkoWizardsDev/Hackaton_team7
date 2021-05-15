@@ -1,6 +1,7 @@
 package com.github.server.utils;
 
 import com.github.server.entity.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -25,6 +26,10 @@ public class HibernateUtils {
             log.error(e.getMessage());
         }
         return sessionFactory;
+    }
+
+    public static Session getSession(){
+        return getSessionFactory().getCurrentSession();
     }
 
 }

@@ -1,6 +1,7 @@
 package com.github.server.dto;
 
 import com.github.server.entity.User;
+import com.github.server.utils.PattenMatcher;
 
 import java.util.Objects;
 
@@ -62,4 +63,22 @@ public class UserAuthDto {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    public User toUser(){
+        if(PattenMatcher.isValidEmail(this.login)) {
+            return new User(
+                    null,
+                    null,
+                    this.login,
+                    this.password
+            );
+        }
+        return new User(
+                null,
+                this.login,
+                null,
+                this.password
+        );
+    }
+
 }

@@ -14,7 +14,7 @@ public interface IUserService {
 
     User findByEmail(String email);
 
-    User insert(User user);
+    void insert(User user);
 
     void update(User user);
 

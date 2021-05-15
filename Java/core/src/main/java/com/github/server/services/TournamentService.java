@@ -1,44 +1,44 @@
 package com.github.server.services;
 
 import com.github.server.entity.Tournament;
-import com.github.server.repositories.ITournamentRepository;
-import com.github.server.repositories.IUserRepository;
-import com.github.server.repositories.TournamentRepository;
-import com.github.server.repositories.UserRepository;
+import com.github.server.entity.User;
+import com.github.server.repositories.IRepository;
+import com.github.server.repositories.Repository;
+import com.github.server.utils.HibernateUtils;
 
 import java.util.Collection;
 
 public class TournamentService implements ITournamentService {
 
-    final private ITournamentRepository tournamentRepository = new TournamentRepository();
+    final private IRepository<Tournament> repository = new Repository<>();
 
     @Override
     public Collection<Tournament> findAll() {
-        return this.tournamentRepository.findAll();
+        return this.repository.findAll(HibernateUtils.getSession(), Tournament.class);
     }
 
     @Override
     public Tournament findById(Long id) {
-        return this.tournamentRepository.findBy("id", id);
+        return this.repository.findBy(HibernateUtils.getSession(), Tournament.class, "id", id);
     }
 
     @Override
     public Tournament findByName(String name) {
-        return this.tournamentRepository.findBy("name", name);
+        return this.repository.findBy(HibernateUtils.getSession(), Tournament.class, "name", name);
     }
+//
+//    @Override
+//    public Collection<Tournament> findByStatus(String status) {
+//        return this.repository.findAllBy(HibernateUtils.getSession(), Tournament.class, "status", status);
+//    }
 
     @Override
-    public Collection<Tournament> findByStatus(String status) {
-        return this.tournamentRepository.findAllBy("status", status);
-    }
-
-    @Override
-    public Tournament insert(Tournament tournament) {
-        return this.tournamentRepository.save(tournament);
+    public void insert(Tournament tournament) {
+        this.repository.save(HibernateUtils.getSession(), Tournament.class, tournament);
     }
 
     @Override
     public void update(Tournament tournament) {
-        this.tournamentRepository.update(tournament);
+        this.repository.update(HibernateUtils.getSession(), Tournament.class, tournament);
     }
 }

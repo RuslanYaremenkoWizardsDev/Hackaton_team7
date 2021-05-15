@@ -10,17 +10,17 @@ import static com.github.server.utils.DateUtils.getCurrentDate;
 
 public class Token {
 
-    private Date date = new Date();
+    private final Date date = new Date();
 
-    private String login;
+    private final String login;
 
-    private String role;
+    private final Role role;
 
-    private Date expireIn;
+    private final Date expireIn;
 
-    private Date createdAt;
+    private final Date createdAt;
 
-    public Token(String login, String role, Date expireIn, Date createdAt) {
+    public Token(String login, Role role, Date expireIn, Date createdAt) {
         this.login = login;
         this.role = role;
         this.expireIn = expireIn;
@@ -45,7 +45,7 @@ public class Token {
         return login;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 

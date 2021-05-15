@@ -1,5 +1,7 @@
 package com.github.server.entity;
 
+import com.github.server.payload.Role;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -20,6 +22,9 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "role")
+    private Role role;
 
     public User() {
     }
@@ -45,6 +50,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public Role getRole() {
+        return role;
     }
 
     @Override

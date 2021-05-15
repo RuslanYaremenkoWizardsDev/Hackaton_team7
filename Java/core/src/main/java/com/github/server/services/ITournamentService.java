@@ -12,9 +12,9 @@ public interface ITournamentService {
 
     Tournament findByName(String name);
 
-    Collection<Tournament> findByStatus(String status);
+//    Collection<Tournament> findByStatus(String status);
 
-    Tournament insert(Tournament tournament);
+    void insert(Tournament tournament);
 
     void update(Tournament tournament);
 

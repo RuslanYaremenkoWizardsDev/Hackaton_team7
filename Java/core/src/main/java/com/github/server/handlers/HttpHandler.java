@@ -1,6 +1,6 @@
 package com.github.server.handlers;
 
-import com.github.server.controllers.UserController;
+import com.github.server.controllers.IUserController;
 import com.github.server.dto.UserAuthDto;
 import com.github.server.dto.UserRegDto;
 import com.github.server.exceptions.BadRequest;
@@ -20,11 +20,11 @@ import java.util.stream.Collectors;
 
 public class HttpHandler extends HttpServlet {
 
-    Logger LOGGER = LoggerFactory.getLogger(HttpHandler.class);
+    private static final Logger log = LoggerFactory.getLogger(HttpHandler.class);
 
-    private final UserController userController;
+    private final IUserController userController;
 
-    public HttpHandler(UserController userController) {
+    public HttpHandler(IUserController userController) {
         this.userController = userController;
     }
 
@@ -40,8 +40,7 @@ public class HttpHandler extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String body = req.getReader().lines().collect(Collectors.joining());
         if (!"application/json".equalsIgnoreCase(req.getHeader("Content-Type"))) {
             resp.sendError(HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Invalid content type");

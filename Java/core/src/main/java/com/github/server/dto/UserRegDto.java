@@ -72,4 +72,14 @@ public class UserRegDto {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    public User toUser(){
+        return new User(
+                null,
+                this.login,
+                this.email,
+                this.password
+        );
+    }
+
 }
