@@ -37,7 +37,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "frontend/client/mainPage.html",
       filename: "mainPage.html",
-      chunks: ["content"],
+      chunks: ["main"],
     }),
     new HtmlWebpackPlugin({
       template: "frontend/client/registrPage.html",
