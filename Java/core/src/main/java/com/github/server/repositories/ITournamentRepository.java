@@ -8,9 +8,11 @@ public interface ITournamentRepository {
 
     Collection<Tournament> findAll();
 
+    Collection<Tournament> findAllBy(String field, Object value);
+
     Tournament findBy(String field, Object value);
 
-    void save(Tournament tournament);
+    Tournament save(Tournament tournament);
 
     void update(Tournament tournament);
 

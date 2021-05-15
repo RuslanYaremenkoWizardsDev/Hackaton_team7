@@ -10,14 +10,12 @@ public interface ITournamentService {
 
     Tournament findById(Long id);
 
-    Tournament findByLogin(String login);
+    Tournament findByName(String name);
 
-    Tournament findByEmail(String email);
+    Collection<Tournament> findByStatus(String status);
 
     Tournament insert(Tournament tournament);
 
     void update(Tournament tournament);
-
-
 
 }

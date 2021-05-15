@@ -13,13 +13,18 @@ public class TournamentRepository implements ITournamentRepository {
     }
 
     @Override
+    public Collection<Tournament> findAllBy(String field, Object value) {
+        return null;
+    }
+
+    @Override
     public Tournament findBy(String field, Object value) {
         return null;
     }
 
     @Override
-    public void save(Tournament tournament) {
-
+    public Tournament save(Tournament tournament) {
+        return null;
     }
 
     @Override

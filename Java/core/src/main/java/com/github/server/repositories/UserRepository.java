@@ -23,12 +23,10 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public void update(User user) {
-
     }
 
     @Override
     public void delete(User user) {
-
     }
 
 }
