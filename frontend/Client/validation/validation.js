@@ -6,7 +6,7 @@ export const validateLogin = (login) => {
   if (login.length < 3 || login.length > 18) {
     return "Логин должен содержать от 3 до 18 символов";
   }
-  if (login !== (/^[a-z0-9_-]/, "i")) {
+  if (login !== (/^[a-z0-9]/, "i")) {
     return "Логин должен содержать символы  английского алфавита a-z; A-Z и 0-9"
   }
   return true;
@@ -20,7 +20,7 @@ export const validatePassword = (password) => {
 if (password.length < 6 || password.length > 20) {
     return "Пароль должен содержать от 6 до 20 символов";
   }
-  if (password !== (/^[a-z0-9_-]/, "i")) {
+  if (password !== (/^[a-z0-9]/, "i")) {
     return "Логин должен содержать символы  английского алфавита a-z; A-Z и 0-9"
   }
   return true;
