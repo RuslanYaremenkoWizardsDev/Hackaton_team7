@@ -1,3 +1,4 @@
+
 var baseUrl = "http://localhost:8081"
 var frontUrl = "http://localhost:5000"
 
@@ -7,8 +8,19 @@ var authUrl = baseUrl + "/auth"
 var regUrl = baseUrl + "/reg"
  
 var mainUrl =  baseUrl + "/main"
-var mainTourUrl = mainUrl/ + "/tournaments"
 
-console.log(authUrl, regUrl);
+//для get запроса для получения турниров в таблицу
+var mainTourUrl = mainUrl + "/tournaments"
 
-module.exports = {authUrl, regUrl, mainUrl}
+//для изменения логина и пароля через модалку MyAccount
+var mainUpdateUser = mainUrl + "/updateUser"
+
+const urls = {
+    authUrl: authUrl,
+    regUrl: regUrl,
+    mainUrl: mainUrl,
+    mainTourUrl: mainTourUrl,
+    mainUpdateUser: mainUpdateUser
+}
+
+module.exports = {urls}
