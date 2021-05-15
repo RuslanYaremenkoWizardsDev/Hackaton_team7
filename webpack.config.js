@@ -41,7 +41,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "frontend/client/registrPage.html",
-      filename: "registration.html",
+      filename: "registrPage.html",
       chunks: ["registration"],
     }),
     new MiniCssExtractPlugin({
