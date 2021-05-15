@@ -2,7 +2,6 @@ package com.github.server.services;
 
 import com.github.server.entity.User;
 import com.github.server.repositories.IRepository;
-import com.github.server.repositories.Repository;
 import com.github.server.utils.HibernateUtils;
 
 import java.util.Collection;

@@ -11,14 +11,15 @@ public class UserAuthDto {
 
     private String password;
 
-    public UserAuthDto(){}
+    public UserAuthDto() {
+    }
 
-    public UserAuthDto(String login, String password){
+    public UserAuthDto(String login, String password) {
         this.login = login;
         this.password = password;
     }
 
-    public UserAuthDto(User user){
+    public UserAuthDto(User user) {
         this.login = user.getLogin();
         this.password = user.getPassword();
     }
@@ -64,20 +65,22 @@ public class UserAuthDto {
                 '}';
     }
 
-    public User toUser(){
-        if(PattenMatcher.isValidEmail(this.login)) {
+    public User toUser() {
+        if (PattenMatcher.isValidEmail(this.login)) {
             return new User(
                     null,
                     null,
                     this.login,
-                    this.password
+                    this.password,
+                    null
             );
         }
         return new User(
                 null,
                 this.login,
                 null,
-                this.password
+                this.password,
+                null
         );
     }
 
