@@ -18,25 +18,12 @@
             <button class="block-header__right--topic btn"></button>
         </div>
     </header>
+    <div class="line">
 
-    <div class="line"></div>
+    </div>
     <div class="block-content">
-        <div class="block-content__main" id="main-block">
-            <div class="block-content__main__panel">
-                <buttton class="block-content__main__panel__buttons--first panel">Tournament</buttton>
-                <buttton class="block-content__main__panel__buttons panel">Stats</buttton>
-                <buttton class="block-content__main__panel__buttons panel">Create tournament</buttton>
-            </div>
-            <div class="block-content__main__block">
-                <button class="block-content__main__block__actions--btn" id="create-fields">Create<button>
-                <button class="block-content__main__block__actions--btn" disabled>Cup grid</button>
-                <button class="block-content__main__block__actions--btn" disabled>Send Data</button>
-            </div>
-            </div>
-        </div>
-
-        <div class="block-content__modal-fields" id="modal-fields">
-            <button class="block-content__modal-fields--close" id="close"></button>
+        <div class="block-content__modal-fields">
+            <button class="block-content__modal-fields--close"></button>
             <h1 class="block-content__modal-fields--name-modal">Create tournament</h1>
             <div class="block-content__modal-fields__main main">
                 <div class="main__block-input-icons">
@@ -50,11 +37,11 @@
                 <div class="main__block-input-icons__radio-button">
                     <div class="main__block-input-icons__radio-button--radio">
                         <input type="radio" value="cup" name="mode" checked>
-                        <label for="mode">Cup</label>
+                        <label for="radio">Cup</label>
                     </div>
                     <div class="main__block-input-icons__radio-button--radio">
                         <input class="main__block-input-icons__radio-button--radio" type="radio" value="championship" name="mode">
-                        <label for="mode">Championship</label>
+                        <label for="radio">Championship</label>
                     </div>
                 </div>
                 <div class="main__block-input-icons">
@@ -63,50 +50,50 @@
                 </div>
                 <div class="main__block-input-icons">
                     <div class="main__block-input-icons--icons datapicer"></div>
-                    <input type="date" class="main__block-input-icons--text" title="Start date">
+                    <input type="date" id="start" class="main__block-input-icons--text" title="Start date">
                 </div>
                 <div class="main__block-input-icons">
                     <div class="main__block-input-icons--icons datapicer"></div>
-                    <input type="date" class="main__block-input-icons--text" title="Last registration date">
+                    <input type="date" id="start" class="main__block-input-icons--text" title="Last registration date">
                 </div>
                 <div class="main__block-input-icons__radio-button-level">
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="advanced" name="level">
-                        <label for="level">Advanced</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="advanced" name="mode">
+                        <label for="radio">Advanced</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="middle" name="level" checked>
-                        <label for="level">Middle</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="middle" name="mode" checked>
+                        <label for="radio">Middle</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="beginner" name="level">
-                        <label for="level">Beginner</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="beginner" name="mode">
+                        <label for="radio">Beginner</label>
                     </div>
                 </div>
                 <div class="main__block-input-icons__radio-button-level">
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="128" name="NumberParticipants">
-                        <label for="NumberParticipants">128</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="128" name="level">
+                        <label for="level">128</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="64" name="NumberParticipants" >
-                        <label for="NumberParticipants">64</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="64" name="level" >
+                        <label for="level">64</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="32" name="NumberParticipants" checked>
-                        <label for="NumberParticipants">32</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="32" name="level" checked>
+                        <label for="level">32</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="16" name="NumberParticipants">
-                        <label for="NumberParticipants">16</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="16" name="level">
+                        <label for="level">16</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="8" name="NumberParticipants">
-                        <label for="NumberParticipants">8</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="8" name="level">
+                        <label for="level">8</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="4" name="NumberParticipants">
-                        <label for="NumberParticipants">4</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="4" name="level">
+                        <label for="level">4</label>
                     </div>
                 </div>
                 <div class="main__block-input-icons__dropdown">
@@ -122,7 +109,6 @@
                         <div class="main__block-input-icons__dropdown-content--content-hover" value="two-match-confrontation">Two-match confrontation</div>
                     </div>
                 </div>
-                <button class="main__block-input-icons--submit" id="submit-date">Submit</button>
             </div>
         </div>
     </div>

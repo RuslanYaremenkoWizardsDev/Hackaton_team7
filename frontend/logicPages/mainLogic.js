@@ -1,12 +1,7 @@
 ///
 import '../style/style.scss';
-
-//import '../Client/modal/modalFields.js';
-
 import '../client/modalWindows/modalFields.js';
-
 import '../style/modalFieldsAdmin.scss';
-import '../../frontend/Client/modal/showModalFields.js';
 //////
 import { postRequestWithToken } from '../src/request'
 import { getRequestWithToken } from '../src/request'

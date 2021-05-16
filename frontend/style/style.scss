@@ -1,6 +1,6 @@
 @import './const.scss';
 @import './header.scss';
-@import './mainPage.scss';
+@import './modalFieldsAdmin.scss';
 *{
   //  box-sizing: border-box;
     margin: 0;
@@ -25,7 +25,6 @@ input{
     border: none;
     outline: none;
     background: none;
-    cursor: pointer;
 }
 
 .content-block{
