@@ -34,12 +34,12 @@ public class PlayerRequestService implements IPlayerRequestService {
     }
 
     @Override
-    public void createInvite(PlayerRequest invite) {
+    public void createRequest(PlayerRequest invite) {
 
     }
 
     @Override
-    public void deleteInvite(PlayerRequest invite) {
+    public void deleteRequest(PlayerRequest invite) {
 
     }
 
