@@ -2,28 +2,31 @@ package com.github.server.services;
 
 import com.github.server.entity.Tournament;
 import com.github.server.repositories.IRepository;
-import com.github.server.repositories.Repository;
 import com.github.server.utils.HibernateUtils;
 
 import java.util.Collection;
 
 public class TournamentService implements ITournamentService {
 
-    final private IRepository<Tournament> repository = new Repository<>();
+    private final IRepository<Tournament> repository;
+
+    public TournamentService(IRepository<Tournament> repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Collection<Tournament> findAll() {
-        return this.repository.findAll(HibernateUtils.getSession(), Tournament.class);
+        return this.repository.findAll(Tournament.class, HibernateUtils.getSession());
     }
 
     @Override
     public Tournament findById(Long id) {
-        return this.repository.findBy(HibernateUtils.getSession(), Tournament.class, "id", id);
+        return this.repository.findBy(Tournament.class, "id", id, HibernateUtils.getSession());
     }
 
     @Override
     public Tournament findByName(String name) {
-        return this.repository.findBy(HibernateUtils.getSession(), Tournament.class, "name", name);
+        return this.repository.findBy(Tournament.class, "name", name, HibernateUtils.getSession());
     }
 //
 //    @Override
@@ -33,11 +36,11 @@ public class TournamentService implements ITournamentService {
 
     @Override
     public void insert(Tournament tournament) {
-        this.repository.save(HibernateUtils.getSession(), Tournament.class, tournament);
+        this.repository.save(Tournament.class, tournament, HibernateUtils.getSession());
     }
 
     @Override
     public void update(Tournament tournament) {
-        this.repository.update(HibernateUtils.getSession(), Tournament.class, tournament);
+        this.repository.update(Tournament.class, tournament, HibernateUtils.getSession());
     }
 }

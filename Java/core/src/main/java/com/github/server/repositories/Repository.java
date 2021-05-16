@@ -12,7 +12,7 @@ import java.util.Collection;
 public class Repository<T> implements IRepository<T> {
 
     @Override
-    public Collection<T> findAll(Session session, Class<T> clz) {
+    public Collection<T> findAll(Class<T> clz, Session session) {
         try (session) {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<T> criteria = builder.createQuery(clz);
@@ -23,7 +23,7 @@ public class Repository<T> implements IRepository<T> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public T findBy(Session session, Class<T> clz, String field, Object value) {
+    public T findBy(Class<T> clz, String field, Object value, Session session) {
         try (session) {
             Criteria criteria = session.createCriteria(clz);
             return (T) criteria.add(Restrictions.eq(field, value)).uniqueResult();
@@ -31,7 +31,16 @@ public class Repository<T> implements IRepository<T> {
     }
 
     @Override
-    public void save(Session session, Class<T> clz, T entity) {
+    @SuppressWarnings("unchecked")
+    public Collection<T> findAllBy(Class<T> clz, String field, Object value, Session session) {
+        try (session) {
+            Criteria criteria = session.createCriteria(clz);
+            return (Collection<T>) criteria.add(Restrictions.eq(field, value)).list();
+        }
+    }
+
+    @Override
+    public void save(Class<T> clz, T entity, Session session) {
         try (session) {
             Transaction tx1 = session.beginTransaction();
             session.save(entity);
@@ -40,7 +49,7 @@ public class Repository<T> implements IRepository<T> {
     }
 
     @Override
-    public void update(Session session, Class<T> clz, T entity) {
+    public void update(Class<T> clz, T entity, Session session) {
         try (session) {
             Transaction tx1 = session.beginTransaction();
             session.update(entity);
@@ -49,7 +58,7 @@ public class Repository<T> implements IRepository<T> {
     }
 
     @Override
-    public void delete(Session session, Class<T> clz, T entity) {
+    public void delete(Class<T> clz, T entity, Session session) {
         try (session) {
             Transaction tx1 = session.beginTransaction();
             session.delete(entity);
