@@ -48,7 +48,7 @@ module.exports = {
       filename: "[name].css",
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: "frontend/style/img/", to: "style/img" }],
+      patterns: [{ from: "frontend/style/img/", to: "dist/style/img" }],
     }),
   ],
   module: {
@@ -75,39 +75,6 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg)$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]",
-            },
-          },
-          {
-            loader: "image-webpack-loader",
-            options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 65,
-              },
-              optipng: {
-                enabled: false,
-              },
-              pngquant: {
-                quality: "65-90",
-                speed: 4,
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              svgo: {
-                enabled: false,
-              },
-            },
-          },
-        ],
       },
     ],
   },

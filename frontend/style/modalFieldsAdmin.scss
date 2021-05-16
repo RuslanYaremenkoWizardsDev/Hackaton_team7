@@ -2,7 +2,7 @@
     width: 92%;
     height: 89.9vh;
     margin: 0 auto;
-    background: $color-block-content;
+    
     &__modal-fields{
         width: 30%;
         height: 89.3vh;
@@ -13,10 +13,9 @@
         &--close{
             width: 20px;
             height: 20px;
-            background: forestgreen;
             float: right;
+            background-image: url(./img/close.png);
             margin: 2%;
-    //    background: url(./img/close.png) no-repeat scroll 0 0 transparent;
         }
         &--name-modal{
             display: flex;
