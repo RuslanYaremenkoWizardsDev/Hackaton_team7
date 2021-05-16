@@ -30,7 +30,8 @@ public class UserController implements IUserController {
             user = this.userService.findByEmail(userAuthDto.getLogin());
         } else {
             user = this.userService.findByLogin(userAuthDto.getLogin());
-        } if(user == null) {
+        }
+        if(user == null) {
             throw new ForbiddenException();
         }
         PrivateToken token = new PrivateToken(user);
@@ -46,10 +47,9 @@ public class UserController implements IUserController {
 
     @Override
     public void register(UserRegDto userRegDto) {
-        if (this.userService.findByEmail(userRegDto.getEmail()) != null) {
-            throw new UserAlreadyExistException();
-        }
+        System.out.println("before");
         userService.insert(userRegDto.toUser());
+        System.out.println("after");
     }
 
 }

@@ -48,8 +48,6 @@ public class HttpHandler extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Invalid content type");
         } else {
             String url = req.getRequestURI();
-            System.out.println("Body:\n" + body);
-            System.out.println(url);
             try {
                 switch (url) {
                     case "/auth":
