@@ -5,9 +5,11 @@ import com.github.server.controllers.IUserController;
 import com.github.server.dto.UserAuthDto;
 import com.github.server.dto.UserRegDto;
 import com.github.server.exceptions.BadRequest;
+import com.github.server.exceptions.ExpiredTokenException;
 import com.github.server.exceptions.ForbiddenException;
 import com.github.server.exceptions.NotFound;
 import com.github.server.utils.JsonHelper;
+import com.github.server.utils.TokenProvider;
 import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +57,30 @@ public class HttpHandler extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ServletOutputStream out = resp.getOutputStream();
+        String url = req.getRequestURI();
+        try {
+            switch (url) {
+                case "/main/tournaments":
+                    String tokenStr = req.getHeader("Token");
+                    if (!TokenProvider.checkToken(tokenStr)) {
+                        throw new ExpiredTokenException();
+                    }
+                    String result = Optional.of(this.).orElseThrow(BadRequest::new);
 
+                    break;
+                case "" :
+                    break;
+                default:
+                    resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                    break;
+            }
+
+        } catch (ExpiredTokenException e) {
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        } catch (Throwable e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override
@@ -72,7 +97,7 @@ public class HttpHandler extends HttpServlet {
                 switch (url) {
                     case "/auth":
                         UserAuthDto authDto = JsonHelper.fromJson(body, UserAuthDto.class).orElseThrow(BadRequest::new);
-                        if(authDto == null){
+                        if (authDto == null) {
                             throw new BadRequest();
                         }
                         String result = Optional.of(this.userController.authorize(authDto)).orElseThrow(BadRequest::new);
@@ -85,7 +110,7 @@ public class HttpHandler extends HttpServlet {
                         break;
                     case "/reg":
                         UserRegDto regDto = JsonHelper.fromJson(body, UserRegDto.class).orElseThrow(BadRequest::new);
-                        if(regDto == null){
+                        if (regDto == null) {
                             throw new BadRequest();
                         }
                         this.userController.register(regDto);
@@ -93,13 +118,16 @@ public class HttpHandler extends HttpServlet {
                         break;
                     default:
                         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                        break;
                 }
             } catch (BadRequest e) {
                 resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            }catch (ForbiddenException e) {
+            } catch (ForbiddenException e) {
                 resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            }catch (ConstraintViolationException e) {
+            } catch (ConstraintViolationException e) {
                 resp.setStatus(HttpServletResponse.SC_CONFLICT);
+            } catch (ExpiredTokenException e) {
+                resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             } catch (Throwable e) {
                 resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             }

@@ -63,7 +63,7 @@ public class TokenProvider {
 
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
             cipher.init(Cipher.DECRYPT_MODE, secretKey, ivspec);
-            newT = JsonHelper.fromJson(new String(cipher.doFinal(Base64.getDecoder().decode(str))), PrivateToken.class).orElse(null);
+            newT = JsonHelper.fromJson(new String(cipher.doFinal(Base64.getDecoder().decode(str))), PrivateToken.class).orElseThrow(BadRequest::new);
         } catch (Exception e) {
             log.error("Error while decrypting: " + e);
         }
