@@ -1,6 +1,12 @@
+///
+import '../style/style.scss';
+import '../Client/js/modalFields.js';
+import '../style/modalFieldsAdmin.scss';
+//////
 import { postRequestWithToken } from '../src/request'
 import { urls } from '../src/request'
 import '../style/style.scss'
+////
 
 function checkRoleAndDrawTabs(){
     var role = localStorage.getItem('role')

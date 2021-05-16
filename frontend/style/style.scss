@@ -1,13 +1,30 @@
-
 @import './const.scss';
+@import './header.scss';
+@import './modalFieldsAdmin.scss';
 *{
-    box-sizing: border-box;
+  //  box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: initial;
+    font-size: $size-text-input;
+    color: $color-text;
 }
 body{
     background: $body-bg;
+}
+button{
+    border: none;
+    outline: none;
+    background: none;
+}
+img{
+    width: 20px;
+    height: 20px;
+}
+input{
+    border: none;
+    outline: none;
+    background: none;
 }
 
 .content-block{
@@ -41,8 +58,7 @@ body{
             }
         }*/
     }
-
-.hide{
-    display: none;
 }
+.hide{ //role hide
+    display: none;
 }
