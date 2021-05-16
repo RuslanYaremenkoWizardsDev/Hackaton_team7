@@ -18,6 +18,87 @@
             <button class="block-content__modal-fields--close"></button>
             <h1 class="block-content__modal-fields--name-modal">Create tournament</h1>
             <div class="block-content__modal-fields__main main">
+                <div class="main__block-input-icons">
+                    <div class="main__block-input-icons--icons"></div>
+                    <input type="text" class="main__block-input-icons--text" placeholder="Name of tournament">
+                    <!--<img class="main__block-input-icons--icons" src="../style/img/SecretKey.png" alt="icons">-->
+                </div>
+                <div class="main__block-input-icons">
+                    <div class="main__block-input-icons--icons"></div>
+                    <input type="text"class="main__block-input-icons--text" placeholder="Tournament description">
+                    <!--<img class="main__block-input-icons--icons" src="../style/img/SecretKey.png" alt="icons">-->
+                </div>
+                <div class="main__block-input-icons__radio-button">
+                    <div class="main__block-input-icons__radio-button--radio">
+                        <input type="radio" value="cup" name="mode" checked>
+                        <label for="radio">Cup</label>
+                    </div>
+                    <div class="main__block-input-icons__radio-button--radio">
+                        <input class="main__block-input-icons__radio-button--radio" type="radio" value="championship" name="mode">
+                        <label for="radio">Championship</label>
+                    </div>
+                </div>
+                <div class="main__block-input-icons">
+                    <div class="main__block-input-icons--icons"></div>
+                    <input type="text"class="main__block-input-icons--text" placeholder="Place">
+                    <!--<img class="main__block-input-icons--icons" src="../style/img/SecretKey.png" alt="icons">-->
+                </div>
+                <div class="main__block-input-icons">
+                    <div class="main__block-input-icons--icons"></div>
+                    <input type="date" id="start" class="main__block-input-icons--text" title="Start date">
+                </div>
+                <div class="main__block-input-icons">
+                    <div class="main__block-input-icons--icons"></div>
+                    <input type="date" id="start" class="main__block-input-icons--text" title="Last registration date">
+                </div>
+                <div class="main__block-input-icons__radio-button-level">
+                    <div class="main__block-input-icons__radio-button-level">
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="advanced" name="mode">
+                        <label for="radio">Advanced</label>
+                    </div>
+                    <div class="main__block-input-icons__radio-button-level">
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="middle" name="mode" checked>
+                        <label for="radio">Middle</label>
+                    </div>
+                    <div class="main__block-input-icons__radio-button-level">
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="beginner" name="mode">
+                        <label for="radio">Beginner</label>
+                    </div>
+                </div>
+                <div class="main__block-input-icons__radio-button-level">
+                    <div class="main__block-input-icons__radio-button-level">
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="128" name="mode">
+                        <label for="radio">128</label>
+                    </div>
+                    <div class="main__block-input-icons__radio-button-level">
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="64" name="mode" >
+                        <label for="radio">64</label>
+                    </div>
+                    <div class="main__block-input-icons__radio-button-level">
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="32" name="mode" checked>
+                        <label for="radio">32</label>
+                    </div>
+                    <div class="main__block-input-icons__radio-button-level">
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="16" name="mode">
+                        <label for="radio">16</label>
+                    </div>
+                    <div class="main__block-input-icons__radio-button-level">
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="8" name="mode">
+                        <label for="radio">8</label>
+                    </div>
+                    <div class="main__block-input-icons__radio-button-level">
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="4" name="mode">
+                        <label for="radio">4</label>
+                    </div>
+                </div>
+                <div class="main__block-input-icons__dropdown">
+                    <button class="main__block-input-icons__dropdown-btn">One-match confrontation <img src="../style/img/arrow (2).png" class="main__block-input-icons__dropdown-btn--icon"></button>
+                    <div class="main__block-input-icons__dropdown-content" id="ScenarioForTournament ">
+                        <div class="main__block-input-icons__dropdown-content--content-hover" value="two-match-confrontation">Two-match confrontation</div>
+                        <div class="main__block-input-icons__dropdown-content--content-hover" value="two-three-wins">Two-three-wins</div>
+                    </div>
+                </div>
+                
                 
                 
             </div>
