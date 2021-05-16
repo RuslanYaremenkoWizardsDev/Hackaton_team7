@@ -13,7 +13,7 @@ export const validatePassword = (password) => {
   if (!password) {
     return false;
   }
-  const reg = new RegExp(/^[a-z0-9]{6,20}/, "i");
+  const reg = new RegExp(/^[a-z0-9]{5,20}/, "i");
   if (!reg.test(password)) {
     return false;
   }

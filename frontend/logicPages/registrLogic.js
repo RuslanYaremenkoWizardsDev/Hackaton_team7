@@ -28,24 +28,28 @@ function registrate() {
     email: emailInput.value,
     password: passInput.value,
   };
-  if (validateLogin(bodyToValidate.login) && validatePassword(bodyToValidate.password) && validateEmail(bodyToValidate.email) && (bodyToValidate.password === bodyToValidate.repeatPass)) {
+  if (validateLogin(bodyToValidate.login) 
+      && validatePassword(bodyToValidate.password) 
+      && validateEmail(bodyToValidate.email) 
+      && (bodyToValidate.password === bodyToValidate.repeatPass)) {
     postRequestWithoutToken(urls.regUrl, bodyToSend).then(function (data) {
       if ((data.status = 200)) {
         redirect("index.html");
       };
+      if(data.status = 409){
+            console.log('sosi lapu');
+        }
     });
   } else {
     console.log("Не валидно...");
   };
-//         if(data.status = 409){
-//             console.log('sosi lapu');
-//         }
-//     })
-// }
-
+        
+}
 guestEnter.addEventListener("click", enterAsGuest);
 
-function enterAsGuest() {
-  localStorage.setItem("role", "guest");
-  redirect("mainPage.html");
+
+function enterAsGuest(){
+    localStorage.setItem("role", "GUEST")
+    redirect("mainPage.html")
 }
+
