@@ -2,12 +2,19 @@ package com.github.server.handlers;
 
 import com.github.server.controllers.IAdminController;
 import com.github.server.controllers.IUserController;
+import com.github.server.controllers.UserController;
 import com.github.server.dto.UserAuthDto;
 import com.github.server.dto.UserRegDto;
+import com.github.server.entity.Tournament;
+import com.github.server.entity.User;
 import com.github.server.exceptions.BadRequest;
 import com.github.server.exceptions.ExpiredTokenException;
 import com.github.server.exceptions.ForbiddenException;
 import com.github.server.exceptions.NotFound;
+import com.github.server.payload.PrivateToken;
+import com.github.server.payload.Role;
+import com.github.server.services.IUserService;
+import com.github.server.services.UserService;
 import com.github.server.utils.JsonHelper;
 import com.github.server.utils.TokenProvider;
 import org.hibernate.exception.ConstraintViolationException;
@@ -73,10 +80,18 @@ public class HttpHandler extends HttpServlet {
                     resp.setStatus(HttpServletResponse.SC_OK);
                     break;
                 case "/main/create":
-                    String resultUsers = this.adminController.findAllUsers();
-                    out.write(resultUsers.getBytes());
-                    resp.setStatus(HttpServletResponse.SC_OK);
+                    PrivateToken privateToken = TokenProvider.decode(tokenStr);
+                    Role userRole = privateToken.getRole();
+                    if (userRole == Role.ADMIN) {
+                        String resultUsers = this.adminController.findAllUsers();
+                        out.write(resultUsers.getBytes());
+                        resp.setStatus(HttpServletResponse.SC_OK);
+                    }
                     break;
+                case "main/invite":
+                    PrivateToken privateToken1 = TokenProvider.decode(tokenStr);
+
+
                 default:
                     resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
                     break;
@@ -84,6 +99,8 @@ public class HttpHandler extends HttpServlet {
 
         } catch (ExpiredTokenException e) {
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        } catch (ForbiddenException e) {
+            resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
         } catch (Throwable e) {
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
@@ -119,6 +136,13 @@ public class HttpHandler extends HttpServlet {
                         this.userController.register(regDto);
                         resp.setStatus(HttpServletResponse.SC_OK);
                         break;
+                    case "/main/create":
+                        Tournament tournament = JsonHelper.fromJson(body, Tournament.class).orElseThrow(BadRequest::new);
+                        if (tournament == null) {
+                            throw new BadRequest();
+                        }
+                        this.adminController.createTournament(tournament);
+                        resp.setStatus(HttpServletResponse.SC_OK);
                     default:
                         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
                         break;
@@ -142,11 +166,19 @@ public class HttpHandler extends HttpServlet {
         resp.setHeader("Access-Control-Allow-Origin", "*");
         resp.setHeader("Access-Control-Allow-Methods", "*");
         resp.setHeader("Access-Control-Allow-Headers", "*");
+        String body = req.getReader().lines().collect(Collectors.joining());
         String url = req.getRequestURI();
-        String tokenStr = req.getHeader("Token");
-        if (!TokenProvider.checkToken(tokenStr)) {
-            throw new ExpiredTokenException();
+        if (url.contains("/updateUser")) {
+            String tokenStr = req.getHeader("Token");
+            if (!TokenProvider.checkToken(tokenStr)) {
+                throw new ExpiredTokenException();
+            }
+            PrivateToken token = TokenProvider.decode(tokenStr);
+            String userEmail = token.getEmail();
+            UserAuthDto loginPassword = JsonHelper.fromJson(body, UserAuthDto.class).orElseThrow(BadRequest::new);
+            UserRegDto userUpdate = new UserRegDto(loginPassword.getLogin(), userEmail, loginPassword.getPassword());
+            this.userController.update(userUpdate);
         }
-
     }
 }
+
