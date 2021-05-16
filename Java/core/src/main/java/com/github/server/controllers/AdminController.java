@@ -1,11 +1,11 @@
 package com.github.server.controllers;
 
-import com.github.server.entity.Player;
 import com.github.server.entity.Tournament;
+import com.github.server.exceptions.JsonParseException;
 import com.github.server.services.IPlayerService;
 import com.github.server.services.ITournamentService;
-
-import java.util.Collection;
+import com.github.server.services.IUserService;
+import com.github.server.utils.JsonHelper;
 
 public class AdminController implements IAdminController {
 
@@ -13,9 +13,12 @@ public class AdminController implements IAdminController {
 
     private final ITournamentService tournamentService;
 
-    public AdminController(IPlayerService playerService, ITournamentService tournamentService) {
+    private final IUserService userService;
+
+    public AdminController(IPlayerService playerService, ITournamentService tournamentService, IUserService userService) {
         this.playerService = playerService;
         this.tournamentService = tournamentService;
+        this.userService = userService;
     }
 
     @Override
@@ -34,22 +37,27 @@ public class AdminController implements IAdminController {
     }
 
     @Override
-    public Collection<Tournament> findAllTournament() {
-        return tournamentService.findAll();
+    public String findAllTournaments() {
+        return JsonHelper.toJson(tournamentService.findAll()).orElseThrow(JsonParseException::new);
     }
 
     @Override
-    public Collection<Tournament> findByMode(String mode) {
-        return tournamentService.findByMode(mode);
+    public String findTournamentsByMode(String mode) {
+        return JsonHelper.toJson(tournamentService.findByMode(mode)).orElseThrow(JsonParseException::new);
     }
 
     @Override
-    public Collection<Tournament> findByStatus(String status) {
-        return tournamentService.findByStatus(status);
+    public String findTournamentsByStatus(String status) {
+        return JsonHelper.toJson(tournamentService.findByStatus(status)).orElseThrow(JsonParseException::new);
     }
 
     @Override
-    public Collection<Player> findAllPlayer() {
-        return playerService.findAll();
+    public String findAllPlayers() {
+        return JsonHelper.toJson(playerService.findAll()).orElseThrow(JsonParseException::new);
+    }
+
+    @Override
+    public String findAllUsers() {
+        return JsonHelper.toJson(userService.findAll()).orElseThrow(JsonParseException::new);
     }
 }
