@@ -12,8 +12,10 @@ public interface IPlayerRequestService {
 
     Collection<PlayerRequest> findByPlayer(String user);
 
-    void createInvite(PlayerRequest invite);
+    Collection<PlayerRequest> findAll();
 
-    void deleteInvite(PlayerRequest invite);
+    void createRequest(PlayerRequest invite);
+
+    void deleteRequest(PlayerRequest invite);
 
 }
