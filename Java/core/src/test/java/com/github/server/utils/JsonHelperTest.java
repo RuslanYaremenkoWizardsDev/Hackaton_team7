@@ -1,9 +1,13 @@
 package com.github.server.utils;
 
 import com.github.server.entity.Tournament;
+import com.github.server.entity.User;
+import com.github.server.payload.Role;
 import org.junit.Test;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -11,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 
 public class JsonHelperTest {
 
-    private Tournament tournament = new Tournament(0,
+    private final Tournament tournament = new Tournament(0,
             "testTournament",
             "1",
             "hardmode",
@@ -24,7 +28,7 @@ public class JsonHelperTest {
             "1,2",
             "ended");
 
-    private String tournamentStr = "{" +
+    private final String tournamentStr = "{" +
             "\"id\":0," +
             "\"name\":\"testTournament\"," +
             "\"description\":\"1\"," +
@@ -39,7 +43,7 @@ public class JsonHelperTest {
             "\"status\":\"ended\"" +
             "}";
 
-    private Tournament tournamentNull = new Tournament(null,
+    private final Tournament tournamentNull = new Tournament(null,
             null,
             null,
             null,
@@ -83,8 +87,8 @@ public class JsonHelperTest {
 
 
     @Test
-    public void toJson2() {
-        String str = String.valueOf(JsonHelper.toJson(null).orElse("s"));
+    public void toJsonNull() {
+        String str = JsonHelper.toJson(null).orElse("s");
         assertEquals("null", str);
     }
 
@@ -96,13 +100,23 @@ public class JsonHelperTest {
     }
 
     @Test
-    public void fromJson2() {
+    public void fromJsonAllNull() {
         Tournament actual = JsonHelper.fromJson(tournamentStrNull, Tournament.class).orElseThrow();
         assertEquals(tournamentNull, actual);
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void fromJsonException() {
+    public void fromJsonIncorrectJson() {
         JsonHelper.fromJson("{\"id\":\"321}", Tournament.class).orElseThrow();
     }
+
+    @Test
+    public void toJsonCollection(){
+        Collection<User> users = new ArrayList<>();
+        users.add(new User(null, "firstUserLogin", "firstUserEmail", "firstUserPassword", Role.valueOf("USER")));
+        users.add(new User(null, "firstUserLogin", "firstUserEmail", "firstUserPassword", Role.valueOf("USER")));
+        users.add(new User(null, "secondUserLogin", "secondUserEmail", "secondUserPassword", Role.valueOf("USER")));
+        System.out.println(JsonHelper.toJson(users).orElseThrow());
+    }
+
 }

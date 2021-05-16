@@ -36,15 +36,13 @@ public class UserController implements IUserController {
         }
         PrivateToken token = new PrivateToken(user);
         String encodedToken = TokenProvider.encode(token);
-        Envelope env = new Envelope(user.getRole(), JsonHelper.toJson(token).orElseThrow(InternalServerError::new));
+        Envelope env = new Envelope(user.getRole(), encodedToken);
         return JsonHelper.toJson(env).orElseThrow(InternalServerError::new);
     }
 
     @Override
     public void register(UserRegDto userRegDto) {
-        System.out.println("before");
         userService.insert(userRegDto.toUser());
-        System.out.println("after");
     }
 
 }

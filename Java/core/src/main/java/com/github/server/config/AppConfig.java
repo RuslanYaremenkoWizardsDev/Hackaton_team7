@@ -8,7 +8,6 @@ import com.github.server.entity.Player;
 import com.github.server.entity.Tournament;
 import com.github.server.entity.User;
 import com.github.server.handlers.HttpHandler;
-import com.github.server.proxy.UserControllerProxy;
 import com.github.server.proxy.UserServiceProxy;
 import com.github.server.repositories.IRepository;
 import com.github.server.repositories.Repository;
@@ -33,7 +32,7 @@ public class AppConfig {
 
     private static final IUserController userController = new UserController(getUserService());
 
-    private static final IAdminController adminController = new AdminController(getPlayerService(), getTournamentService());
+    private static final IAdminController adminController = new AdminController(getPlayerService(), getTournamentService(), getUserService());
 
     private static final HttpHandler handler = new HttpHandler(getUserController(), getAdminController());
 
