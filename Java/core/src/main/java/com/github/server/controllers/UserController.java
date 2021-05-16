@@ -10,28 +10,28 @@ import com.github.server.services.IUserService;
 import com.github.server.utils.JsonHelper;
 import com.github.server.utils.PattenMatcher;
 
-public class UserController implements IUserController{
+public class UserController implements IUserController {
 
     private final IUserService userService;
 
-    public UserController (IUserService userService) {
+    public UserController(IUserService userService) {
         this.userService = userService;
     }
 
     @Override
     public String authorize(UserAuthDto userAuthDto) {
         User user;
-        if(PattenMatcher.isValidEmail(userAuthDto.getLogin())){
+        if (PattenMatcher.isValidEmail(userAuthDto.getLogin())) {
             user = this.userService.findByEmail(userAuthDto.getLogin());
         } else {
             user = this.userService.findByLogin(userAuthDto.getLogin());
         }
-            return JsonHelper.toJson(new Token(user)).orElseThrow(JsonParseException::new);
-        }
+        return JsonHelper.toJson(new Token(user)).orElseThrow(JsonParseException::new);
+    }
 
     @Override
     public void register(UserRegDto userRegDto) {
-        if(this.userService.findByEmail(userRegDto.getEmail()) != null){
+        if (this.userService.findByEmail(userRegDto.getEmail()) != null) {
             throw new UserAlreadyExistException();
         }
         userService.insert(userRegDto.toUser());

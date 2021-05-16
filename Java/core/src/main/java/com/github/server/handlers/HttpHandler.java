@@ -48,7 +48,7 @@ public class HttpHandler extends HttpServlet {
             String url = req.getRequestURI();
             System.out.println("Body:\n" + body);
             System.out.println(url);
-            if(url.contains("/auth")) {
+            if (url.contains("/auth")) {
                 UserAuthDto payload = JsonHelper.fromJson(body, UserAuthDto.class).orElseThrow(BadRequest::new);
                 String result = Optional.of(this.userController.authorize(payload)).orElseThrow(BadRequest::new);
                 resp.setContentType("application/json");
@@ -59,11 +59,11 @@ public class HttpHandler extends HttpServlet {
                 out.close();
                 return;
             }
-            if(url.contains("/reg")) {
+            if (url.contains("/reg")) {
                 UserRegDto payload = JsonHelper.fromJson(body, UserRegDto.class).orElseThrow(BadRequest::new);
                 this.userController.register(payload);
                 resp.setStatus(HttpServletResponse.SC_ACCEPTED);
-            } else{
+            } else {
                 resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             }
         }

@@ -1,20 +1,19 @@
 package com.github.server.utils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.server.entity.Tournament;
 import org.junit.Test;
 
 import java.sql.Date;
-import java.util.HashMap;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class JsonHelperTest {
 
     private Tournament tournament = new Tournament(0,
             "testTournament",
-            "",
+            "1",
             "hardmode",
             "Kyiv",
             new Date(212121L),
@@ -28,15 +27,15 @@ public class JsonHelperTest {
     private String tournamentStr = "{" +
             "\"id\":0," +
             "\"name\":\"testTournament\"," +
-            "\"description\":\"\"," +
+            "\"description\":\"1\"," +
             "\"mode\":\"hardmode\"," +
             "\"place\":\"Kyiv\"," +
-            "\"startDate\":212121," +
-            "\"lastDayReg\":912121," +
-            "\"difficult\":\"hard\"," +
+            "\"dateStart\":212121," +
+            "\"dateRegEnd\":912121," +
+            "\"level\":\"hard\"," +
             "\"maxPlayers\":32," +
             "\"scenario\":\"norm\"," +
-            "\"listPlayers\":\"1,2\"," +
+            "\"players\":\"1,2\"," +
             "\"status\":\"ended\"" +
             "}";
 
@@ -59,12 +58,12 @@ public class JsonHelperTest {
             "\"description\":null," +
             "\"mode\":null," +
             "\"place\":null," +
-            "\"startDate\":null," +
-            "\"lastDayReg\":null," +
-            "\"difficult\":null," +
+            "\"dateStart\":null," +
+            "\"dateRegEnd\":null," +
+            "\"level\":null," +
             "\"maxPlayers\":null," +
             "\"scenario\":null," +
-            "\"listPlayers\":null," +
+            "\"players\":null," +
             "\"status\":null" +
             "}";
 
@@ -100,5 +99,10 @@ public class JsonHelperTest {
     public void fromJson2() {
         Tournament actual = JsonHelper.fromJson(tournamentStrNull, Tournament.class).orElseThrow();
         assertEquals(tournamentNull, actual);
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void fromJsonException() {
+        JsonHelper.fromJson("{\"id\":\"321}", Tournament.class).orElseThrow();
     }
 }

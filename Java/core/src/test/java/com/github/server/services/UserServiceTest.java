@@ -1,6 +1,7 @@
 package com.github.server.services;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 
 public class UserServiceTest {
 

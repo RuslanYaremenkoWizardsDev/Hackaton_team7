@@ -12,7 +12,8 @@ public class UserRegDto {
 
     private String password;
 
-    public UserRegDto() {}
+    public UserRegDto() {
+    }
 
     public UserRegDto(String login, String email, String password) {
         this.login = login;
@@ -73,7 +74,7 @@ public class UserRegDto {
                 '}';
     }
 
-    public User toUser(){
+    public User toUser() {
         return new User(
                 null,
                 this.login,
