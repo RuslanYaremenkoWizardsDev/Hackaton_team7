@@ -57,19 +57,25 @@ public class HttpHandler extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ServletOutputStream out = resp.getOutputStream();
+        resp.setHeader("Access-Control-Allow-Origin", "*");
+        resp.setHeader("Access-Control-Allow-Methods", "*");
+        resp.setHeader("Access-Control-Allow-Headers", "*");
         String url = req.getRequestURI();
-        try {
+        String tokenStr = req.getHeader("Token");
+        if (!TokenProvider.checkToken(tokenStr)) {
+            throw new ExpiredTokenException();
+        }
+        try (ServletOutputStream out = resp.getOutputStream()) {
             switch (url) {
                 case "/main/tournaments":
-                    String tokenStr = req.getHeader("Token");
-                    if (!TokenProvider.checkToken(tokenStr)) {
-                        throw new ExpiredTokenException();
-                    }
-                    String result = Optional.of(this.).orElseThrow(BadRequest::new);
-
+                    String resultTours = this.adminController.findAllTournaments();
+                    out.write(resultTours.getBytes());
+                    resp.setStatus(HttpServletResponse.SC_OK);
                     break;
-                case "" :
+                case "/main/create":
+                    String resultUsers = this.adminController.findAllUsers();
+                    out.write(resultUsers.getBytes());
+                    resp.setStatus(HttpServletResponse.SC_OK);
                     break;
                 default:
                     resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -93,7 +99,7 @@ public class HttpHandler extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Invalid content type");
         } else {
             String url = req.getRequestURI();
-            try {
+            try (ServletOutputStream out = resp.getOutputStream()) {
                 switch (url) {
                     case "/auth":
                         UserAuthDto authDto = JsonHelper.fromJson(body, UserAuthDto.class).orElseThrow(BadRequest::new);
@@ -103,10 +109,7 @@ public class HttpHandler extends HttpServlet {
                         String result = Optional.of(this.userController.authorize(authDto)).orElseThrow(BadRequest::new);
                         resp.setContentType("application/json");
                         resp.setStatus(HttpServletResponse.SC_OK);
-                        ServletOutputStream out = resp.getOutputStream();
                         out.write(result.getBytes());
-                        out.flush();
-                        out.close();
                         break;
                     case "/reg":
                         UserRegDto regDto = JsonHelper.fromJson(body, UserRegDto.class).orElseThrow(BadRequest::new);
@@ -132,5 +135,18 @@ public class HttpHandler extends HttpServlet {
                 resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             }
         }
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setHeader("Access-Control-Allow-Origin", "*");
+        resp.setHeader("Access-Control-Allow-Methods", "*");
+        resp.setHeader("Access-Control-Allow-Headers", "*");
+        String url = req.getRequestURI();
+        String tokenStr = req.getHeader("Token");
+        if (!TokenProvider.checkToken(tokenStr)) {
+            throw new ExpiredTokenException();
+        }
+
     }
 }
