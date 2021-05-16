@@ -1,5 +1,4 @@
-import postRequest  from "../src/request" 
-import postRequestWithToken  from "../src/request" 
+import postRequestWithoutToken  from "../src/request" 
 import urls from "../constans/const" 
 import redirect from "../src/redirect"
 

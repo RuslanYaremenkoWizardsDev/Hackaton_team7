@@ -35,6 +35,8 @@ async function getTournamentsAndRender (){
 
 // }
 
-function Tournament (name, desc, mode, place, dateStart, dateReg, level, numOfParts, scenario, invPlayers =  []){
+// function Tournament (name, desc, mode, place, dateStart, dateReg, level, numOfParts, scenario, invPlayers =  []){
 
-}
+// }
+
+//общение между админом и пользователем реализовать через таблицу запросов, у запроса есть статус "открытый", "закрытый".
