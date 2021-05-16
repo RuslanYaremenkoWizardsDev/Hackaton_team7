@@ -1,15 +1,28 @@
 package com.github.server.entity;
 
-import java.util.Arrays;
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "playerRequest", schema = "public")
 public class PlayerRequest {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "nameTournament")
     private String nameTournament;
 
+    @Column(name = "user")
     private String user;
 
+    @Column(name = "status")
     private String status;
+
+    public PlayerRequest() {
+    }
 
     public PlayerRequest(String nameTournament, String user, String status) {
         this.nameTournament = nameTournament;

@@ -1,14 +1,28 @@
 package com.github.server.entity;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "playerInvite", schema = "public")
 public class PlayerInvite {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "nameTournament")
     private String nameTournament;
 
+    @Column(name = "user")
     private String user;
 
+    @Column(name = "status")
     private String status;
+
+    public PlayerInvite() {
+    }
 
     @Override
     public boolean equals(Object o) {
