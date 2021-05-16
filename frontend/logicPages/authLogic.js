@@ -1,7 +1,8 @@
 
+import {postRequestWithoutToken}  from "../src/request" 
+
 import '../style/style.scss'
 
-import postRequestWithoutToken  from "../src/request" 
 import urls from "../constans/const" 
 import redirect from "../src/redirect"
 import { validateLogin, validatePassword, validateEmail } from "../client/validation/validation"
@@ -43,7 +44,7 @@ function authorize (){
 guestEnter.addEventListener("click", enterAsGuest)
 
 function enterAsGuest(){
-    localStorage.setItem("role", 'guest')
+    localStorage.setItem("role", 'GUEST')
     redirect("mainPage.html")
 }
 
