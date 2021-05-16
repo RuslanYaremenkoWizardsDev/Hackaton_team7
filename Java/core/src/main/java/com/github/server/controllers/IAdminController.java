@@ -13,12 +13,14 @@ public interface IAdminController {
 
     void updateTournament(Tournament tournament);
 
-    Collection<Tournament> findAllTournament();
+    String findAllTournaments();
 
-    Collection<Tournament> findByMode(String mode);
+    String findTournamentsByMode(String mode);
 
-    Collection<Tournament> findByStatus(String status);
+    String findTournamentsByStatus(String status);
 
-    Collection<Player> findAllPlayer();
+    String findAllPlayers();
+
+    String findAllUsers();
 
 }
