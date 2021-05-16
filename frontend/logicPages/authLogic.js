@@ -1,6 +1,11 @@
+
 import {postRequestWithoutToken}  from "../src/request" 
+
+import '../style/style.scss'
+
 import urls from "../constans/const" 
 import redirect from "../src/redirect"
+import { validateLogin, validatePassword, validateEmail } from "../client/validation/validation"
 
 var loginInput = document.getElementById("loginAuth")
 var passInput = document.getElementById("passwordAuth")
@@ -16,22 +21,25 @@ function authorize (){
         email: emailInput.value,
         password: passInput.value,
     }
-    //боди отправить на валидацию
-    postRequestWithoutToken(urls.authUrl, body).then(function(data){
-        if(data.status = 200){
-            var token = data.token
-            var role = data.role
-            document.cookie = `token = ${token}, max-age = 3600`
-            //убрать занесение токена в локал сторедж
-            localStorage.setItem("token", token)
-            localStorage.setItem("role", role)
-            redirect("mainPage.html")
-        }
-        if(data.status === 403){
-            //функция отрисовки сообщения о том, что такого пользователя не существует 
-            redirect("reg")
-        }
-    })
+    if (validateLogin(body.login) && validatePassword(body.password) && validateEmail(body.email)) {
+        postRequestWithoutToken(urls.authUrl, body).then(function(data){
+            if(data.status = 200){
+                var token = data.token
+                var role = data.role
+                document.cookie = `token = ${token}, max-age = 3600`
+                //убрать занесение токена в локал сторедж
+                localStorage.setItem("token", token)
+                localStorage.setItem("role", role)
+                redirect("mainPage.html")
+            }
+            if(data.status === 403){
+                //функция отрисовки сообщения о том, что такого пользователя не существует 
+                redirect("reg")
+            }
+        }) 
+    } else {
+        console.log("Не валидно...");
+    } 
 }
 guestEnter.addEventListener("click", enterAsGuest)
 
@@ -39,3 +47,4 @@ function enterAsGuest(){
     localStorage.setItem("role", 'GUEST')
     redirect("mainPage.html")
 }
+
