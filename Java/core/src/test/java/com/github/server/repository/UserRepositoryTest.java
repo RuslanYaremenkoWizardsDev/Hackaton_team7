@@ -22,7 +22,7 @@ public class UserRepositoryTest {
     private static final List<User> mockData = new ArrayList<>();
 
     @BeforeClass
-    public static void setUp(){
+    public static void setUp() {
 
         mockData.add(new User(null, "firstUserLogin", "firstUserEmail", "firstUserPassword", Role.valueOf("USER")));
         mockData.add(new User(null, "secondUserLogin", "secondUserEmail", "secondUserPassword", Role.valueOf("USER")));
@@ -30,49 +30,49 @@ public class UserRepositoryTest {
         mockData.add(new User(null, "firstAdminLogin", "firstAdminEmail", "firstAdminPassword", Role.valueOf("ADMIN")));
         mockData.add(new User(null, "secondAdminLogin", "secondAdminEmail", "secondAdminPassword", Role.valueOf("ADMIN")));
 
-        for (User user: mockData) {
+        for (User user : mockData) {
             repository.save(User.class, user, HibernateUtils.getSession());
         }
     }
 
     @AfterClass
-    public static void tearDown(){
+    public static void tearDown() {
         Collection<User> users = repository.findAll(User.class, HibernateUtils.getSession());
-        for (User user : users ) {
+        for (User user : users) {
             repository.delete(User.class, user, HibernateUtils.getSession());
         }
     }
 
     @Test
-    public void findByLoginFirstUser(){
+    public void findByLoginFirstUser() {
         User act = repository.findBy(User.class, "login", "firstUserLogin", HibernateUtils.getSession());
         User exp = new User(act.getId(), "firstUserLogin", "firstUserEmail", "firstUserPassword", Role.valueOf("USER"));
         Assert.assertEquals(exp, act);
     }
 
     @Test
-    public void findByEmailThirdUser(){
+    public void findByEmailThirdUser() {
         User act = repository.findBy(User.class, "email", "thirdUserEmail", HibernateUtils.getSession());
         User exp = new User(act.getId(), "thirdUserLogin", "thirdUserEmail", "thirdUserPassword", Role.valueOf("USER"));
         Assert.assertEquals(exp, act);
     }
 
     @Test
-    public void findByLoginFirstAdmin(){
+    public void findByLoginFirstAdmin() {
         User act = repository.findBy(User.class, "login", "firstAdminLogin", HibernateUtils.getSession());
         User exp = new User(act.getId(), "firstAdminLogin", "firstAdminEmail", "firstAdminPassword", Role.valueOf("ADMIN"));
         Assert.assertEquals(exp, act);
     }
 
     @Test
-    public void findByEmailSecondAdmin(){
+    public void findByEmailSecondAdmin() {
         User act = repository.findBy(User.class, "email", "secondAdminEmail", HibernateUtils.getSession());
         User exp = new User(act.getId(), "secondAdminLogin", "secondAdminEmail", "secondAdminPassword", act.getRole());
         Assert.assertEquals(exp, act);
     }
 
     @Test
-    public void update(){
+    public void update() {
         User userToUpdate = repository.findBy(User.class, "login", "firstUserLogin", HibernateUtils.getSession());
         User exp = new User(
                 userToUpdate.getId(),
@@ -88,7 +88,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void delete(){
+    public void delete() {
         Collection<User> exp = repository.findAll(User.class, HibernateUtils.getSession());
         exp.removeIf(u -> u.getEmail().equals("secondUserEmail"));
         User userToDelete = repository.findBy(User.class, "email", "secondUserEmail", HibernateUtils.getSession());
@@ -98,7 +98,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void findAllAdmins(){
+    public void findAllAdmins() {
         Collection<User> exp = new ArrayList<>();
         Collection<User> act = repository.findAllBy(User.class, "role", Role.valueOf("ADMIN"), HibernateUtils.getSession());
         exp.add(new User(null, "firstAdminLogin", "firstAdminEmail", "firstAdminPassword", Role.valueOf("ADMIN")));
