@@ -1,4 +1,4 @@
-import postRequestWithoutToken from "../src/request";
+import {postRequestWithoutToken} from "../src/request";
 import urls from "../constans/const";
 import redirect from "../src/redirect";
 import {
@@ -32,12 +32,14 @@ function registrate() {
       && validatePassword(bodyToValidate.password) 
       && validateEmail(bodyToValidate.email) 
       && (bodyToValidate.password === bodyToValidate.repeatPass)) {
+        console.log(urls);
     postRequestWithoutToken(urls.regUrl, bodyToSend).then(function (data) {
-      if ((data.status = 200)) {
+      console.log(data);
+      if ((data.status === 200)) {
         redirect("index.html");
       };
-      if(data.status = 409){
-            console.log('sosi lapu');
+      if(data.status === 409){
+            console.log('не получилось');
         }
     });
   } else {
