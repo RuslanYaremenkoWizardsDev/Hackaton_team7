@@ -25,7 +25,7 @@ function registrate (){
         password: passInput.value,
     }
     postRequestWithoutToken(urls.regUrl, bodyToSend).then(function(data){
-        if(data.status = 202){
+        if(data.status = 200){
             redirect("index.html")
         }
         if(data.status === 409){

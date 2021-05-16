@@ -45,8 +45,13 @@ function getTournamentsAndRender (){
 }
 // getTournamentsAndRender()
 
+//функция отрисовки турниров в таблице на вкладке tournaments
+// function renderTournamentsTable(){
+
+// }
+
 //получение инвайтов при входе
-function getMessages(){
+function getMessageAndRender(){
     var role = localStorage.getItem('role')
     if(!role || role === 'GUEST') {
         getRequestWithoutToken(urls.mainInvite).then(function(data){
@@ -58,15 +63,10 @@ function getMessages(){
         })
     }
 }
-// getMessages()
+// getMessageAndRender()
 
 //функция отрисовки инвайтов
 // function renderMessages(data){
-
-// }
-
-//функция отрисовки турниров в таблице на вкладке tournaments
-// function renderTournamentsTable(){
 
 // }
 
