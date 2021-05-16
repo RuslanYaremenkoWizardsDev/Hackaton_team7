@@ -40,18 +40,13 @@ public class HttpHandler extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND, "NOT FOUND 404");
         }
     }
+
     @Override
     public void doOptions(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        System.out.println("DOOPT");
         resp.setHeader("Access-Control-Allow-Origin", "*");
         resp.setHeader("Access-Control-Allow-Methods", "*");
         resp.setHeader("Access-Control-Allow-Headers", "*");
         resp.setStatus(204);
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
     }
 
     @Override
@@ -73,7 +68,7 @@ public class HttpHandler extends HttpServlet {
                         }
                         String result = Optional.of(this.userController.authorize(authDto)).orElseThrow(BadRequest::new);
                         resp.setContentType("application/json");
-                        resp.setStatus(HttpServletResponse.SC_ACCEPTED);
+                        resp.setStatus(HttpServletResponse.SC_OK);
                         ServletOutputStream out = resp.getOutputStream();
                         out.write(result.getBytes());
                         out.flush();
@@ -85,10 +80,10 @@ public class HttpHandler extends HttpServlet {
                             throw new BadRequest();
                         }
                         this.userController.register(regDto);
-                        resp.setStatus(HttpServletResponse.SC_ACCEPTED);
+                        resp.setStatus(HttpServletResponse.SC_OK);
                         break;
                     default:
-                        resp.setStatus(HttpServletResponse.SC_OK);
+                        resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 }
             } catch (BadRequest e) {
                 resp.setStatus(400);
