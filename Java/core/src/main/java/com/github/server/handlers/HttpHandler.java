@@ -40,9 +40,25 @@ public class HttpHandler extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND, "NOT FOUND 404");
         }
     }
+    @Override
+    public void doOptions(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        System.out.println("DOOPT");
+        resp.setHeader("Access-Control-Allow-Origin", "*");
+        resp.setHeader("Access-Control-Allow-Methods", "*");
+        resp.setHeader("Access-Control-Allow-Headers", "*");
+        resp.setStatus(204);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doGet(req, resp);
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setHeader("Access-Control-Allow-Origin", "*");
+        resp.setHeader("Access-Control-Allow-Methods", "*");
+        resp.setHeader("Access-Control-Allow-Headers", "*");
         String body = req.getReader().lines().collect(Collectors.joining());
         if (!"application/json".equalsIgnoreCase(req.getHeader("Content-Type"))) {
             resp.sendError(HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Invalid content type");
@@ -72,7 +88,7 @@ public class HttpHandler extends HttpServlet {
                         resp.setStatus(HttpServletResponse.SC_ACCEPTED);
                         break;
                     default:
-                        resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                        resp.setStatus(HttpServletResponse.SC_OK);
                 }
             } catch (BadRequest e) {
                 resp.setStatus(400);
