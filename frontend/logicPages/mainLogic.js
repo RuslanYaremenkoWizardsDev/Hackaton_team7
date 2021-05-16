@@ -1,8 +1,7 @@
 import { postRequestWithToken } from '../src/request'
 import { getRequestWithToken } from '../src/request'
 import { getRequestWithoutToken } from '../src/request'
-import { getRequest } from '../src/request'
-import  urls  from '../src/request'
+import  urls from '../constans/const'
 import '../style/style.scss'
 
 function checkRoleAndDrawTabs(){
@@ -44,12 +43,14 @@ function getTournamentsAndRender (){
         })
     }
 }
-// getTournamentsAndRender()
+getTournamentsAndRender()
 //получение инвайтов при входе
 function getMessages(){
     var role = localStorage.getItem('role')
-    if(!role) {
-        return
+    if(!role || role === 'guest') {
+        getRequestWithoutToken(urls.mainInvite).then(function(data){
+            renderMessages(data)
+        })
     }else{
         getRequestWithToken(urls.mainInvite).then(function(data){
             renderMessages(data)

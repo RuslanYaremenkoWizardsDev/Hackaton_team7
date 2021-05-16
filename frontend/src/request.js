@@ -33,6 +33,7 @@ function postRequestWithToken(url, requestBody) {
 
 function getRequestWithToken(url) {
     return new Promise(function (resolve, reject) {
+      var request = new XMLHttpRequest();
       request.open("GET", url, true);
       request.setRequestHeader('Authorization', localStorage.getItem('token'))
       request.addEventListener("load", function () {
@@ -49,6 +50,7 @@ function getRequestWithToken(url) {
 
 function getRequestWithoutToken(url) {
   return new Promise(function (resolve, reject) {
+    var request = new XMLHttpRequest();
     request.open("GET", url, true);
     request.addEventListener("load", function () {
       if (request.status < 400) {

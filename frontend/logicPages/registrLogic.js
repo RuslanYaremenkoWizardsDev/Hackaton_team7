@@ -28,7 +28,9 @@ function registrate (){
         if(data.status = 202){
             redirect("index.html")
         }
-        //статус на попторную регистрацию
+        if(data.status === 409){
+            console.log("хочешь зарегать уже сущ юзайре")
+        }
     })
 }
 
