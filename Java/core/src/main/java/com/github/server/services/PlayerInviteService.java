@@ -6,6 +6,7 @@ import com.github.server.utils.HibernateUtils;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class PlayerInviteService implements IPlayerInviteService {
@@ -18,13 +19,13 @@ public class PlayerInviteService implements IPlayerInviteService {
 
     @Override
     public PlayerInvite findInvite(String userLogin, String tournamentName) {
-        return null;
+        Collection<PlayerInvite> playerInvites = findByTournament(tournamentName);
+        return playerInvites.stream().filter(e -> e.getUser().equals(userLogin)).findFirst().orElseThrow();
     }
 
     @Override
     public Collection<PlayerInvite> findByTournament(String tournamentName) {
-//        return this.repository.findBy("nameTournament", tournamentName, HibernateUtils.getSession());
-        return null;
+        return this.repository.findAllBy("nameTournament", tournamentName, HibernateUtils.getSession());
     }
 
     @Override
@@ -34,12 +35,11 @@ public class PlayerInviteService implements IPlayerInviteService {
 
     @Override
     public void createInvite(PlayerInvite invite) {
-
+        this.repository.save(invite, HibernateUtils.getSession());
     }
 
     @Override
     public void deleteInvite(PlayerInvite invite) {
-
+        this.repository.delete(invite, HibernateUtils.getSession());
     }
-
 }
