@@ -119,4 +119,12 @@ public class JsonHelperTest {
         System.out.println(JsonHelper.toJson(users).orElseThrow());
     }
 
+    @Test
+    public void toJsonStringCollection(){
+        Collection<String> strings = new ArrayList<>();
+        strings.add("1");
+        strings.add("2");
+        System.out.println(JsonHelper.toJson(strings).orElseThrow());
+    }
+
 }

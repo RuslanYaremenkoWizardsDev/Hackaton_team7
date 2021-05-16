@@ -12,7 +12,7 @@ public class PlayerInvite {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "nameTournament")
+    @Column(name = "tournamentName")
     private String nameTournament;
 
     @Column(name = "user")
@@ -22,6 +22,13 @@ public class PlayerInvite {
     private String status;
 
     public PlayerInvite() {
+    }
+
+    public PlayerInvite(String nameTournament, String user) {
+        this.id = null;
+        this.nameTournament = nameTournament;
+        this.user = user;
+        this.status = "WAITING";
     }
 
     @Override

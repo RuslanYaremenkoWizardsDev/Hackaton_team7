@@ -2,22 +2,39 @@ package com.github.server.controllers;
 
 import com.github.server.dto.UserAuthDto;
 import com.github.server.dto.UserRegDto;
+import com.github.server.entity.PlayerInvite;
+import com.github.server.entity.PlayerRequest;
 import com.github.server.entity.User;
 import com.github.server.exceptions.ForbiddenException;
 import com.github.server.exceptions.InternalServerError;
 import com.github.server.payload.Envelope;
 import com.github.server.payload.PrivateToken;
-import com.github.server.services.IUserService;
+import com.github.server.services.*;
 import com.github.server.utils.JsonHelper;
 import com.github.server.utils.PattenMatcher;
 import com.github.server.utils.TokenProvider;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class UserController implements IUserController {
 
     private final IUserService userService;
 
-    public UserController(IUserService userService) {
+    private final IPlayerService playerService;
+
+    private final ITournamentService tournamentService;
+
+    private final IPlayerInviteService playerInviteService;
+
+    private final IPlayerRequestService playerRequestService;
+
+    public UserController(IUserService userService, IPlayerService playerService, ITournamentService tournamentService, IPlayerInviteService playerInviteService, IPlayerRequestService playerRequestService) {
         this.userService = userService;
+        this.playerService = playerService;
+        this.tournamentService = tournamentService;
+        this.playerInviteService = playerInviteService;
+        this.playerRequestService = playerRequestService;
     }
 
     @Override
@@ -57,22 +74,36 @@ public class UserController implements IUserController {
 
     @Override
     public String getInvites(String userLogin) {
-        return null;
+        Collection<PlayerInvite> invites = playerInviteService.findByPlayer(userLogin);
+        Collection<String> tournaments = new ArrayList<>();
+        for (PlayerInvite invite : invites) {
+            tournaments.add(invite.getNameTournament());
+        }
+        return JsonHelper.toJson(tournaments).orElseThrow();
     }
 
     @Override
     public void acceptInvite(String userLogin, String tournamentName) {
-
+        PlayerInvite invite = playerInviteService.findInvite(userLogin, tournamentName);
+        tournamentService.addPlayer(tournamentName, userLogin);
+        playerInviteService.deleteInvite(invite);
     }
 
     @Override
     public void declineInvite(String userLogin, String tournamentName) {
-
+        PlayerInvite invite = playerInviteService.findInvite(userLogin, tournamentName);
+        playerInviteService.deleteInvite(invite);
     }
 
     @Override
     public void createRequest(String userLogin, String tournamentName) {
-
+        playerRequestService.createRequest(
+                new PlayerRequest(
+                        tournamentName,
+                        userLogin,
+                        "WAITING"
+                )
+        );
     }
 
 }
