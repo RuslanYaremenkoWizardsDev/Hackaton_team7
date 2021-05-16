@@ -9,5 +9,6 @@ public interface IUserController {
 
     void register(UserRegDto userRegDto);
 
+    void update(UserRegDto userRegDto);
 
 }

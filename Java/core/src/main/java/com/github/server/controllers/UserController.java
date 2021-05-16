@@ -15,8 +15,6 @@ import org.slf4j.LoggerFactory;
 
 public class UserController implements IUserController {
 
-    private static final Logger log = LoggerFactory.getLogger(UserController.class);
-
     private final IUserService userService;
 
     public UserController(IUserService userService) {
@@ -43,6 +41,11 @@ public class UserController implements IUserController {
     @Override
     public void register(UserRegDto userRegDto) {
         userService.insert(userRegDto.toUser());
+    }
+
+    @Override
+    public void update(UserRegDto userRegDto) {
+        userService.update(userRegDto.toUser());
     }
 
 }
