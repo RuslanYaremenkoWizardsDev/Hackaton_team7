@@ -3,15 +3,14 @@ package com.github.server.controllers;
 import com.github.server.dto.UserAuthDto;
 import com.github.server.dto.UserRegDto;
 import com.github.server.entity.User;
-import com.github.server.exceptions.*;
+import com.github.server.exceptions.ForbiddenException;
+import com.github.server.exceptions.InternalServerError;
 import com.github.server.payload.Envelope;
 import com.github.server.payload.PrivateToken;
 import com.github.server.services.IUserService;
 import com.github.server.utils.JsonHelper;
 import com.github.server.utils.PattenMatcher;
 import com.github.server.utils.TokenProvider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class UserController implements IUserController {
 
@@ -54,6 +53,26 @@ public class UserController implements IUserController {
                 userToUpdate.getRole()
         );
         userService.update(updatedUser);
+    }
+
+    @Override
+    public String getInvites(String userLogin) {
+        return null;
+    }
+
+    @Override
+    public void acceptInvite(String userLogin, String tournamentName) {
+
+    }
+
+    @Override
+    public void declineInvite(String userLogin, String tournamentName) {
+
+    }
+
+    @Override
+    public void createRequest(String userLogin, String tournamentName) {
+
     }
 
 }

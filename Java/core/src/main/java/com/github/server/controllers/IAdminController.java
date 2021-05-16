@@ -1,9 +1,6 @@
 package com.github.server.controllers;
 
-import com.github.server.entity.Player;
 import com.github.server.entity.Tournament;
-
-import java.util.Collection;
 
 public interface IAdminController {
 
@@ -22,5 +19,13 @@ public interface IAdminController {
     String findAllPlayers();
 
     String findAllUsers();
+
+    String getRequests();
+
+    void createInvite(String userLogin, String tournamentName);
+
+    void acceptRequest(String userLogin, String tournamentName);
+
+    void declineRequest(String userLogin, String tournamentName);
 
 }

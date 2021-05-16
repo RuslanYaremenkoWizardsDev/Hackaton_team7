@@ -18,7 +18,7 @@ public class ServerConfig {
         }
         tomcat.setPort(Integer.parseInt(webPort));
         Context ctx = tomcat.addWebapp("", new File(".").getAbsolutePath());
-        tomcat.addServlet("", HttpHandler.class.getName(), AppConfig.getHandler());
+        tomcat.addServlet("", HttpHandler.class.getName(), HandlerConfig.getHandler());
         ctx.addServletMappingDecoded("/*", HttpHandler.class.getName());
         tomcat.start();
         tomcat.getServer().await();

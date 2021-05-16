@@ -17,12 +17,29 @@ public class PlayerInviteService implements IPlayerInviteService {
     }
 
     @Override
-    public PlayerInvite findByTournament(String tournamentName) {
-        return this.repository.findBy("nameTournament", tournamentName, HibernateUtils.getSession());
+    public PlayerInvite findInvite(String userLogin, String tournamentName) {
+        return null;
+    }
+
+    @Override
+    public Collection<PlayerInvite> findByTournament(String tournamentName) {
+//        return this.repository.findBy("nameTournament", tournamentName, HibernateUtils.getSession());
+        return null;
     }
 
     @Override
     public Collection<PlayerInvite> findByPlayer(String user) {
         return this.repository.findAllBy("user", user, HibernateUtils.getSession());
     }
+
+    @Override
+    public void createInvite(PlayerInvite invite) {
+
+    }
+
+    @Override
+    public void deleteInvite(PlayerInvite invite) {
+
+    }
+
 }

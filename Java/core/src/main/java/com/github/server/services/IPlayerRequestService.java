@@ -1,14 +1,19 @@
 package com.github.server.services;
 
-import com.github.server.entity.PlayerInvite;
+import com.github.server.entity.PlayerRequest;
 
 import java.util.Collection;
 
 public interface IPlayerRequestService {
 
-    PlayerInvite findByTournament(String tournamentName);
+    PlayerRequest findRequest(String userLogin, String tournamentName);
 
-    Collection<PlayerInvite> findByPlayer(String user);
+    Collection<PlayerRequest> findByTournament(String tournamentName);
 
+    Collection<PlayerRequest> findByPlayer(String user);
+
+    void createInvite(PlayerRequest invite);
+
+    void deleteInvite(PlayerRequest invite);
 
 }
