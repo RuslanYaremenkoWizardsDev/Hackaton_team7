@@ -1,6 +1,6 @@
 ///
 import '../style/style.scss';
-import '../Client/js/modalFields.js';
+import '../client/modalWindows/modalFields.js';
 import '../style/modalFieldsAdmin.scss';
 //////
 import { postRequestWithToken } from '../src/request'
