@@ -73,7 +73,8 @@ public class UserController implements IUserController {
     }
 
     @Override
-    public String getInvites(String userLogin) {
+    public String getInvites(String email) {
+        String userLogin = userService.findByEmail(email).getLogin();
         Collection<PlayerInvite> invites = playerInviteService.findByPlayer(userLogin);
         Collection<String> tournaments = new ArrayList<>();
         for (PlayerInvite invite : invites) {
@@ -83,20 +84,23 @@ public class UserController implements IUserController {
     }
 
     @Override
-    public void acceptInvite(String userLogin, String tournamentName) {
+    public void acceptInvite(String email, String tournamentName) {
+        String userLogin = userService.findByEmail(email).getLogin();
         PlayerInvite invite = playerInviteService.findInvite(userLogin, tournamentName);
         tournamentService.addPlayer(tournamentName, userLogin);
         playerInviteService.deleteInvite(invite);
     }
 
     @Override
-    public void declineInvite(String userLogin, String tournamentName) {
+    public void declineInvite(String email, String tournamentName) {
+        String userLogin = userService.findByEmail(email).getLogin();
         PlayerInvite invite = playerInviteService.findInvite(userLogin, tournamentName);
         playerInviteService.deleteInvite(invite);
     }
 
     @Override
-    public void createRequest(String userLogin, String tournamentName) {
+    public void createRequest(String email, String tournamentName) {
+        String userLogin = userService.findByEmail(email).getLogin();
         playerRequestService.createRequest(
                 new PlayerRequest(
                         tournamentName,

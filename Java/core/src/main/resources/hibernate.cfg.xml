@@ -11,5 +11,9 @@
         <property name="connection.password">b7affe398a455175962f57a4d41c033b74f478aeed1669d51cc966d63af1b6ae</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="com.github.server.entity.User"/>
+        <mapping class="com.github.server.entity.PlayerRequest"/>
+        <mapping class="com.github.server.entity.PlayerInvite"/>
+        <mapping class="com.github.server.entity.Player"/>
+        <mapping class="com.github.server.entity.Tournament"/>
     </session-factory>
 </hibernate-configuration>

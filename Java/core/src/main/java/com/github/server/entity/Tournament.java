@@ -25,16 +25,16 @@ public class Tournament {
     @Column(name = "place")
     private String place;
 
-    @Column(name = "dateStart")
+    @Column(name = "date_start")
     private Date dateStart;
 
-    @Column(name = "dateRegEnd")
+    @Column(name = "date_reg_end")
     private Date dateRegEnd;
 
     @Column(name = "level")
     private String level;
 
-    @Column(name = "maxPlayers")
+    @Column(name = "max_players")
     private Integer maxPlayers;
 
     @Column(name = "scenario")

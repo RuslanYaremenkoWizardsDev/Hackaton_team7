@@ -11,12 +11,12 @@ public interface IUserController {
 
     void update(UserRegDto userRegDto);
 
-    String getInvites(String userLogin);
+    String getInvites(String email);
 
-    void acceptInvite(String userLogin, String tournamentName);
+    void acceptInvite(String email, String tournamentName);
 
-    void declineInvite(String userLogin, String tournamentName);
+    void declineInvite(String email, String tournamentName);
 
-    void createRequest(String userLogin, String tournamentName);
+    void createRequest(String email, String tournamentName);
 
 }

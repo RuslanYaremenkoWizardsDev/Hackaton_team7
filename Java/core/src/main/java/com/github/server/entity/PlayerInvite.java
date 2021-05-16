@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "playerInvite", schema = "public")
+@Table(name = "player_invite", schema = "public")
 public class PlayerInvite {
 
     @Id
@@ -12,10 +12,10 @@ public class PlayerInvite {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "tournamentName")
+    @Column(name = "tournament_name")
     private String nameTournament;
 
-    @Column(name = "user")
+    @Column(name = "user_login")
     private String user;
 
     @Column(name = "status")
