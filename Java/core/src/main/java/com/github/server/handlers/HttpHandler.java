@@ -95,13 +95,13 @@ public class HttpHandler extends HttpServlet {
                         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 }
             } catch (BadRequest e) {
-                resp.setStatus(400);
+                resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             }catch (ForbiddenException e) {
-                resp.setStatus(403);
+                resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
             }catch (ConstraintViolationException e) {
-                resp.setStatus(409);
+                resp.setStatus(HttpServletResponse.SC_CONFLICT);
             } catch (Throwable e) {
-                resp.setStatus(500);
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             }
         }
     }
