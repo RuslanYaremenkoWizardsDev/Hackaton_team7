@@ -27,11 +27,11 @@ function checkRoleAndDrawTabs(){
     if(role === "GUEST"){
         tabTournaments.classList.toggle('hide')
     }
-    if(!role){
-        tabTournaments.classList.toggle('hide')
-        tabCreate.classList.toggle('hide')
-        tabStats.classList.toggle('hide')
-    }
+    // if(!role){
+    //     tabTournaments.classList.toggle('hide')
+    //     tabCreate.classList.toggle('hide')
+    //     tabStats.classList.toggle('hide')
+    // }
 }
 checkRoleAndDrawTabs()
 

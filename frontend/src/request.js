@@ -4,7 +4,7 @@ function postRequestWithoutToken(url, requestBody) {
       request.open("POST", url, true);
       request.setRequestHeader("Content-Type", "application/json");
       request.addEventListener("load", function () {
-        if (request.status < 400) resolve(request.responseText);
+        if (request.status < 400) resolve(request);
         else reject(new Error("Request failed: " + request.statusText));
       });
       request.addEventListener("error", function () {
@@ -21,7 +21,7 @@ function postRequestWithToken(url, requestBody) {
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader('Token', localStorage.getItem('token'))
     request.addEventListener("load", function () {
-      if (request.status < 400) resolve(request.responseText);
+      if (request.status < 400) resolve(request);
       else reject(new Error("Request failed: " + request.statusText));
     });
     request.addEventListener("error", function () {

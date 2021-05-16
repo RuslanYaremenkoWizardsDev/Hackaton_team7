@@ -9,7 +9,6 @@ import { validateLogin, validatePassword, validateEmail } from "../client/valida
 
 var loginInput = document.getElementById("loginAuth")
 var passInput = document.getElementById("passwordAuth")
-var emailInput = document.getElementById("emailAuth")
 var submitBtn = document.getElementById("submitBtnAuth")
 var guestEnter = document.getElementById("guestEnter")
 
@@ -18,14 +17,15 @@ submitBtn.addEventListener("click", authorize)
 function authorize (){
     var body = {
         login: loginInput.value,
-        email: emailInput.value,
         password: passInput.value,
     }
-    if (validateLogin(body.login) && validatePassword(body.password) && validateEmail(body.email)) {
+    if (validateLogin(body.login) && validatePassword(body.password)) {
         postRequestWithoutToken(urls.authUrl, body).then(function(data){
-            if(data.status = 200){
-                var token = data.token
-                var role = data.role
+            if(data.status === 200){
+                console.log(data);
+                var response = JSON.parse (data.response)
+                var role = response.role
+                var token = response.token
                 document.cookie = `token = ${token}, max-age = 3600`
                 //убрать занесение токена в локал сторедж
                 localStorage.setItem("token", token)

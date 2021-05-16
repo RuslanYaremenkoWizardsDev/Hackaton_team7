@@ -40,7 +40,6 @@ function registrate() {
             console.log('sosi lapu');
         }
     });
-    });
   } else {
     console.log("Не валидно...");
   };
