@@ -1,0 +1,35 @@
+.block-content{
+    width: 92%;
+    height: 89.9vh;
+    margin: 0 auto;
+    background: $color-block-content;
+    &__modal-fields{
+        width: 30%;
+        height: 89.9vh;
+        margin: auto;
+        padding: 1px;
+        border-radius: $border-radius-main;
+        background: $color-modal-bg;
+        &--close{
+            width: 20px;
+            height: 20px;
+            background: forestgreen;
+            float: right;
+            margin: 1%;
+        //    background: url(./img/close.png) no-repeat scroll 0 0 transparent;
+        }
+        &--name-modal{
+            display: flex;
+            margin: 5% auto 0 auto;
+            justify-content: center;
+        }
+        &__main{
+            width: 80%;
+            height: 85%;
+            margin: 0 auto;
+            background: gainsboro;
+           
+        }
+       
+    }
+}
