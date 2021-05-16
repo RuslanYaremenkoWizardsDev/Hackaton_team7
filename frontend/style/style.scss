@@ -1,3 +1,4 @@
+
 @import './const.scss';
 *{
     box-sizing: border-box;
@@ -40,4 +41,7 @@ body{
             }
         }*/
     }
+
+.hide{
+    display: none;
 }
