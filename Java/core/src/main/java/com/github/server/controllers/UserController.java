@@ -53,7 +53,7 @@ public class UserController implements IUserController {
                 userRegDto.getPassword(),
                 userToUpdate.getRole()
         );
-        userService.update(userRegDto.toUser());
+        userService.update(updatedUser);
     }
 
 }
