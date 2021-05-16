@@ -8,7 +8,7 @@ import java.util.Objects;
 import static com.github.server.utils.DateUtils.addMinutes;
 import static com.github.server.utils.DateUtils.getCurrentDate;
 
-public class Token {
+public class PrivateToken {
 
     private final Date date = new Date();
 
@@ -20,21 +20,21 @@ public class Token {
 
     private final Date createdAt;
 
-    public Token(String login, Role role, Date expireIn, Date createdAt) {
+    public PrivateToken(String login, Role role, Date expireIn, Date createdAt) {
         this.login = login;
         this.role = role;
         this.expireIn = expireIn;
         this.createdAt = createdAt;
     }
 
-    public Token(User user, Date expireIn, Date createdAt) {
+    public PrivateToken(User user, Date expireIn, Date createdAt) {
         this.login = user.getLogin();
         this.role = user.getRole();
         this.expireIn = expireIn;
         this.createdAt = createdAt;
     }
 
-    public Token(User user) {
+    public PrivateToken(User user) {
         this.login = user.getLogin();
         this.role = user.getRole();
         this.createdAt = getCurrentDate();
@@ -61,8 +61,8 @@ public class Token {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Token token = (Token) o;
-        return Objects.equals(date, token.date) && Objects.equals(getLogin(), token.getLogin()) && Objects.equals(getRole(), token.getRole()) && Objects.equals(getExpireIn(), token.getExpireIn()) && Objects.equals(getCreatedAt(), token.getCreatedAt());
+        PrivateToken privateToken = (PrivateToken) o;
+        return Objects.equals(date, privateToken.date) && Objects.equals(getLogin(), privateToken.getLogin()) && Objects.equals(getRole(), privateToken.getRole()) && Objects.equals(getExpireIn(), privateToken.getExpireIn()) && Objects.equals(getCreatedAt(), privateToken.getCreatedAt());
     }
 
     @Override
