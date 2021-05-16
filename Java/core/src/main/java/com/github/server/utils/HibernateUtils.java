@@ -1,6 +1,6 @@
 package com.github.server.utils;
 
-import com.github.server.entity.User;
+import com.github.server.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -22,6 +22,10 @@ public class HibernateUtils {
             try (InputStream in = HibernateUtils.class.getResourceAsStream("/hibernate.cfg.xml")) {
                 Configuration configuration = new Configuration().addInputStream(in).configure();
                 configuration.addAnnotatedClass(User.class);
+                configuration.addAnnotatedClass(PlayerInvite.class);
+                configuration.addAnnotatedClass(PlayerRequest.class);
+                configuration.addAnnotatedClass(Tournament.class);
+                configuration.addAnnotatedClass(Player.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
             } catch (IOException e) {

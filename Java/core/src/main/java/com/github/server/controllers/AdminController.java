@@ -1,9 +1,15 @@
 package com.github.server.controllers;
 
+import com.github.server.dto.PlayerRequestDto;
+import com.github.server.entity.PlayerInvite;
+import com.github.server.entity.PlayerRequest;
 import com.github.server.entity.Tournament;
 import com.github.server.exceptions.JsonParseException;
 import com.github.server.services.*;
 import com.github.server.utils.JsonHelper;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class AdminController implements IAdminController {
 
@@ -67,22 +73,30 @@ public class AdminController implements IAdminController {
 
     @Override
     public String getRequests() {
-        return null;
+        Collection<PlayerRequest> requests = playerRequestService.findAll();
+        Collection<PlayerRequestDto> requestDtos = new ArrayList<>();
+        for (PlayerRequest request: requests) {
+            requestDtos.add(new PlayerRequestDto(request));
+        }
+        return JsonHelper.toJson(requestDtos).orElseThrow();
     }
 
     @Override
     public void createInvite(String userLogin, String tournamentName) {
-
+        playerInviteService.createInvite(new PlayerInvite(tournamentName, userLogin));
     }
 
     @Override
     public void acceptRequest(String userLogin, String tournamentName) {
-
+        PlayerRequest request = playerRequestService.findRequest(userLogin, tournamentName);
+        tournamentService.addPlayer(tournamentName, userLogin);
+        playerRequestService.deleteRequest(request);
     }
 
     @Override
     public void declineRequest(String userLogin, String tournamentName) {
-
+        PlayerRequest request = playerRequestService.findRequest(userLogin, tournamentName);
+        playerRequestService.deleteRequest(request);
     }
 
 }

@@ -7,7 +7,13 @@ import com.github.server.controllers.UserController;
 
 public class ControllerConfig {
 
-    private static final IUserController userController = new UserController(ServiceConfig.getUserService());
+    private static final IUserController userController = new UserController(
+            ServiceConfig.getUserService(),
+            ServiceConfig.getPlayerService(),
+            ServiceConfig.getTournamentService(),
+            ServiceConfig.getPlayerInviteService(),
+            ServiceConfig.getPlayerRequestService()
+    );
 
     private static final IAdminController adminController = new AdminController(
             ServiceConfig.getPlayerService(),
