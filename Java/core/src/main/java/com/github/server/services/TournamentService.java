@@ -20,7 +20,7 @@ public class TournamentService implements ITournamentService {
 
     @Override
     public void addPlayer(String tournamentName, String login) {
-        Tournament tournament = this.repository.findBy(Tournament.class, "name", tournamentName, HibernateUtils.getSession());
+        Tournament tournament = this.repository.findBy("name", tournamentName, HibernateUtils.getSession());
         String strPlayers = tournament.getPlayers();
         strPlayers = strPlayers.substring(1, strPlayers.length() - 2);
         String[] playersArray = strPlayers.split(",");
@@ -46,22 +46,22 @@ public class TournamentService implements ITournamentService {
                 strPlayers,
                 tournament.getStatus()
         );
-        this.repository.update(Tournament.class, updatedTournament, HibernateUtils.getSession());
+        this.repository.update(updatedTournament, HibernateUtils.getSession());
     }
 
     @Override
     public Collection<Tournament> findAll() {
-        return this.repository.findAll(Tournament.class, HibernateUtils.getSession());
+        return this.repository.findAll(HibernateUtils.getSession());
     }
 
     @Override
     public Tournament findById(Long id) {
-        return this.repository.findBy(Tournament.class, "id", id, HibernateUtils.getSession());
+        return this.repository.findBy("id", id, HibernateUtils.getSession());
     }
 
     @Override
     public Collection<Tournament> findByPlayer(String login) {
-        Collection<Tournament> tournaments = this.repository.findAll(Tournament.class, HibernateUtils.getSession());
+        Collection<Tournament> tournaments = this.repository.findAll(HibernateUtils.getSession());
         Collection<Tournament> result = new ArrayList<>();
         for (Tournament tournament : tournaments) {
             String players = tournament.getPlayers();
@@ -79,26 +79,26 @@ public class TournamentService implements ITournamentService {
 
     @Override
     public Tournament findByName(String name) {
-        return this.repository.findBy(Tournament.class, "name", name, HibernateUtils.getSession());
+        return this.repository.findBy("name", name, HibernateUtils.getSession());
     }
 
     @Override
     public Collection<Tournament> findByMode(String mode) {
-        return this.repository.findAllBy(Tournament.class, "mode", mode, HibernateUtils.getSession());
+        return this.repository.findAllBy("mode", mode, HibernateUtils.getSession());
     }
 
     @Override
     public Collection<Tournament> findByStatus(String status) {
-        return this.repository.findAllBy(Tournament.class, "status", status, HibernateUtils.getSession());
+        return this.repository.findAllBy("status", status, HibernateUtils.getSession());
     }
 
     @Override
     public void insert(Tournament tournament) {
-        this.repository.save(Tournament.class, tournament, HibernateUtils.getSession());
+        this.repository.save(tournament, HibernateUtils.getSession());
     }
 
     @Override
     public void update(Tournament tournament) {
-        this.repository.update(Tournament.class, tournament, HibernateUtils.getSession());
+        this.repository.update(tournament, HibernateUtils.getSession());
     }
 }

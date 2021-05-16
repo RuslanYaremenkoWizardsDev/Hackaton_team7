@@ -16,11 +16,11 @@ public class PlayerService implements IPlayerService {
 
     @Override
     public Player findById(Long id) {
-        return repository.findBy(Player.class, "id", id, HibernateUtils.getSession());
+        return repository.findBy("id", id, HibernateUtils.getSession());
     }
 
     @Override
     public Collection<Player> findAll() {
-        return repository.findAll(Player.class, HibernateUtils.getSession());
+        return repository.findAll(HibernateUtils.getSession());
     }
 }
