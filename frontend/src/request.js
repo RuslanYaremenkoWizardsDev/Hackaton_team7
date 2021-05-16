@@ -31,7 +31,7 @@ function postRequestWithToken(url, requestBody) {
   });
 }
 
-function getRequest(url) {
+function getRequestWithToken(url) {
     return new Promise(function (resolve, reject) {
       request.open("GET", url, true);
       request.setRequestHeader('Authorization', localStorage.getItem('token'))
@@ -47,4 +47,18 @@ function getRequest(url) {
     });
 }
 
-  module.exports = {postRequestWithoutToken, postRequestWithToken, getRequest}
+function getRequestWithoutToken(url) {
+  return new Promise(function (resolve, reject) {
+    request.open("GET", url, true);
+    request.addEventListener("load", function () {
+      if (request.status < 400) {
+        resolve(request.response);
+      } else reject(new Error("Request failed: " + request.statusText));
+    });
+    request.addEventListener("error", function () {
+      reject(new Error("Network error"));
+    });
+    request.send();
+  });
+}
+  module.exports = {postRequestWithoutToken, postRequestWithToken, getRequestWithToken, getRequestWithoutToken}

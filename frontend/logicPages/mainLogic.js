@@ -1,5 +1,8 @@
 import { postRequestWithToken } from '../src/request'
-import { urls } from '../src/request'
+import { getRequestWithToken } from '../src/request'
+import { getRequestWithoutToken } from '../src/request'
+import { getRequest } from '../src/request'
+import  urls  from '../src/request'
 import '../style/style.scss'
 
 function checkRoleAndDrawTabs(){
@@ -27,21 +30,57 @@ function checkRoleAndDrawTabs(){
 }
 checkRoleAndDrawTabs()
 
-//сделать гет запрос по заходу на странице мэйн на вкладке tournaments для получения турниров и записи их в таблицу
-
+//сделать гет запрос по заходу на странице мэйн на вкладке tournaments для получения турниров и отрисовки их в таблицу
 function getTournamentsAndRender (){
-    getRequest(urls.mainTourUrl).then(function(data){
-        renderTournamentsTable(data)
-    })
+    var role = localStorage.getItem('role')
+    if (role){
+        getRequestWithToken(urls.mainTourUrl).then(function(data){
+            renderTournamentsTable(data)
+        })
+    }
+    if (!role){
+        getRequestWithoutToken(urls.mainTourUrl).then(function(data){
+            renderTournamentsTable(data)
+        })
+    }
 }
 // getTournamentsAndRender()
+//получение инвайтов при входе
+function getMessages(){
+    var role = localStorage.getItem('role')
+    if(!role) {
+        return
+    }else{
+        getRequestWithToken(urls.mainInvite).then(function(data){
+            renderMessages(data)
+        })
+    }
+}
+// getMessages()
+
+//функция отрисовки инвайтов
+// function renderMessages(data){
+
+// }
 
 //функция отрисовки турниров в таблице на вкладке tournaments
 // function renderTournamentsTable(){
 
 // }
 
-//общение между админом и пользователем реализовать через таблицу запросов, у запроса есть статус "открытый", "закрытый"
+//функция отправки инвайта
+function sendInvite(){
+    // var body = {
+    //     status: status
+    // }
+    postRequestWithToken(urls.mainInvite, body).then(function(data){
+if(data.status === 200){
+    console.log('invite succesfully sent');
+}else{
+    console.log("invite not sent");
+}
+    })
+}
 
 // var tournament = {
 //     name: "string",
@@ -57,14 +96,13 @@ function getTournamentsAndRender (){
 //     status: "string"
 // }
 
-
-function sendTournament(tournament){
-    // body = body
+function sendTournament(data){
+    // тут надо собрать торнамент и отправить на пост реквест
     postRequestWithToken(urls.mainAdminCreate, body).then(function(data){
         if (data.status === 200){
-            console.log('турнир отправлен');
+            console.log('tournament sent');
         }else {
-            console.log('турнир не отправлен');
+            console.log('tournament not sent');
         }
     })
 }

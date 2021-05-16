@@ -24,14 +24,11 @@ function registrate (){
         email: emailInput.value,
         password: passInput.value,
     }
-    console.log(urls.regUrl);
     postRequestWithoutToken(urls.regUrl, bodyToSend).then(function(data){
-        if(data.status = 200){
+        if(data.status = 202){
             redirect("index.html")
         }
-        if(data.status = 409){
-            console.log('sosi lapu');
-        }
+        //статус на попторную регистрацию
     })
 }
 

@@ -1,4 +1,4 @@
-import postRequestWithoutToken  from "../src/request" 
+import {postRequestWithoutToken}  from "../src/request" 
 import urls from "../constans/const" 
 import redirect from "../src/redirect"
 
@@ -18,7 +18,7 @@ function authorize (){
     }
     //боди отправить на валидацию
     postRequestWithoutToken(urls.authUrl, body).then(function(data){
-        if(data.status = 200){
+        if(data.status = 202){
             var token = data.token
             var role = data.role
             document.cookie = `token = ${token}, max-age = 3600`
