@@ -1,9 +1,5 @@
 @import './const.scss';
 .block-content{
-    width: 92%;
-    height: 89.9vh;
-    margin: 0 auto;
-    background: $color-block-content;
     &__modal-fields{
         width: 30%;
         height: 89.3vh;
@@ -11,6 +7,7 @@
         padding: 1px;
         border-radius: $border-radius-main;
         background: $color-modal-bg;
+        display: none;
         &--close{
             width: 20px;
             height: 20px;
@@ -37,7 +34,7 @@
                 height: 30px;
                 border-radius: 5px;
                 background: $color-input-bg;
-                margin-top: 10px;
+                margin-top: 5%;
                 padding: 10px 0 0 0;
                 display: inline-flex;
                 &--icons{
@@ -52,6 +49,14 @@
                     color: $color-text-input;
                     height: 40px;
                     width: 100%;
+                }
+                &--submit{
+                    height: 40px;
+                    width: 100%;
+                    margin-top: 5%;
+                    border-radius: 5px;
+                    background: $color-text-input;
+                    cursor: pointer;
                 }
                 &__radio-button{
                    display: flex;
@@ -78,7 +83,7 @@
                     background: $color-input-bg;
                     text-align: left;
                     color: $color-text-input;
-                    margin-bottom: 10px;
+                    margin-top: 5%;
                     cursor: pointer;
                     &--icon{
                         width: 20px;
@@ -88,6 +93,7 @@
                         background-image: url(./img/arrow-main.png);
                         background-size: cover;
                     }
+                    
                 }
                 &__dropdown-content{
                     width: 100%;
@@ -129,4 +135,8 @@
 .datapicer{
     background-image: url(./img/datapicer.png);
     background-size: cover;
+}
+.show-modal-fields{
+    display: block;
+    margin-top: -89.9vh;
 }
