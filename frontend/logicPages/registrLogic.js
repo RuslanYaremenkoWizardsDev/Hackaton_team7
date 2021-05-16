@@ -35,10 +35,6 @@ function registrate() {
       }
     });
   } else {
-    console.log(loginInput.value);
-    console.log(emailInput.value);
-    console.log(passInput.value);
-    console.log(passInputRepeat.value);
     console.log("Не валидно...");
   }
 }
