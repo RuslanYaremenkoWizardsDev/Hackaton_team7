@@ -27,7 +27,7 @@ public class PlayerRequestService implements IPlayerRequestService {
 
     @Override
     public Collection<PlayerRequest> findByTournament(String tournamentName) {
-        return this.repository.findAllBy("tournamentName", tournamentName, HibernateUtils.getSession());
+        return this.repository.findAllBy("tournament_name", tournamentName, HibernateUtils.getSession());
     }
 
     @Override
