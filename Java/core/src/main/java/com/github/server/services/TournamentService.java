@@ -31,7 +31,11 @@ public class TournamentService implements ITournamentService {
                 throw new PlayerAlreadyInTournament();
             }
         }
-        strPlayers = "[" + strPlayers + ", " + login + "]";
+        if (strPlayers.equals("")){
+            strPlayers = "[" + login + "]";
+        } else {
+            strPlayers = "[" + strPlayers + ", " + login + "]";
+        }
         Tournament updatedTournament = new Tournament(
                 tournament.getId(),
                 tournament.getName(),
