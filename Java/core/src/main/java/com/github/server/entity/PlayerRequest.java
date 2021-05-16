@@ -12,7 +12,7 @@ public class PlayerRequest {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "nameTournament")
+    @Column(name = "tournamentName")
     private String nameTournament;
 
     @Column(name = "user")
