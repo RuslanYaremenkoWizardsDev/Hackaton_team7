@@ -2,9 +2,7 @@ package com.github.server.controllers;
 
 import com.github.server.entity.Tournament;
 import com.github.server.exceptions.JsonParseException;
-import com.github.server.services.IPlayerService;
-import com.github.server.services.ITournamentService;
-import com.github.server.services.IUserService;
+import com.github.server.services.*;
 import com.github.server.utils.JsonHelper;
 
 public class AdminController implements IAdminController {
@@ -13,11 +11,17 @@ public class AdminController implements IAdminController {
 
     private final ITournamentService tournamentService;
 
+    private final IPlayerInviteService playerInviteService;
+
+    private final IPlayerRequestService playerRequestService;
+
     private final IUserService userService;
 
-    public AdminController(IPlayerService playerService, ITournamentService tournamentService, IUserService userService) {
+    public AdminController(IPlayerService playerService, ITournamentService tournamentService, IPlayerInviteService playerInviteService, IPlayerRequestService playerRequestService, IUserService userService) {
         this.playerService = playerService;
         this.tournamentService = tournamentService;
+        this.playerInviteService = playerInviteService;
+        this.playerRequestService = playerRequestService;
         this.userService = userService;
     }
 
@@ -60,4 +64,25 @@ public class AdminController implements IAdminController {
     public String findAllUsers() {
         return JsonHelper.toJson(userService.findAll()).orElseThrow(JsonParseException::new);
     }
+
+    @Override
+    public String getRequests() {
+        return null;
+    }
+
+    @Override
+    public void createInvite(String userLogin, String tournamentName) {
+
+    }
+
+    @Override
+    public void acceptRequest(String userLogin, String tournamentName) {
+
+    }
+
+    @Override
+    public void declineRequest(String userLogin, String tournamentName) {
+
+    }
+
 }
