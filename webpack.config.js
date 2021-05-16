@@ -47,6 +47,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: "frontend/style/img/", to: "frontend/style/img" }],
+    }),
   ],
   module: {
     rules: [
