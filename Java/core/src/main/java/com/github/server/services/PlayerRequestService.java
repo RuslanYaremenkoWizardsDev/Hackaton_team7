@@ -29,6 +29,11 @@ public class PlayerRequestService implements IPlayerRequestService {
     }
 
     @Override
+    public Collection<PlayerRequest> findAll() {
+        return null;
+    }
+
+    @Override
     public void createInvite(PlayerRequest invite) {
 
     }
