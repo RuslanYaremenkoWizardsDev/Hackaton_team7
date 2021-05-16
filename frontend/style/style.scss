@@ -1,4 +1,3 @@
-
 @import './const.scss';
 @import './header.scss';
 @import './modalFieldsAdmin.scss';
@@ -16,6 +15,7 @@ body{
 button{
     border: none;
     outline: none;
+    background: none;
 }
 img{
     width: 20px;

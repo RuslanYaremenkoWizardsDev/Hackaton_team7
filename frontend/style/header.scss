@@ -1,11 +1,70 @@
-header{
+.block-header{
     width: 96%;
     margin: 0 auto;
     height: 10vh;
-    background: gainsboro;
+    &--logo{
+        width: 70px;
+        height: 70px;
+        background-image: url(./img/logo.png);
+        background-size: cover;
+    }
+    &__right{
+        width: 200px;
+        height: 30px;
+        float: right;
+        margin-top: -52px;
+        &--action{
+            background-image: url(./img/admin.png);
+            background-size: cover;
+            float: right;
+        }
+        &--log-out{
+            background-image: url(./img/log-out.png);
+            background-size: cover;
+            float: right;
+        }
+        &--setting{
+            background-image: url(./img/setting.png);
+            background-size: cover;
+            float: right;
+        }
+        &--lang{
+            float: right;
+            color: white;
+        }
+        &--topic{
+            background-image: url(./img/topic.png);
+            background-size: cover;
+            float: right;
+        }
+    }
 }
 .line{
     width: 100%;
     height: 0.1vh;
     background: $color-line;
 }
+.btn{
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    margin: 0  5px 0 5px;
+    display: inline-block;
+}
+/*.log-out{
+    background-image: url(./img/log-out.png);
+    background-size: cover;
+}
+.setting{
+    background-image: url(./img/setting.png);
+    background-size: cover;
+}
+.setting{
+    background-image: url(./img/topic.png);
+    background-size: cover;
+}*/
+/*.action{
+    background-image: url(./img/admin.png);
+    background-size: cover;
+}*/
+

@@ -1,4 +1,6 @@
-import '../style/style.scss'
+import '../style/style.scss';
+import '../Client/js/modalFields.js';
+import '../style/modalFieldsAdmin.scss';
 
 function checkRoleAndDrawTabs(){
     var role = localStorage.getItem('role')

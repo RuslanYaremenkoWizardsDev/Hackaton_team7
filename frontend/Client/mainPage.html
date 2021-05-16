@@ -7,8 +7,15 @@
     <title>MainPage</title>
 </head>
 <body>
-    <header>
-
+    <header class="block-header">
+        <div class="block-header--logo"></div>
+        <div class="block-header__right">
+            <button class="block-header__right--action btn"></button>
+            <button class="block-header__right--log-out btn"></button>
+            <button class="block-header__right--setting btn"></button>
+            <button class="block-header__right--lang btn">EN</button>
+            <button class="block-header__right--topic btn"></button>
+        </div>
     </header>
     <div class="line">
 
@@ -19,14 +26,12 @@
             <h1 class="block-content__modal-fields--name-modal">Create tournament</h1>
             <div class="block-content__modal-fields__main main">
                 <div class="main__block-input-icons">
-                    <div class="main__block-input-icons--icons"></div>
+                    <div class="main__block-input-icons--icons name-tournament"></div>
                     <input type="text" class="main__block-input-icons--text" placeholder="Name of tournament">
-                    <!--<img class="main__block-input-icons--icons" src="../style/img/SecretKey.png" alt="icons">-->
                 </div>
                 <div class="main__block-input-icons">
-                    <div class="main__block-input-icons--icons"></div>
+                    <div class="main__block-input-icons--icons description"></div>
                     <input type="text"class="main__block-input-icons--text" placeholder="Tournament description">
-                    <!--<img class="main__block-input-icons--icons" src="../style/img/SecretKey.png" alt="icons">-->
                 </div>
                 <div class="main__block-input-icons__radio-button">
                     <div class="main__block-input-icons__radio-button--radio">
@@ -39,16 +44,15 @@
                     </div>
                 </div>
                 <div class="main__block-input-icons">
-                    <div class="main__block-input-icons--icons"></div>
+                    <div class="main__block-input-icons--icons place"></div>
                     <input type="text"class="main__block-input-icons--text" placeholder="Place">
-                    <!--<img class="main__block-input-icons--icons" src="../style/img/SecretKey.png" alt="icons">-->
                 </div>
                 <div class="main__block-input-icons">
-                    <div class="main__block-input-icons--icons"></div>
+                    <div class="main__block-input-icons--icons datapicer"></div>
                     <input type="date" id="start" class="main__block-input-icons--text" title="Start date">
                 </div>
                 <div class="main__block-input-icons">
-                    <div class="main__block-input-icons--icons"></div>
+                    <div class="main__block-input-icons--icons datapicer"></div>
                     <input type="date" id="start" class="main__block-input-icons--text" title="Last registration date">
                 </div>
                 <div class="main__block-input-icons__radio-button-level">
@@ -67,44 +71,45 @@
                 </div>
                 <div class="main__block-input-icons__radio-button-level">
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="128" name="mode">
-                        <label for="radio">128</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="128" name="level">
+                        <label for="level">128</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="64" name="mode" >
-                        <label for="radio">64</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="64" name="level" >
+                        <label for="level">64</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="32" name="mode" checked>
-                        <label for="radio">32</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="32" name="level" checked>
+                        <label for="level">32</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="16" name="mode">
-                        <label for="radio">16</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="16" name="level">
+                        <label for="level">16</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="8" name="mode">
-                        <label for="radio">8</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="8" name="level">
+                        <label for="level">8</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="4" name="mode">
-                        <label for="radio">4</label>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="4" name="level">
+                        <label for="level">4</label>
                     </div>
                 </div>
                 <div class="main__block-input-icons__dropdown">
-                    <button class="main__block-input-icons__dropdown-btn">One-match confrontation <img src="../style/img/arrow (2).png" class="main__block-input-icons__dropdown-btn--icon"></button>
-                    <div class="main__block-input-icons__dropdown-content" id="ScenarioForTournament ">
+                    <button class="main__block-input-icons__dropdown-btn" id="show-dropdown-scenario">One-match confrontation<div class="main__block-input-icons__dropdown-btn--icon"></div></button>
+                    <div class="main__block-input-icons__dropdown-content" id="scenarioForTournament">
                         <div class="main__block-input-icons__dropdown-content--content-hover" value="two-match-confrontation">Two-match confrontation</div>
                         <div class="main__block-input-icons__dropdown-content--content-hover" value="two-three-wins">Two-three-wins</div>
                     </div>
                 </div>
-                
-                
-                
+                <div class="main__block-input-icons__dropdown">
+                    <button class="main__block-input-icons__dropdown-btn">Invited players<div class="main__block-input-icons__dropdown-btn--icon"></div></button>
+                    <div class="main__block-input-icons__dropdown-content" id="scenarioForTournament">
+                        <div class="main__block-input-icons__dropdown-content--content-hover" value="two-match-confrontation">Two-match confrontation</div>
+                    </div>
+                </div>
             </div>
-            
         </div>
-
     </div>
     <!-- <div id="tabTournaments" class="hide">
         tabTournaments

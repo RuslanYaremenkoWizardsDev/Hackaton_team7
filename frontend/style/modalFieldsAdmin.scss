@@ -1,8 +1,9 @@
+@import './const.scss';
 .block-content{
     width: 92%;
     height: 89.9vh;
     margin: 0 auto;
-    
+    background: $color-block-content;
     &__modal-fields{
         width: 30%;
         height: 89.3vh;
@@ -15,6 +16,7 @@
             height: 20px;
             float: right;
             background-image: url(./img/close.png);
+            background-size: cover;
             margin: 2%;
         }
         &--name-modal{
@@ -27,7 +29,6 @@
             width: 80%;
             height: 85%;
             margin: 0 auto;
-            background: green;
            
         }
         .main{
@@ -44,11 +45,9 @@
                     height: 20px;
                     display: flex;
                     margin-left: 10px;
-                    
-                    background: firebrick;
                 }
                 &--text{
-                    margin-left: 2%;
+                    margin-left: 3%;
                     margin-top: -10px;
                     color: $color-text-input;
                     height: 40px;
@@ -79,19 +78,21 @@
                     background: $color-input-bg;
                     text-align: left;
                     color: $color-text-input;
-                    
+                    margin-bottom: 10px;
+                    cursor: pointer;
                     &--icon{
                         width: 20px;
                         height: 20px;
                         float: right;
                         margin-right: 2%;
+                        background-image: url(./img/arrow-main.png);
+                        background-size: cover;
                     }
                 }
                 &__dropdown-content{
                     width: 100%;
                     background: $color-input-bg;
-                    opacity: 0;
-                    overflow: hidden;
+                    display: none;
                     border-radius: 0 0 5px 5px;
                     font-size: 18px;
                     &--content-hover{
@@ -102,12 +103,9 @@
                     &--content-hover:hover{
                         color: $color-hover;
                     }
-                }
-               
+                } 
             }
-            
         }
-       
     }
 }
 
@@ -115,7 +113,20 @@
     border-radius: 5px 5px 0 0;
     border-bottom: 2px solid black;
 }
-.show{
-    opacity: 1;
-    visibility: visible;
+
+.name-tournament{
+    background-image: url(./img/SecretKey.png);
+    background-size: cover;
+}
+.description{
+    background-image: url(./img/description.png);
+    background-size: cover;
+}
+.place{
+    background-image: url(./img/place.png);
+    background-size: cover;
+}
+.datapicer{
+    background-image: url(./img/datapicer.png);
+    background-size: cover;
 }
