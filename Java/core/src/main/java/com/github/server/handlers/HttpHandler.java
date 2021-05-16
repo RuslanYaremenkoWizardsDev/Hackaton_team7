@@ -1,5 +1,6 @@
 package com.github.server.handlers;
 
+import com.github.server.controllers.IAdminController;
 import com.github.server.controllers.IUserController;
 import com.github.server.dto.UserAuthDto;
 import com.github.server.dto.UserRegDto;
@@ -26,8 +27,11 @@ public class HttpHandler extends HttpServlet {
 
     private final IUserController userController;
 
-    public HttpHandler(IUserController userController) {
+    private final IAdminController adminController;
+
+    public HttpHandler(IUserController userController, IAdminController adminController) {
         this.userController = userController;
+        this.adminController = adminController;
     }
 
     @Override
@@ -40,9 +44,9 @@ public class HttpHandler extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND, "NOT FOUND 404");
         }
     }
+
     @Override
     public void doOptions(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        System.out.println("DOOPT");
         resp.setHeader("Access-Control-Allow-Origin", "*");
         resp.setHeader("Access-Control-Allow-Methods", "*");
         resp.setHeader("Access-Control-Allow-Headers", "*");
@@ -51,7 +55,7 @@ public class HttpHandler extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+
     }
 
     @Override
@@ -73,7 +77,7 @@ public class HttpHandler extends HttpServlet {
                         }
                         String result = Optional.of(this.userController.authorize(authDto)).orElseThrow(BadRequest::new);
                         resp.setContentType("application/json");
-                        resp.setStatus(HttpServletResponse.SC_ACCEPTED);
+                        resp.setStatus(HttpServletResponse.SC_OK);
                         ServletOutputStream out = resp.getOutputStream();
                         out.write(result.getBytes());
                         out.flush();
@@ -85,10 +89,10 @@ public class HttpHandler extends HttpServlet {
                             throw new BadRequest();
                         }
                         this.userController.register(regDto);
-                        resp.setStatus(HttpServletResponse.SC_ACCEPTED);
+                        resp.setStatus(HttpServletResponse.SC_OK);
                         break;
                     default:
-                        resp.setStatus(HttpServletResponse.SC_OK);
+                        resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 }
             } catch (BadRequest e) {
                 resp.setStatus(400);

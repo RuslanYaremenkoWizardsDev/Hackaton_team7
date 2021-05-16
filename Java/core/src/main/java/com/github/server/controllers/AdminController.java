@@ -18,7 +18,6 @@ public class AdminController implements IAdminController {
         this.tournamentService = tournamentService;
     }
 
-
     @Override
     public void invitePlayer(String login) {
 
