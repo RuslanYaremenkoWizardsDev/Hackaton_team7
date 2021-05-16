@@ -1,9 +1,9 @@
-import postRequestWithoutToken  from "../src/request" 
+import {postRequestWithoutToken}  from "../src/request" 
 import urls from "../constans/const" 
 import redirect from "../src/redirect"
 
 var loginInput = document.getElementById("loginReg")
-var emailInput = document.getElementById("loginReg")
+var emailInput = document.getElementById("emailReg")
 var passInput = document.getElementById("passwordReg")
 var passInputRepeat = document.getElementById("passwordReg")
 var submitBtn = document.getElementById("submitBtnReg")
@@ -24,9 +24,13 @@ function registrate (){
         email: emailInput.value,
         password: passInput.value,
     }
+    console.log(urls.regUrl);
     postRequestWithoutToken(urls.regUrl, bodyToSend).then(function(data){
         if(data.status = 200){
             redirect("index.html")
+        }
+        if(data.status = 409){
+            console.log('sosi lapu');
         }
     })
 }
