@@ -48,7 +48,7 @@ module.exports = {
       filename: "[name].css",
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: "frontend/style/img/", to: "frontend/style/img" }],
+      patterns: [{ from: "frontend/style/img/", to: "style/img" }],
     }),
   ],
   module: {
