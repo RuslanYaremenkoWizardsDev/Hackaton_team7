@@ -5,6 +5,7 @@ import com.github.server.payload.Role;
 import com.github.server.repositories.IRepository;
 import com.github.server.repositories.Repository;
 import com.github.server.utils.HibernateUtils;
+import org.hibernate.exception.ConstraintViolationException;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -103,6 +104,20 @@ public class UserRepositoryTest {
         exp.add(new User(null, "firstAdminLogin", "firstAdminEmail", "firstAdminPassword", Role.valueOf("ADMIN")));
         exp.add(new User(null, "secondAdminLogin", "secondAdminEmail", "secondAdminPassword", Role.valueOf("ADMIN")));
     }
+
+    @Test
+    public void findNotExisting(){
+        System.out.println(repository.findBy(User.class, "email", "notExisting", HibernateUtils.getSession()));
+    }
+
+    @Test(expected = ConstraintViolationException.class)
+    public void saveSame(){
+        repository.save(User.class,
+                new User(null, "secondAdminLogin", "secondAdminEmail", "secondAdminPassword", Role.valueOf("ADMIN")),
+                HibernateUtils.getSession()
+        );
+    }
+
 
 
 }

@@ -3,14 +3,19 @@ package com.github.server.controllers;
 import com.github.server.dto.UserAuthDto;
 import com.github.server.dto.UserRegDto;
 import com.github.server.entity.User;
-import com.github.server.exceptions.JsonParseException;
-import com.github.server.exceptions.UserAlreadyExistException;
-import com.github.server.payload.Token;
+import com.github.server.exceptions.*;
+import com.github.server.payload.Envelope;
+import com.github.server.payload.PrivateToken;
 import com.github.server.services.IUserService;
 import com.github.server.utils.JsonHelper;
 import com.github.server.utils.PattenMatcher;
+import com.github.server.utils.TokenProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserController implements IUserController {
+
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
     private final IUserService userService;
 
@@ -26,15 +31,25 @@ public class UserController implements IUserController {
         } else {
             user = this.userService.findByLogin(userAuthDto.getLogin());
         }
-        return JsonHelper.toJson(new Token(user)).orElseThrow(JsonParseException::new);
+        if(user == null) {
+            throw new ForbiddenException();
+        }
+        PrivateToken token = new PrivateToken(user);
+        try {
+            String encodedToken = TokenProvider.encode(token);
+        } catch (TokenProviderException e) {
+            log.warn(e.getMessage());
+            throw new InternalServerError();
+        }
+        Envelope env = new Envelope(user.getRole(), JsonHelper.toJson(token).orElseThrow(InternalServerError::new));
+        return JsonHelper.toJson(env).orElseThrow(InternalServerError::new);
     }
 
     @Override
     public void register(UserRegDto userRegDto) {
-        if (this.userService.findByEmail(userRegDto.getEmail()) != null) {
-            throw new UserAlreadyExistException();
-        }
+        System.out.println("before");
         userService.insert(userRegDto.toUser());
+        System.out.println("after");
     }
 
 }

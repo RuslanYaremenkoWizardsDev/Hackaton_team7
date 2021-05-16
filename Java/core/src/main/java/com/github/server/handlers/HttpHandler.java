@@ -4,8 +4,10 @@ import com.github.server.controllers.IUserController;
 import com.github.server.dto.UserAuthDto;
 import com.github.server.dto.UserRegDto;
 import com.github.server.exceptions.BadRequest;
+import com.github.server.exceptions.ForbiddenException;
 import com.github.server.exceptions.NotFound;
 import com.github.server.utils.JsonHelper;
+import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,28 +48,41 @@ public class HttpHandler extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Invalid content type");
         } else {
             String url = req.getRequestURI();
-            System.out.println("Body:\n" + body);
-            System.out.println(url);
-            if (url.contains("/auth")) {
-                UserAuthDto payload = JsonHelper.fromJson(body, UserAuthDto.class).orElseThrow(BadRequest::new);
-                String result = Optional.of(this.userController.authorize(payload)).orElseThrow(BadRequest::new);
-                resp.setContentType("application/json");
-                resp.setStatus(HttpServletResponse.SC_ACCEPTED);
-                ServletOutputStream out = resp.getOutputStream();
-                out.write(result.getBytes());
-                out.flush();
-                out.close();
-                return;
-            }
-            if (url.contains("/reg")) {
-                UserRegDto payload = JsonHelper.fromJson(body, UserRegDto.class).orElseThrow(BadRequest::new);
-                this.userController.register(payload);
-                resp.setStatus(HttpServletResponse.SC_ACCEPTED);
-            } else {
-                resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            try {
+                switch (url) {
+                    case "/auth":
+                        UserAuthDto authDto = JsonHelper.fromJson(body, UserAuthDto.class).orElseThrow(BadRequest::new);
+                        if(authDto == null){
+                            throw new BadRequest();
+                        }
+                        String result = Optional.of(this.userController.authorize(authDto)).orElseThrow(BadRequest::new);
+                        resp.setContentType("application/json");
+                        resp.setStatus(HttpServletResponse.SC_ACCEPTED);
+                        ServletOutputStream out = resp.getOutputStream();
+                        out.write(result.getBytes());
+                        out.flush();
+                        out.close();
+                        break;
+                    case "/reg":
+                        UserRegDto regDto = JsonHelper.fromJson(body, UserRegDto.class).orElseThrow(BadRequest::new);
+                        if(regDto == null){
+                            throw new BadRequest();
+                        }
+                        this.userController.register(regDto);
+                        resp.setStatus(HttpServletResponse.SC_ACCEPTED);
+                        break;
+                    default:
+                        resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                }
+            } catch (BadRequest e) {
+                resp.setStatus(400);
+            }catch (ForbiddenException e) {
+                resp.setStatus(403);
+            }catch (ConstraintViolationException e) {
+                resp.setStatus(409);
+            } catch (Throwable e) {
+                resp.setStatus(500);
             }
         }
     }
-
-
 }

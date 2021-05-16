@@ -38,12 +38,7 @@ public class AppConfig {
     }
 
     public static IUserController getUserController() {
-        InvocationHandler handler = new UserControllerProxy(userController);
-        return (IUserController) Proxy.newProxyInstance(
-                userController.getClass().getClassLoader(),
-                new Class[]{IUserService.class},
-                handler
-        );
+        return userController;
     }
 
     public static HttpHandler getHandler() {
