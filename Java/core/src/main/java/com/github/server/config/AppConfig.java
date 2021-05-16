@@ -16,7 +16,7 @@ import java.lang.reflect.Proxy;
 
 public class AppConfig {
 
-    private static final IRepository<User> userRepository = new Repository<>();
+    private static final IRepository<User> userRepository = new Repository<>(User.class);
 
     private static final IUserService userService = new UserService(getUserRepository());
 
