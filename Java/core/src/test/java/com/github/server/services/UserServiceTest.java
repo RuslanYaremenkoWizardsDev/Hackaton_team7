@@ -1,37 +1,34 @@
 package com.github.server.services;
 
-import org.junit.Before;
-
-import static org.junit.Assert.*;
+import org.junit.*;
 
 public class UserServiceTest {
 
     @Before
     public void setUp() {
-
     }
 
-    @org.junit.Test
+    @Test
     public void findAll() {
     }
 
-    @org.junit.Test
+    @Test
     public void findById() {
     }
 
-    @org.junit.Test
+    @Test
     public void findByLogin() {
     }
 
-    @org.junit.Test
+    @Test
     public void findByEmail() {
     }
 
-    @org.junit.Test
+    @Test
     public void insert() {
     }
 
-    @org.junit.Test
+    @Test
     public void update() {
 
     }
