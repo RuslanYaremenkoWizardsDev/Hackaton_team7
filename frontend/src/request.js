@@ -19,7 +19,7 @@ function postRequestWithToken(url, requestBody) {
     var request = new XMLHttpRequest();
     request.open("POST", url, true);
     request.setRequestHeader("Content-Type", "application/json");
-    request.setRequestHeader('Authorization', localStorage.getItem('token'))
+    request.setRequestHeader('Token', localStorage.getItem('token'))
     request.addEventListener("load", function () {
       if (request.status < 400) resolve(request.responseText);
       else reject(new Error("Request failed: " + request.statusText));

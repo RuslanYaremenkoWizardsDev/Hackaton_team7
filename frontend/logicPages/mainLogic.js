@@ -1,3 +1,5 @@
+import { postRequestWithToken } from '../src/request'
+import { urls } from '../src/request'
 import '../style/style.scss'
 
 function checkRoleAndDrawTabs(){
@@ -17,26 +19,52 @@ function checkRoleAndDrawTabs(){
     if(role === "guest"){
         tabTournaments.classList.toggle('hide')
     }
+    if(!role){
+        tabTournaments.classList.toggle('hide')
+        tabCreate.classList.toggle('hide')
+        tabStats.classList.toggle('hide')
+    }
 }
 checkRoleAndDrawTabs()
 
 //сделать гет запрос по заходу на странице мэйн на вкладке tournaments для получения турниров и записи их в таблицу
 
-async function getTournamentsAndRender (){
-    await getRequest(urls.mainTourUrl).then(function(data){
+function getTournamentsAndRender (){
+    getRequest(urls.mainTourUrl).then(function(data){
         renderTournamentsTable(data)
     })
 }
 // getTournamentsAndRender()
 
 //функция отрисовки турниров в таблице на вкладке tournaments
-
 // function renderTournamentsTable(){
 
 // }
 
-// function Tournament (name, desc, mode, place, dateStart, dateReg, level, numOfParts, scenario, invPlayers =  []){
+//общение между админом и пользователем реализовать через таблицу запросов, у запроса есть статус "открытый", "закрытый"
 
+// var tournament = {
+//     name: "string",
+//     description: "string",
+//     mode: "string",
+//     place: "string",
+//     dateStart: "string",
+//     dateRegEnd: "string",
+//     level: "string",
+//     numberOfParts: "type Number",
+//     scenario: "string",
+//     players: " тут массив из игроков представленый строкой [pl1, pl2, pl3]",
+//     status: "string"
 // }
 
-//общение между админом и пользователем реализовать через таблицу запросов, у запроса есть статус "открытый", "закрытый".
+
+function sendTournament(tournament){
+    // body = body
+    postRequestWithToken(urls.mainAdminCreate, body).then(function(data){
+        if (data.status === 200){
+            console.log('турнир отправлен');
+        }else {
+            console.log('турнир не отправлен');
+        }
+    })
+}

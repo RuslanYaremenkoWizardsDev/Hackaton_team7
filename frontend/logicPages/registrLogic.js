@@ -32,12 +32,16 @@ function registrate() {
     postRequestWithoutToken(urls.regUrl, bodyToSend).then(function (data) {
       if ((data.status = 200)) {
         redirect("index.html");
-      }
+      };
     });
   } else {
     console.log("Не валидно...");
-  }
-}
+  };
+//         if(data.status = 409){
+//             console.log('sosi lapu');
+//         }
+//     })
+// }
 
 guestEnter.addEventListener("click", enterAsGuest);
 

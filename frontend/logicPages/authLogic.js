@@ -1,3 +1,6 @@
+
+import '../style/style.scss'
+
 import postRequestWithoutToken  from "../src/request" 
 import urls from "../constans/const" 
 import redirect from "../src/redirect"
@@ -43,3 +46,4 @@ function enterAsGuest(){
     localStorage.setItem("role", 'guest')
     redirect("mainPage.html")
 }
+
