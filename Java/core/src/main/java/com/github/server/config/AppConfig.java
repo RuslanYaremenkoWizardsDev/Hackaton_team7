@@ -4,10 +4,15 @@ import com.github.server.controllers.IUserController;
 import com.github.server.controllers.UserController;
 import com.github.server.entity.User;
 import com.github.server.handlers.HttpHandler;
+import com.github.server.proxy.UserControllerProxy;
+import com.github.server.proxy.UserServiceProxy;
 import com.github.server.repositories.IRepository;
 import com.github.server.repositories.Repository;
 import com.github.server.services.IUserService;
 import com.github.server.services.UserService;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
 
 public class AppConfig {
 
@@ -24,11 +29,21 @@ public class AppConfig {
     }
 
     public static IUserService getUserService() {
-        return userService;
+        InvocationHandler handler = new UserServiceProxy(userService);
+        return (IUserService) Proxy.newProxyInstance(
+                userService.getClass().getClassLoader(),
+                new Class[]{IUserService.class},
+                handler
+        );
     }
 
     public static IUserController getUserController() {
-        return userController;
+        InvocationHandler handler = new UserControllerProxy(userController);
+        return (IUserController) Proxy.newProxyInstance(
+                userController.getClass().getClassLoader(),
+                new Class[]{IUserService.class},
+                handler
+        );
     }
 
     public static HttpHandler getHandler() {

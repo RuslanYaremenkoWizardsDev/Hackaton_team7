@@ -78,7 +78,8 @@ public class UserRegDto {
                 null,
                 this.login,
                 this.email,
-                this.password
+                this.password,
+                null
         );
     }
 

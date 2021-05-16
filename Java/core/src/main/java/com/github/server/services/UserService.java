@@ -2,7 +2,6 @@ package com.github.server.services;
 
 import com.github.server.entity.User;
 import com.github.server.repositories.IRepository;
-import com.github.server.repositories.Repository;
 import com.github.server.utils.HibernateUtils;
 
 import java.util.Collection;
@@ -17,32 +16,32 @@ public class UserService implements IUserService {
 
     @Override
     public Collection<User> findAll() {
-        return this.userRepository.findAll(HibernateUtils.getSession(), User.class);
+        return this.userRepository.findAll(User.class, HibernateUtils.getSession());
     }
 
     @Override
     public User findById(Long id) {
-        return this.userRepository.findBy(HibernateUtils.getSession(), User.class, "id", id);
+        return this.userRepository.findBy(User.class, "id", id, HibernateUtils.getSession());
     }
 
     @Override
     public User findByLogin(String login) {
-        return this.userRepository.findBy(HibernateUtils.getSession(), User.class, "login", login);
+        return this.userRepository.findBy(User.class, "login", login, HibernateUtils.getSession());
     }
 
     @Override
     public User findByEmail(String email) {
-        return this.userRepository.findBy(HibernateUtils.getSession(), User.class, "email", email);
+        return this.userRepository.findBy(User.class, "email", email, HibernateUtils.getSession());
     }
 
     @Override
     public void insert(User user) {
-        this.userRepository.save(HibernateUtils.getSession(), User.class, user);
+        this.userRepository.save(User.class, user, HibernateUtils.getSession());
     }
 
     @Override
     public void update(User user) {
-        this.userRepository.update(HibernateUtils.getSession(), User.class, user);
+        this.userRepository.update(User.class, user, HibernateUtils.getSession());
     }
 
 }

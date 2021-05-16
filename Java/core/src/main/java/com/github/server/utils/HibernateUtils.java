@@ -8,6 +8,9 @@ import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 public class HibernateUtils {
 
     private static SessionFactory sessionFactory;
@@ -15,21 +18,21 @@ public class HibernateUtils {
     private static final Logger log = LoggerFactory.getLogger(HibernateUtils.class);
 
     public static SessionFactory getSessionFactory() {
-        try {
-            if (sessionFactory == null) {
-                Configuration configuration = new Configuration().configure();
+        if (sessionFactory == null) {
+            try (InputStream in = HibernateUtils.class.getResourceAsStream("/hibernate.cfg.xml")) {
+                Configuration configuration = new Configuration().addInputStream(in).configure();
                 configuration.addAnnotatedClass(User.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
+            } catch (IOException e){
+                log.error(e.getMessage());
             }
-        } catch (Throwable e) {
-            log.error(e.getMessage());
         }
         return sessionFactory;
     }
 
     public static Session getSession(){
-        return getSessionFactory().getCurrentSession();
+        return getSessionFactory().openSession();
     }
 
 }

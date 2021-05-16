@@ -6,14 +6,16 @@ import java.util.Collection;
 
 public interface IRepository<T> {
 
-    Collection<T> findAll(Session session, Class<T> clz);
+    Collection<T> findAll(Class<T> clz, Session session);
 
-    T findBy(Session session, Class<T> clz, String field, Object value);
+    T findBy(Class<T> clz, String field, Object value, Session session);
 
-    void save(Session session, Class<T> clz, T entity);
+    Collection<T> findAllBy(Class<T> clz, String field, Object value, Session session);
 
-    void update(Session session, Class<T> clz, T entity);
+    void save(Class<T> clz, T entity, Session session);
 
-    void delete(Session session, Class<T> clz, T entity);
+    void update(Class<T> clz, T entity, Session session);
+
+    void delete(Class<T> clz, T entity, Session session);
 
 }
