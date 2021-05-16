@@ -1,6 +1,7 @@
 package com.github.server.dto;
 
 import com.github.server.entity.User;
+import com.github.server.payload.Role;
 
 import java.util.Objects;
 
@@ -79,7 +80,7 @@ public class UserRegDto {
                 this.login,
                 this.email,
                 this.password,
-                null
+                Role.USER
         );
     }
 
