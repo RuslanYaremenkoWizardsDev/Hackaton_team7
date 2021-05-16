@@ -37,6 +37,6 @@ function registrate (){
 guestEnter.addEventListener("click", enterAsGuest)
 
 function enterAsGuest(){
-    localStorage.setItem("role", "guest")
+    localStorage.setItem("role", "GUEST")
     redirect("mainPage.html")
 }

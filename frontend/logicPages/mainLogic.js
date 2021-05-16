@@ -9,16 +9,16 @@ function checkRoleAndDrawTabs(){
     var tabTournaments = document.getElementById('tabTournaments')
     var tabCreate = document.getElementById("tabCreate")
     var tabStats = document.getElementById("tabStats")
-    if(role === "admin"){
+    if(role === "ADMIN"){
         tabTournaments.classList.toggle('hide')
         tabCreate.classList.toggle('hide')
         tabStats.classList.toggle('hide')
     }
-    if(role === "user"){
+    if(role === "USER"){
         tabTournaments.classList.toggle('hide')
         tabStats.classList.toggle('hide')
     }
-    if(role === "guest"){
+    if(role === "GUEST"){
         tabTournaments.classList.toggle('hide')
     }
     if(!role){
@@ -37,17 +37,18 @@ function getTournamentsAndRender (){
             renderTournamentsTable(data)
         })
     }
-    if (!role){
+    if (!role || role === "GUEST"){
         getRequestWithoutToken(urls.mainTourUrl).then(function(data){
             renderTournamentsTable(data)
         })
     }
 }
-getTournamentsAndRender()
+// getTournamentsAndRender()
+
 //получение инвайтов при входе
 function getMessages(){
     var role = localStorage.getItem('role')
-    if(!role || role === 'guest') {
+    if(!role || role === 'GUEST') {
         getRequestWithoutToken(urls.mainInvite).then(function(data){
             renderMessages(data)
         })
@@ -97,8 +98,21 @@ if(data.status === 200){
 //     status: "string"
 // }
 
+//функция подгружает всех юзеров из бд админу на добавление в турнир
+function getUsers(){
+    getRequestWithToken(urls.mainAdminCreate).then(function(data){
+        showUsersToAdmin(data)
+    })
+}
+
+//функция добавляет в дропдаун у админа поля с юзерами
+// showUsersToAdmin(data){
+
+// }
+
+
 function sendTournament(data){
-    // тут надо собрать торнамент и отправить на пост реквест
+    // тут надо собрать торнамент из модалки и отправить на пост реквест
     postRequestWithToken(urls.mainAdminCreate, body).then(function(data){
         if (data.status === 200){
             console.log('tournament sent');
