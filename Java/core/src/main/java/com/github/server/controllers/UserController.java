@@ -45,6 +45,14 @@ public class UserController implements IUserController {
 
     @Override
     public void update(UserRegDto userRegDto) {
+        User userToUpdate = userService.findByEmail(userRegDto.getEmail());
+        User updatedUser = new User(
+                userToUpdate.getId(),
+                userRegDto.getLogin(),
+                userRegDto.getEmail(),
+                userRegDto.getPassword(),
+                userToUpdate.getRole()
+        );
         userService.update(userRegDto.toUser());
     }
 
