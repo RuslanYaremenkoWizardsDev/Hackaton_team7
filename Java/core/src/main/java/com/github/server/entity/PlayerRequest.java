@@ -7,13 +7,13 @@ public class PlayerRequest {
 
     private String nameTournament;
 
-    private String[] players;
+    private String user;
 
     private String status;
 
-    public PlayerRequest(String nameTournament, String[] players, String status) {
+    public PlayerRequest(String nameTournament, String user, String status) {
         this.nameTournament = nameTournament;
-        this.players = players;
+        this.user = user;
         this.status = status;
     }
 
@@ -21,7 +21,7 @@ public class PlayerRequest {
     public String toString() {
         return "PlayerRequest{" +
                 "nameTournament='" + nameTournament + '\'' +
-                ", players=" + Arrays.toString(players) +
+                ", user='" + user + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }
@@ -31,14 +31,12 @@ public class PlayerRequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PlayerRequest that = (PlayerRequest) o;
-        return Objects.equals(nameTournament, that.nameTournament) && Arrays.equals(players, that.players) && Objects.equals(status, that.status);
+        return Objects.equals(nameTournament, that.nameTournament) && Objects.equals(user, that.user) && Objects.equals(status, that.status);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(nameTournament, status);
-        result = 31 * result + Arrays.hashCode(players);
-        return result;
+        return Objects.hash(nameTournament, user, status);
     }
 
     public String getNameTournament() {
@@ -49,12 +47,12 @@ public class PlayerRequest {
         this.nameTournament = nameTournament;
     }
 
-    public String[] getPlayers() {
-        return players;
+    public String getUser() {
+        return user;
     }
 
-    public void setPlayers(String[] players) {
-        this.players = players;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getStatus() {
