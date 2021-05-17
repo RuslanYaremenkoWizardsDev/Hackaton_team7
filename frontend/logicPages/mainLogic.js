@@ -85,10 +85,14 @@ if(data.status === 200){
 //функция подгружает всех юзеров из бд админу на добавление в турнир
 
 function getUsers(){
-    getRequestWithToken(urls.mainAdminCreate).then(function(data){
-        console.log(JSON.parse(data.response));
-        // showUsersToAdmin(data)
-    })
+    var role = localStorage.getItem('role')
+    if (role === "ADMIN"){
+        getRequestWithToken(urls.mainAdminCreate).then(function(data){
+            console.log(JSON.parse(data.response));
+            // showUsersToAdmin(data)
+        })
+    }else return
+    
 }
 getUsers()
 //функция добавляет в дропдаун у админа поля с юзерами
