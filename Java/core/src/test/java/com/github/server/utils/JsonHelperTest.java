@@ -9,13 +9,12 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
 public class JsonHelperTest {
 
-    private final Tournament tournament = new Tournament(0,
+    private final Tournament tournament = new Tournament(
             "testTournament",
             "1",
             "hardmode",
@@ -25,8 +24,8 @@ public class JsonHelperTest {
             "hard",
             32,
             "norm",
-            "1,2",
-            "ended");
+            "1,2"
+    );
 
     private final String tournamentStr = "{" +
             "\"id\":0," +
@@ -43,7 +42,7 @@ public class JsonHelperTest {
             "\"status\":\"ended\"" +
             "}";
 
-    private final Tournament tournamentNull = new Tournament(null,
+    private final Tournament tournamentNull = new Tournament(
             null,
             null,
             null,
@@ -53,8 +52,8 @@ public class JsonHelperTest {
             null,
             null,
             null,
-            null,
-            null);
+            null
+    );
 
     private String tournamentStrNull = "{" +
             "\"id\":null," +

@@ -9,10 +9,6 @@ import java.util.Objects;
 public class Tournament {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-
     @Column(name = "name")
     private String name;
 
@@ -42,17 +38,6 @@ public class Tournament {
 
     @Column(name = "players")
     private String players;
-
-    @Column(name = "status")
-    private String status;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -134,19 +119,10 @@ public class Tournament {
         this.players = listPlayers;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Tournament() {
     }
 
-    public Tournament(Integer id,
-                      String nameTournament,
+    public Tournament(String nameTournament,
                       String description,
                       String mode,
                       String place,
@@ -155,9 +131,7 @@ public class Tournament {
                       String difficult,
                       Integer maxPlayers,
                       String scenario,
-                      String listPlayers,
-                      String status) {
-        this.id = id;
+                      String listPlayers) {
         this.name = nameTournament;
         this.description = description;
         this.mode = mode;
@@ -168,39 +142,34 @@ public class Tournament {
         this.maxPlayers = maxPlayers;
         this.scenario = scenario;
         this.players = listPlayers;
-        this.status = status;
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tournament that = (Tournament) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(mode, that.mode) && Objects.equals(place, that.place) && Objects.equals(dateStart, that.dateStart) && Objects.equals(dateRegEnd, that.dateRegEnd) && Objects.equals(level, that.level) && Objects.equals(maxPlayers, that.maxPlayers) && Objects.equals(scenario, that.scenario) && Objects.equals(players, that.players) && Objects.equals(status, that.status);
+        return Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(mode, that.mode) && Objects.equals(place, that.place) && Objects.equals(dateStart, that.dateStart) && Objects.equals(dateRegEnd, that.dateRegEnd) && Objects.equals(level, that.level) && Objects.equals(maxPlayers, that.maxPlayers) && Objects.equals(scenario, that.scenario) && Objects.equals(players, that.players);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, mode, place, dateStart, dateRegEnd, level, maxPlayers, scenario, players, status);
+        return Objects.hash(name, description, mode, place, dateStart, dateRegEnd, level, maxPlayers, scenario, players);
     }
 
     @Override
-    public String
-    toString() {
+    public String toString() {
         return "Tournament{" +
-                "id=" + id +
-                ", nameTournament='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", mode='" + mode + '\'' +
                 ", place='" + place + '\'' +
-                ", startDate=" + dateStart +
-                ", lastDayReg=" + dateRegEnd +
-                ", difficult='" + level + '\'' +
+                ", dateStart='" + dateStart + '\'' +
+                ", dateRegEnd='" + dateRegEnd + '\'' +
+                ", level='" + level + '\'' +
                 ", maxPlayers=" + maxPlayers +
                 ", scenario='" + scenario + '\'' +
-                ", listPlayers='" + players + '\'' +
-                ", status='" + status + '\'' +
+                ", players='" + players + '\'' +
                 '}';
     }
 }

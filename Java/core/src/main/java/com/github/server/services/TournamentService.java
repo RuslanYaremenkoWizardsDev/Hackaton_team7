@@ -37,7 +37,6 @@ public class TournamentService implements ITournamentService {
             strPlayers = "[" + strPlayers + ", " + login + "]";
         }
         Tournament updatedTournament = new Tournament(
-                tournament.getId(),
                 tournament.getName(),
                 tournament.getDescription(),
                 tournament.getMode(),
@@ -47,8 +46,7 @@ public class TournamentService implements ITournamentService {
                 tournament.getLevel(),
                 tournament.getMaxPlayers(),
                 tournament.getScenario(),
-                strPlayers,
-                tournament.getStatus()
+                strPlayers
         );
         this.repository.update(updatedTournament, HibernateUtils.getSession());
     }
