@@ -70,25 +70,11 @@ public class JsonHelperTest {
             "\"status\":null" +
             "}";
 
-    @Test
-    public void toJsonAllNull() {
-        String str = String.valueOf(JsonHelper
-                .toJson(tournamentNull)
-                .orElseThrow());
-        assertEquals(tournamentStrNull, str);
-    }
-
 
     @Test
     public void toJsonNull() {
         String str = JsonHelper.toJson(null).orElse("s");
         assertEquals("null", str);
-    }
-
-    @Test
-    public void fromJsonAllNull() {
-        Tournament actual = JsonHelper.fromJson(tournamentStrNull, Tournament.class).orElseThrow();
-        assertEquals(tournamentNull, actual);
     }
 
     @Test(expected = NoSuchElementException.class)
