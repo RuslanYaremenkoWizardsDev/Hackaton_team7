@@ -22,17 +22,13 @@ function checkRoleAndDrawTabs(){
     var tabTournaments = document.getElementById('tabTournaments')
     var tabCreate = document.getElementById("tabCreate")
     var tabStats = document.getElementById("tabStats")
-    if(role === "ADMIN"){
-        tabTournaments.classList.toggle('hide')
-        tabCreate.classList.toggle('hide')
-        tabStats.classList.toggle('hide')
-    }
     if(role === "USER"){
-        tabTournaments.classList.toggle('hide')
-        tabStats.classList.toggle('hide')
+        tabCreate.classList.toggle('hide')
+        
     }
     if(role === "GUEST"){
-        tabTournaments.classList.toggle('hide')
+        tabStats.classList.toggle('hide')
+        tabCreate.classList.toggle('hide')
     }
 }
 checkRoleAndDrawTabs()
@@ -42,9 +38,8 @@ function getTournamentsAndRender (){
     var role = localStorage.getItem('role')
     if (role || role !== "GUEST"){
         getRequestWithToken(urls.mainTourUrl).then(function(data){
-            data = JSON.parse(data)
-            console.log(data);
-            renderTournamentsTable(data)
+            console.log(data.response);
+            renderTournamentsTable(data.response)
         })
     }
     if (!role || role === "GUEST"){
@@ -114,14 +109,16 @@ function getUsers(){
 // showUsersToAdmin(data){
 
 // }
+var submitTour = document.getElementById("submit-date")
+submitTour.addEventListener("click", sendTournament)
 
-
-function sendTournament(data){
+function sendTournament(){
     // тут надо собрать торнамент из модалки и отправить на пост реквест
     var nameTour = document.getElementById("tourName")
     var descriptionTour = document.getElementById("tourDesc")
     var modeCup = document.getElementById("tourModeCup")
     var modeChamp = document.getElementById("tourModeChamp")
+    var tourPlace = document.getElementById("tourPlace")
     var tourDateStart = document.getElementById("tourDateStart")
     var tourDateEndReg = document.getElementById("tourDateEndReg")
     var levelAdvanced = document.getElementById("tourLevelAdvanced")
@@ -129,8 +126,8 @@ function sendTournament(data){
     var levelBeginner = document.getElementById("tourLevelBeginner")
     var numberOfParts128 = document.getElementById("tourNum128")
     var numberOfParts64 = document.getElementById("tourNum64")
-    var numberOfParts32 = document.getElementById("tourNum16")
-    var numberOfParts16 = document.getElementById("tourNum128")
+    var numberOfParts32 = document.getElementById("tourNum32")
+    var numberOfParts16 = document.getElementById("tourNum16")
     var numberOfParts8 = document.getElementById("tourNum8")
     var scenarioTour = 'One-match-confrontation'
     var playersTour = "[pl1, pl2]"
@@ -170,6 +167,7 @@ function sendTournament(data){
         name : nameTour.value,
         description: descriptionTour.value,
         mode: mode,
+        place: tourPlace.value,
         dateStart: tourDateStart.value,
         dateRegEnd: tourDateEndReg.value,
         level: level,
@@ -181,6 +179,7 @@ function sendTournament(data){
     postRequestWithToken(urls.mainAdminCreate, body).then(function(data){
         if (data.status === 200){
             console.log('tournament sent');
+            getTournamentsAndRender()
         }else {
             console.log('tournament not sent');
         }

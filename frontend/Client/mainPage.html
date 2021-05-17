@@ -27,7 +27,7 @@
                 <buttton class="block-content__main__panel__buttons panel">Stats</buttton>
                 <buttton class="block-content__main__panel__buttons panel">Create tournament</buttton>
             </div>
-            <div class="block-content__main__tour">
+            <div class="block-content__main__tour" id="tabTournaments">
                 <div class="block-content__main__tour--panel panel">
                     <input type="date" class="panel__datapicer start-date" title="Search by start date">
                     <input type="date" class="panel__datapicer req-date" title="Search by req date">
@@ -86,7 +86,7 @@
                     <div class="players__item-tour last">Canceled</div>
                 </div>
             </div>
-            <div class="block-content__main__stats-admin">
+            <div class="block-content__main__stats-admin" id="tabStats">
                 <div class="block-content__main__stats-admin--name">Players</div>
                 <div class="block-content__main__stats-admin--table table">
                     <div class="players__item-admin">Login/Email</div>
@@ -104,7 +104,7 @@
                     <div class="players__item-tour last">Canceled</div>
                 </div>
             </div>
-            <div class="block-content__main__block">
+            <div class="block-content__main__block" id="tabCreate">
                 <h1 class="block-content__main__block--name">Create tournament</h1>
                 <button class="block-content__main__block__actions--btn" id="create-fields">Create<button>
                 <button class="block-content__main__block__actions--btn" disabled>Cup grid</button>
@@ -119,25 +119,25 @@
             <div class="block-content__modal-fields__main main">
                 <div class="main__block-input-icons">
                     <div class="main__block-input-icons--icons name-tournament"></div>
-                    <input type="text" class="main__block-input-icons--text" placeholder="Name of tournament">
+                    <input type="text" class="main__block-input-icons--text" placeholder="Name of tournament" id="tourName">
                 </div>
                 <div class="main__block-input-icons">
                     <div class="main__block-input-icons--icons description"></div>
-                    <input type="text"class="main__block-input-icons--text" placeholder="Tournament description">
+                    <input type="text"class="main__block-input-icons--text" placeholder="Tournament description" id="tourDesc">
                 </div>
                 <div class="main__block-input-icons__radio-button">
                     <div class="main__block-input-icons__radio-button--radio">
-                        <input type="radio" value="cup" name="mode" checked>
+                        <input type="radio" value="cup" name="mode" checked id="modeCup">
                         <label for="mode">Cup</label>
                     </div>
                     <div class="main__block-input-icons__radio-button--radio">
-                        <input class="main__block-input-icons__radio-button--radio" type="radio" value="championship" name="mode">
+                        <input class="main__block-input-icons__radio-button--radio" type="radio" value="championship" name="mode" id="modeChamp">
                         <label for="mode">Championship</label>
                     </div>
                 </div>
                 <div class="main__block-input-icons">
                     <div class="main__block-input-icons--icons place"></div>
-                    <input type="text"class="main__block-input-icons--text" placeholder="Place">
+                    <input type="text"class="main__block-input-icons--text" placeholder="Place" id="tourPlace">
                 </div>
                 <div class="main__block-input-icons">
                     <div class="main__block-input-icons--icons datapicer"></div>
@@ -149,37 +149,37 @@
                 </div>
                 <div class="main__block-input-icons__radio-button-level">
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="advanced" name="level">
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="advanced" name="level" id="tourLevelAdvanced">
                         <label for="level">Advanced</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="middle" name="level" checked>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="middle" name="level" checked id="tourLevelMiddle">
                         <label for="level">Middle</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="beginner" name="level">
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="beginner" name="level" id="tourLevelBeginner">
                         <label for="level">Beginner</label>
                     </div>
                 </div>
                 <div class="main__block-input-icons__radio-button-level">
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="128" name="NumberParticipants">
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="128" name="NumberParticipants" id="tourNum128">
                         <label for="NumberParticipants">128</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="64" name="NumberParticipants" >
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="64" name="NumberParticipants" id="tourNum64">
                         <label for="NumberParticipants">64</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="32" name="NumberParticipants" checked>
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="32" name="NumberParticipants" checked id="tourNum32">
                         <label for="NumberParticipants">32</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
                         <input class="main__block-input-icons__radio-button-level--level" type="radio" value="16" name="NumberParticipants">
-                        <label for="NumberParticipants">16</label>
+                        <label for="NumberParticipants" id="tourNum16">16</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
-                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="8" name="NumberParticipants">
+                        <input class="main__block-input-icons__radio-button-level--level" type="radio" value="8" name="NumberParticipants" id="tourNum8">
                         <label for="NumberParticipants">8</label>
                     </div>
                     <div class="main__block-input-icons__radio-button-level">
