@@ -1,6 +1,7 @@
 import {postRequestWithoutToken} from "../src/request";
 import urls from "../constans/const";
 import redirect from "../src/redirect";
+import '../style/reqPage.scss'
 import {
   validateLogin,
   validatePassword,
