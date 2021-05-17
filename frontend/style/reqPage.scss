@@ -1,0 +1,131 @@
+@import './const.scss';
+*{
+    //  box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: initial;
+      font-size: $size-text-input;
+      color: $color-text;
+  }
+  body{
+      background: $body-bg;
+  }
+  button{
+      border: none;
+      outline: none;
+      background: none;
+  }
+  img{
+      width: 20px;
+      height: 20px;
+  }
+  input{
+      border: none;
+      outline: none;
+      background: none;
+      cursor: pointer;
+  }
+  a{
+      color: #497AFA;
+      font-size: 16px;
+      padding: 15px;
+  }
+.content-block-registration{
+    width: 30%;
+    height: auto;
+    background: $content-bg;
+    border-radius: 10px;position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    &--name-page{
+        text-align: center;
+        font-size: 32px;
+        color: $color-text;
+    }
+    &__main{
+        width: 80%;
+        height: 50vh;
+        margin: 10% auto;
+        &__block{
+            width: 100%;
+            height: 40px;
+            background: $color-input-bg;
+            border-radius: 5px;
+            display: flex;
+            margin: 0 0 5% 0;
+            &--login{
+                width: 24px;
+                height: 24px;
+                background: url(./img/login.png);
+                background-size: cover;
+                margin-top: 2%;
+            }
+            &--password{
+                width: 24px;
+                height: 24px;
+                background: url(./img/password.png);
+                background-size: cover;
+                margin-top: 2%;
+            }
+            &--show{
+                width: 30px;
+                height: 24px;
+                background: url(./img/view-black.png);
+                background-size: cover;
+                margin: 3%;
+            }
+            &--key{
+                width: 20px;
+                height: 20px;
+                background: url(./img/SecretKey.png);
+                background-size: cover;
+                margin: 3%;
+                margin-left: 1%;
+            }
+        }
+        &--btn{
+            width: 100%;
+            height: 40px;
+            background: $color-text-input;
+            border-radius: 10px;
+            margin: 0 0 5% 0;
+            color: #D7D9CE;
+        }
+        &--text{
+            font-size: 16px;
+            text-align: center;
+            color: #757575;
+        }
+        &--password{
+            text-align: center;
+            padding: 10px 0 10px ;
+        }
+        &--google{
+            width: 40px;
+            height: 40px;
+            background: $color-text-input;
+            border-radius: 10px;
+            margin: 0 0 5% 0;
+            margin: 0 45%;
+            color: #D7D9CE;
+            padding: 2%;
+        }
+       
+    }
+    
+}
+.hide{ //role hide
+    display: none;
+}
+.login__inpt{
+    margin-left: 5%;
+}
+.google{
+    width: 24px;
+    height: 24px;
+    background: url(./img/logo-google.png);
+    background-size: cover;
+}
