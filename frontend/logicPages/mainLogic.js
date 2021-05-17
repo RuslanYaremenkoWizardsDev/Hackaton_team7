@@ -72,9 +72,6 @@ function getMessagesAndRender(){
 
 //функция отправки инвайта
 function sendInvite(){
-    // var body = {
-    //     status: status
-    // }
     postRequestWithToken(urls.mainInvite, body).then(function(data){
 if(data.status === 200){
     console.log('invite succesfully sent');
@@ -84,27 +81,15 @@ if(data.status === 200){
     })
 }
 
-// var tournament = {
-//     name: "string",
-//     description: "string",
-//     mode: "string",
-//     place: "string",
-//     dateStart: "string",
-//     dateRegEnd: "string",
-//     level: "string",
-//     numberOfParts: "type Number",
-//     scenario: "string",
-//     players: " тут массив из игроков представленый строкой [pl1, pl2, pl3]",
-//     status: "string"
-// }
-
 //функция подгружает всех юзеров из бд админу на добавление в турнир
+
 function getUsers(){
     getRequestWithToken(urls.mainAdminCreate).then(function(data){
-        showUsersToAdmin(data)
+        console.log(JSON.parse(data.response));
+        // showUsersToAdmin(data)
     })
 }
-
+getUsers()
 //функция добавляет в дропдаун у админа поля с юзерами
 // showUsersToAdmin(data){
 
