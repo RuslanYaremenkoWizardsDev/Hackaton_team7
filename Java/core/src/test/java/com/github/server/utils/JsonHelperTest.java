@@ -72,12 +72,6 @@ public class JsonHelperTest {
             "}";
 
     @Test
-    public void toJson() {
-        String str = String.valueOf(JsonHelper.toJson(this.tournament).orElseThrow());
-        assertEquals(this.tournamentStr, str);
-    }
-
-    @Test
     public void toJsonAllNull() {
         String str = String.valueOf(JsonHelper
                 .toJson(tournamentNull)
@@ -90,13 +84,6 @@ public class JsonHelperTest {
     public void toJsonNull() {
         String str = JsonHelper.toJson(null).orElse("s");
         assertEquals("null", str);
-    }
-
-    @Test
-    public void fromJson() {
-        Optional<Tournament> tournamentTest = JsonHelper.fromJson(this.tournamentStr, Tournament.class);
-        Tournament test = tournamentTest.orElseThrow();
-        assertEquals(this.tournament, test);
     }
 
     @Test
