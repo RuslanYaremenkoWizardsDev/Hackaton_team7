@@ -18,10 +18,6 @@ module.exports = {
       "@babel/polyfill",
       path.resolve(__dirname, "./frontend/logicPages/mainLogic.js"),
     ],
-    mainModal: [
-      "@babel/polyfill",
-      path.resolve(__dirname, "./frontend/client/modalWindows/modalFields.js"),
-    ],
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -41,7 +37,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "frontend/client/mainPage.html",
       filename: "mainPage.html",
-      chunks: ["main", "mainModal"],
+      chunks: ["main"],
     }),
     new HtmlWebpackPlugin({
       template: "frontend/client/registrPage.html",
