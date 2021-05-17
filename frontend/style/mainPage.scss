@@ -1,13 +1,13 @@
 @import './modalFieldsAdmin.scss';
 .block-content{
     width: 92%;
-    height: 89.9vh;
+    height: auto;
     margin: 0 auto;
     background: $color-block-content;
     display: flex;
     &__main{
         width: 70%;
-        height: 80vh;
+        height: auto;
         margin: 2.5% auto;
         border-radius: $border-radius-main;
         background: $color-main-block;
@@ -26,6 +26,82 @@
                 }
             }
         }
+        &__tour{
+            width: 80%;
+            height: 65vh;
+            margin: 4vh auto;
+            border-radius: $border-radius-main;
+            background: $content-bg;
+            display: flow-root;
+            &--panel{
+                width: 90%;
+                height: 30px;
+                margin: 5% auto;
+                background: #1D7889;
+                margin-top: 2%;
+            }
+        }
+        &__stats{
+            display: flow-root;
+            width: 80%;
+            height: 65vh;
+            margin: 4vh auto;
+            border-radius: $border-radius-main;
+            background: $content-bg;
+            display: none;
+            &--name{
+                width: 90%;
+                height: 30px;
+                margin: 5% auto;
+                background: #1D7889;
+                text-align: center;
+                padding-top: 10px;
+            }
+            &--table{
+                width: 90%;
+                height: 50px;
+                margin: 0 auto;
+                border-radius: 7px 7px 0 0;
+                background: #1B3135;
+                box-shadow: inset 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
+                display: flex;
+            }
+            &--content{
+                width: 90%;
+                height: 50px;
+                margin: 0 auto;
+                display: flex;
+                &--actions{
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+        &__stats-admin{
+            display: flow-root;
+            width: 80%;
+            height: 65vh;
+            margin: 4vh auto;
+            border-radius: $border-radius-main;
+            background: $content-bg;
+            &--name{
+                width: 90%;
+                height: 30px;
+                margin: 5% auto;
+                background: #1D7889;
+                text-align: center;
+                padding-top: 10px;
+            }
+            &--table{
+                width: 90%;
+                height: 50px;
+                margin: 5% auto;
+                border-radius: 7px 7px 0 0;
+                background: #1B3135;
+                box-shadow: inset 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
+                display: flex;
+            }
+        }
         &__block{
             width: 30%;
             height: 50vh;
@@ -33,13 +109,19 @@
             margin: 8% auto;
             display: flow-root;
             border-radius: $border-radius-main;
+           // display: none;
+           &--name{
+               text-align: center;
+               font-size: 32px;
+               padding-top: 10px;
+           }
             &__actions{
                 display: inline-block;
                 &--btn{
                     width: 80%;
                     height: 40px;
                     margin: 10%;
-                    margin-top: 14%;
+                    margin-top: 10%;
                     text-align: center;
                     background: $color-text-input;
                     border-radius: 3px;
@@ -57,7 +139,92 @@ button[disabled]{
 .panel{
     padding: 15px;
 }
+.panel{
+    &__datapicer{
+        width: 25%;
+        height: 30px;
+        background: rgba(196, 196, 196, 1);
+        border-radius: 3px;
+        margin-right: 10px;
+        color:$color-text-input;
+    }
+    &__dropdown{
+        width: 25%;
+        height: 30px;
+        background: rgba(196, 196, 196, 1);
+        border-radius: 3px;
+        color:$color-text-input;
+    }
+    &__clear-all{
+        height: 30px;
+        width: 20%;
+        border-radius: 3px;
+        background: $color-text-input;
+        float: right;
+    }
+}
+.players__item{
+    width: 33.3%;
+    height: 50px;
+    border-right: 1px solid $color-inpt;
+    border-bottom: 1px solid $color-inpt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.players__item:nth-child(3){
+    border-right: none;
+}
+.players__item-tour{
+    width: 33.3%;
+    height: 50px;
+    border-right: 1px solid $color-inpt;
+    border-bottom: 1px solid $color-inpt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.players__item-admin{
+    width: 33.3%;
+    height: 50px;
+    border-right: 1px solid $color-inpt;
+    border-bottom: 1px solid $color-inpt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.players__item-admin:nth-child(6){
+    border-right: none;
+}
+.last:nth-child(4){
+    border-right: none;
+}
+.players__item-table{
+    border-right: 1px solid $color-inpt;
+    border-bottom: 1px solid $color-inpt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.players__item-table:nth-child(10){
+    border-right: none;
+}
+.players__item-content{
+    border: 1px solid $color-inpt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .hiddle{
     display: none;
+}
+.small{
+    width: 7%;
+}
+.middle{
+    width: 12%;
+}
+.large{
+    width: 15%;
 }
 //
