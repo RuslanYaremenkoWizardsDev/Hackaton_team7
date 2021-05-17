@@ -59,7 +59,7 @@ public class HttpHandler extends HttpServlet {
         resp.setHeader("Access-Control-Allow-Origin", "*");
         resp.setHeader("Access-Control-Allow-Methods", "*");
         resp.setHeader("Access-Control-Allow-Headers", "*");
-        resp.setStatus(204);
+        resp.setStatus(200);
     }
 
     @Override
@@ -88,10 +88,23 @@ public class HttpHandler extends HttpServlet {
                         resp.setStatus(HttpServletResponse.SC_OK);
                     }
                     break;
-                case "main/invite":
+                case "/main/tournamentInvite":
                     PrivateToken privateToken1 = TokenProvider.decode(tokenStr);
-
-
+                    Role userRoleInv = privateToken1.getRole();
+                    if (userRoleInv == Role.USER) {
+                        String resultInv = this.userController.getInvites(privateToken1.getEmail());
+                        out.write(resultInv.getBytes());
+                        resp.setStatus(HttpServletResponse.SC_OK);
+                    }
+                    break;
+                case "/main/tournamentRequest":
+                    PrivateToken privateToken2 = TokenProvider.decode(tokenStr);
+                    Role adminRole = privateToken2.getRole();
+                    if (adminRole == Role.ADMIN) {
+                        String resultReq = this.adminController.getRequests();
+                        out.write(resultReq.getBytes());
+                        resp.setStatus(HttpServletResponse.SC_OK);
+                    }
                 default:
                     resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
                     break;
@@ -142,6 +155,22 @@ public class HttpHandler extends HttpServlet {
                             throw new BadRequest();
                         }
                         this.adminController.createTournament(tournament);
+                        resp.setStatus(HttpServletResponse.SC_OK);
+                    case "/main/tournamentInvite":
+                        Tournament tourCreateInv = JsonHelper.fromJson(body, Tournament.class).orElseThrow(BadRequest::new);
+                        User userCreateInv = JsonHelper.fromJson(body, User.class).orElseThrow(BadRequest::new);
+                        if (tourCreateInv == null) {
+                            throw new BadRequest();
+                        }
+                        this.adminController.createInvite(userCreateInv.getLogin(), tourCreateInv.getName());
+                        resp.setStatus(HttpServletResponse.SC_OK);
+                    case " /main/tournamentRequest":
+                        Tournament tourCreateReq = JsonHelper.fromJson(body, Tournament.class).orElseThrow(BadRequest::new);
+                        User userCreateReq = JsonHelper.fromJson(body, User.class).orElseThrow(BadRequest::new);
+                        if (tourCreateReq == null) {
+                            throw new BadRequest();
+                        }
+                        this.userController.createRequest(userCreateReq.getEmail(), tourCreateReq.getName());
                         resp.setStatus(HttpServletResponse.SC_OK);
                     default:
                         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
