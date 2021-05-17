@@ -57,6 +57,7 @@ getTournamentsAndRender()
 
 //функция отрисовки турниров в таблице на вкладке tournaments
 function renderTournamentsTable(data){
+
 }
 //получение инвайтов при входе
 function getMessagesAndRender(){
@@ -65,29 +66,95 @@ function getMessagesAndRender(){
         return
     }
     if(role === "ADMIN"){
-        getRequestWithToken()
+        getRequestWithToken(urls.mainTournamentRequest).then(function(data){
+            getMessagesAndRender(data)
+        })
+    }
+    if(role === "USER"){
+        getRequestWithToken(urls.mainTournamentInvite).then(function(data){
+            getMessagesAndRender(data)
+        })
     }
 }
 // getMessagesAndRender()
 
-//функция отрисовки инвайтов
 // function renderMessages(data){
 
 // }
 
 //функция отправки инвайта
-function sendInvite(){
-    // var body = {
-    //     status: status
-    // }
-    postRequestWithToken(urls.mainInvite, body).then(function(data){
-if(data.status === 200){
-    console.log('invite succesfully sent');
-}else{
-    console.log("invite not sent");
+function sendMessage(){
+    var role = localStorage.getItem('role')
+    if (!role || role === "GUEST")
+    return
+    if(role === "ADMIN"){
+        var message = "lolKek"
+        var users = ["kek", "shrek"]
+        var body = {
+            message, 
+            users
+        }
+        postRequestWithToken(tournamentInvite, body).then(function(data){
+            if(data.status === 200){
+                console.log("invite sent");
+            }else{
+                console.log("invite not sent");
+            }
+        })
+    }
+    if(role === "USER"){
+        var message = "lolKek"
+        var tournaments = ["kek", "shrek"]
+        var body = {
+            message, 
+            tournaments
+        }
+        postRequestWithToken(tournamentInvite, body).then(function(data){
+            if(data.status === 200){
+                console.log("request sent");
+            }else{
+                console.log("request not sent");
+            }
+        })
+    }
 }
-    })
+// sendMessage()
+function answerMessage(){
+    var role = localStorage.getItem('role')
+    if (!role || role === "GUEST")
+    return
+    if(role === "ADMIN"){
+        var tournament = "lolKek"
+        var user = "shrek"
+        body = {
+            tournament,
+            user
+        }
+        postRequestWithToken(urls.mainTournamentRequestAccept, body).then(function(data){
+            if(data.status === 200){
+                console.log("request for participation accepted");
+            }else{
+                console.log("request for participation declined");
+            }
+        })
+    }
+    if(role === "USER"){
+        var tournament = "lolKek"
+        var user = "shrek"
+        body = {
+            tournament,
+            user
+        }
+        postRequestWithToken(urls.mainTournamentInviteAccept, body).then(function(data){
+            if(data.status === 200){
+                console.log("invite for participation accepted");
+            }else{
+                console.log("invite for participation declined");
+            }
+        })
+    }
 }
+// answerMessage()
 
 // var tournament = {
 //     name: "string",

@@ -22,11 +22,17 @@ var mainUpdateUser = mainUrl + "/updateUser"
 
 var mainAdminCreate = mainUrl + "/create"
 
+//ПОЛУЧИТЬ И ОТПРАВИТЬ ИНВАЙТЫ/РЕКВЕСТЫ
+// ГЕТ для юзера и ПОСТ для админа
+var mainTournamentInvite = mainUrl + "/tournamentInvite"
+// ПОСТ для юзера и ГЕТ для админа
+var mainTournamentRequest = mainUrl + "/tournamentRequest"
 
-// ГЕТ и ПОСТ для админа 
-var mainTournamentInvite = mainUrl + "/tournamentRequest"
-var mainTournamentInviteAccept = mainUrl + "/main/tournamentRequest/accept"
-// https://hackatonteam7.herokuapp.com/main/invite
+//ПРИНЯТЬ ИЛИ ОТКЛОНИТЬ ИНВАЙТЫ/РЕКВЕСТЫ
+//Для юзера принять инвайт
+var mainTournamentInviteAccept = mainUrl + "/tournamentInvite/accept"
+//Для админа принять реквест
+var mainTournamentRequestAccept = mainUrl + "tournamentRequest/accept"
 
 export default {
     authUrl: authUrl,
@@ -36,7 +42,9 @@ export default {
     mainUpdateUser: mainUpdateUser,
     mainAdminCreate: mainAdminCreate,
     mainTournamentInvite: mainTournamentInvite,
-    mainTournamentInviteAccept: mainTournamentInviteAccept
+    mainTournamentRequest: mainTournamentRequest, 
+    mainTournamentInviteAccept: mainTournamentInviteAccept,
+    mainTournamentRequestAccept: mainTournamentRequestAccept
 }
 
 // console.log(urls);
