@@ -66,10 +66,10 @@ public class HttpHandler extends HttpServlet {
         resp.setHeader("Access-Control-Allow-Headers", "*");
         String url = req.getRequestURI();
         String tokenStr = req.getHeader("Token");
-        if (!TokenProvider.checkToken(tokenStr)) {
-            throw new ExpiredTokenException();
-        }
         try (ServletOutputStream out = resp.getOutputStream()) {
+            if (!TokenProvider.checkToken(tokenStr)) {
+                throw new ExpiredTokenException();
+            }
             switch (url) {
                 case "/main/tournaments":
                     String resultTours = this.adminController.findAllTournaments();

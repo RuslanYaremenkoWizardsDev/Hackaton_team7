@@ -10,13 +10,16 @@ import static com.github.server.utils.DateUtils.getCurrentDate;
 
 public class PrivateToken {
 
-    private final String email;
+    private String email;
 
-    private final Role role;
+    private Role role;
 
-    private final Date expireIn;
+    private Date expireIn;
 
-    private final Date createdAt;
+    private Date createdAt;
+
+    public PrivateToken() {
+    }
 
     public PrivateToken(String email, Role role, Date expireIn, Date createdAt) {
         this.email = email;

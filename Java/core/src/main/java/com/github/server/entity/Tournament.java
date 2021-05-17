@@ -26,10 +26,10 @@ public class Tournament {
     private String place;
 
     @Column(name = "date_start")
-    private Date dateStart;
+    private String dateStart;
 
     @Column(name = "date_reg_end")
-    private Date dateRegEnd;
+    private String dateRegEnd;
 
     @Column(name = "level")
     private String level;
@@ -86,19 +86,19 @@ public class Tournament {
         this.place = place;
     }
 
-    public Date getDateStart() {
+    public String getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(Date startDate) {
+    public void setDateStart(String startDate) {
         this.dateStart = startDate;
     }
 
-    public Date getDateRegEnd() {
+    public String getDateRegEnd() {
         return dateRegEnd;
     }
 
-    public void setDateRegEnd(Date lastDayReg) {
+    public void setDateRegEnd(String lastDayReg) {
         this.dateRegEnd = lastDayReg;
     }
 
@@ -150,8 +150,8 @@ public class Tournament {
                       String description,
                       String mode,
                       String place,
-                      Date startDate,
-                      Date lastDayReg,
+                      String startDate,
+                      String lastDayReg,
                       String difficult,
                       Integer maxPlayers,
                       String scenario,
