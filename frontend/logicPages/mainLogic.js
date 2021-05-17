@@ -6,6 +6,7 @@ import '../client/modalWindows/modalFields.js';
 //import '../Client/modal/modalFields.js';
 
 import '../style/modalFieldsAdmin.scss';
+import '../style/reqPage.scss';
 import '../../frontend/Client/modal/showModalFields.js';
 //////
 import { postRequestWithToken } from '../src/request'
