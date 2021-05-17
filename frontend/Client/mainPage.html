@@ -19,88 +19,6 @@
         </div>
     </header>
 
-    
-    <div id="tabTournaments" class="hide">
-        tabTournaments
-    </div>
-
-    <div id="tabCreate" class="hide">
-        tabCreate
-        <div class="block-content">
-            <div class="block-content__modal-fields">
-                <button class="block-content__modal-fields--close"></button>
-                <h1 class="block-content__modal-fields--name-modal">Create tournament</h1>
-                <div class="block-content__modal-fields__main main">
-                    <div class="main__block-input-icons">
-                        <div class="main__block-input-icons--icons name-tournament"></div>
-                        <input type="text" class="main__block-input-icons--text" placeholder="Name of tournament" id="tourName">
-                    </div>
-                    <div class="main__block-input-icons">
-                        <div class="main__block-input-icons--icons description"></div>
-                        <input type="text"class="main__block-input-icons--text" placeholder="Tournament description" id="tourDesc">
-                    </div>
-                    <div class="main__block-input-icons__radio-button">
-                        <div class="main__block-input-icons__radio-button--radio">
-                            <input type="radio" value="cup" name="mode" checked id="tourModeCup">
-                            <label for="radio">Cup</label>
-                        </div>
-                        <div class="main__block-input-icons__radio-button--radio">
-                            <input class="main__block-input-icons__radio-button--radio" type="radio" value="championship" name="mode" id="tourModeChamp">
-                            <label for="radio">Championship</label>
-                        </div>
-                    </div>
-                    <div class="main__block-input-icons">
-                        <div class="main__block-input-icons--icons place"></div>
-                        <input type="text"class="main__block-input-icons--text" placeholder="Place">
-                    </div>
-                    <div class="main__block-input-icons">
-                        <div class="main__block-input-icons--icons datapicer"></div>
-                        <input type="date" id="tourDateStart" class="main__block-input-icons--text" title="Start date">
-                    </div>
-                    <div class="main__block-input-icons">
-                        <div class="main__block-input-icons--icons datapicer"></div>
-                        <input type="date" id="tourDateEndReg" class="main__block-input-icons--text" title="Last registration date">
-                    </div>
-                    <div class="main__block-input-icons__radio-button-level">
-                        <div class="main__block-input-icons__radio-button-level">
-                            <input class="main__block-input-icons__radio-button-level--level" type="radio" value="advanced" name="mode" id="tourLevelAdvanced">
-                            <label for="radio">Advanced</label>
-                        </div>
-                        <div class="main__block-input-icons__radio-button-level">
-                            <input class="main__block-input-icons__radio-button-level--level" type="radio" value="middle" name="mode" checked id="tourLevelMiddle">
-                            <label for="radio">Middle</label>
-                        </div>
-                        <div class="main__block-input-icons__radio-button-level">
-                            <input class="main__block-input-icons__radio-button-level--level" type="radio" value="beginner" name="mode" id="tourLevelBeginner">
-                            <label for="radio">Beginner</label>
-                        </div>
-                    </div>
-                    <div class="main__block-input-icons__radio-button-level">
-                        <div class="main__block-input-icons__radio-button-level">
-                            <input class="main__block-input-icons__radio-button-level--level" type="radio" value="128" name="level" id="tourNum128">
-                            <label for="level">128</label>
-                        </div>
-                        <div class="main__block-input-icons__radio-button-level">
-                            <input class="main__block-input-icons__radio-button-level--level" type="radio" value="64" name="level" id="tourNum64">
-                            <label for="level">64</label>
-                        </div>
-                        <div class="main__block-input-icons__radio-button-level">
-                            <input class="main__block-input-icons__radio-button-level--level" type="radio" value="32" name="level" checked id="tourNum32"> 
-                            <label for="level">32</label>
-                        </div>
-                        <div class="main__block-input-icons__radio-button-level">
-                            <input class="main__block-input-icons__radio-button-level--level" type="radio" value="16" name="level" id="tourNum16">
-                            <label for="level">16</label>
-                        </div>
-                        <div class="main__block-input-icons__radio-button-level">
-                            <input class="main__block-input-icons__radio-button-level--level" type="radio" value="8" name="level" id="tourNum8">
-                            <label for="level">8</label>
-                        </div>
-                        <div class="main__block-input-icons__radio-button-level">
-                            <input class="main__block-input-icons__radio-button-level--level" type="radio" value="4" name="level">
-                            <label for="level">4</label>
-                        </div>
-
     <div class="line"></div>
     <div class="block-content">
         <div class="block-content__main" id="main-block">
@@ -109,7 +27,77 @@
                 <buttton class="block-content__main__panel__buttons panel">Stats</buttton>
                 <buttton class="block-content__main__panel__buttons panel">Create tournament</buttton>
             </div>
+            <div class="block-content__main__tour">
+                <div class="block-content__main__tour--panel panel">
+                    <input type="date" class="panel__datapicer start-date" title="Search by start date">
+                    <input type="date" class="panel__datapicer req-date" title="Search by req date">
+                    <select class="panel__dropdown" title="Search by state">
+                        <option selected>Search by state</option>
+                        <option>In progress</option>
+                        <option>Registration</option>
+                    </select>
+                    <button class="panel__clear-all">ClearAll</button>
+                </div>
+                <div class="block-content__main__stats--table table">
+                    <div class="players__item-table small">Name</div>
+                    <div class="players__item-table small">Mode</div>
+                    <div class="players__item-table small">Place</div>
+                    <div class="players__item-table middle">Start date</div>
+                    <div class="players__item-table large">Last req date</div>
+                    <div class="players__item-table small">State</div>
+                    <div class="players__item-table small">Level</div>
+                    <div class="players__item-table large">Participants</div>
+                    <div class="players__item-table middle">Scenario</div>
+                    <div class="players__item-table middle">Actions</div>
+                </div>
+                <div class="block-content__main__stats--content">
+                    <div class="players__item-content small"></div>
+                    <div class="players__item-content small"></div>
+                    <div class="players__item-content small"></div>
+                    <div class="players__item-content middle"></div>
+                    <div class="players__item-content large"></div>
+                    <div class="players__item-content small"></div>
+                    <div class="players__item-content small"></div>
+                    <div class="players__item-content large"></div>
+                    <div class="players__item-content middle"></div>
+                    <div class="players__item-content middle"><button>+</button></div>
+                </div>
+            </div>
+            <div class="block-content__main__stats">
+                <div class="block-content__main__stats--name">Players</div>
+                <div class="block-content__main__stats--table table">
+                    <div class="players__item">Wins</div>
+                    <div class="players__item">Draws</div>
+                    <div class="players__item">Loses</div>
+                </div>
+                <div class="block-content__main__stats--name">Tournament</div>
+                <div class="block-content__main__stats--table table">
+                    <div class="players__item-tour">Mode</div>
+                    <div class="players__item-tour">Finished</div>
+                    <div class="players__item-tour third">In progress</div>
+                    <div class="players__item-tour last">Canceled</div>
+                </div>
+            </div>
+            <div class="block-content__main__stats-admin">
+                <div class="block-content__main__stats-admin--name">Players</div>
+                <div class="block-content__main__stats-admin--table table">
+                    <div class="players__item-admin">Login/Email</div>
+                    <div class="players__item-admin">Games</div>
+                    <div class="players__item-admin">Wins</div>
+                    <div class="players__item-admin">Draws</div>
+                    <div class="players__item-admin">Loses</div>
+                    <div class="players__item-admin">Cup wins</div>
+                </div>
+                <div class="block-content__main__stats-admin--name">Tournament</div>
+                <div class="block-content__main__stats-admin--table table">
+                    <div class="players__item-tour">Mode</div>
+                    <div class="players__item-tour">Finished</div>
+                    <div class="players__item-tour third">In progress</div>
+                    <div class="players__item-tour last">Canceled</div>
+                </div>
+            </div>
             <div class="block-content__main__block">
+                <h1 class="block-content__main__block--name">Create tournament</h1>
                 <button class="block-content__main__block__actions--btn" id="create-fields">Create<button>
                 <button class="block-content__main__block__actions--btn" disabled>Cup grid</button>
                 <button class="block-content__main__block__actions--btn" disabled>Send Data</button>
@@ -191,36 +179,47 @@
                         <label for="NumberParticipants">4</label>
                     </div>
                 </div>
-              <-- dropDown block -->
                 <div class="main__block-input-icons__dropdown">
-                    <select class="main__block-input-icons__dropdown-btn" id="show-dropdown-scenario">
-                        <option class="" selected>One-match confrontation</option>
-                        <option class="">Two-match confrontation</option>
-                        <option class="">Two-three-wins</option>
-                    </select>
+                    <button class="main__block-input-icons__dropdown-btn" id="show-dropdown-scenario">One-match confrontation<div class="main__block-input-icons__dropdown-btn--icon"></div></button>
+                    <div class="main__block-input-icons__dropdown-content" id="scenarioForTournament">
+                        <div class="main__block-input-icons__dropdown-content--content-hover" value="two-match-confrontation">Two-match confrontation</div>
+                        <div class="main__block-input-icons__dropdown-content--content-hover" value="two-three-wins">Two-three-wins</div>
+                    </div>
                 </div>
                 <div class="main__block-input-icons__dropdown">
-                    <select class="main__block-input-icons__dropdown-btn">
-                        <option class=".option" selected>Invited players</option>
-                        <option class="">Invited one player</option>
-                        <option class="">Invited two players</option>
-                    </select>
+                    <button class="main__block-input-icons__dropdown-btn">Invited players<div class="main__block-input-icons__dropdown-btn--icon"></div></button>
+                    <div class="main__block-input-icons__dropdown-content" id="scenarioForTournament">
+                        <div class="main__block-input-icons__dropdown-content--content-hover" value="two-match-confrontation">Two-match confrontation</div>
+                    </div>
                 </div>
-                <-- dropDown block -->
                 <button class="main__block-input-icons--submit" id="submit-date">Submit</button>
             </div>
         </div>
     </div>
-    
+    <!-- <div id="tabTournaments" class="hide">
+        tabTournaments
+    </div>
+    <div id="tabCreate" class="hide">
+        <input type="text" id = "tourName" class="hide">
+        <input type="text" id = "tourDesc" class="hide">
+        <input type="text" id = "tourMode" class="hide">
+        <input type="text" id = "tourPlace" class="hide">
+        <input type="date" id = "tourDateStart" class="hide">
+        <input type="text" id = "tourDateEndReg" class="hide">
+        <input type="text" id = "tourLevel" class="hide">
+        <input type="text" id = "tourDesc" class="hide">
+
+    <div id="tabTournaments" class="hide">
+        </div>
+        tabTournaments
+    </div>
+    <div id="tabCreate" class="hide">
+        tabCreate
+
     </div>
     <div id="tabStats" class="hide">
         tabStats
-    </div>
-    
-    <p>change login</p>
-    <input type="text" id="changeLogin">
-    <p>change password</p>
-    <input type="text" id="changePass">
+    </div>-->
    
 </body>
 </html>
