@@ -133,11 +133,11 @@
                 </div>
                 <div class="main__block-input-icons">
                     <div class="main__block-input-icons--icons datapicer"></div>
-                    <input type="date" class="main__block-input-icons--text" title="Start date">
+                    <input class="main__block-input-icons--text" type="text" onfocusin="(type='date')" onfocusout="(type='text')" placeholder="Search by start date">
                 </div>
                 <div class="main__block-input-icons">
                     <div class="main__block-input-icons--icons datapicer"></div>
-                    <input type="date" class="main__block-input-icons--text" title="Last registration date">
+                    <input class="main__block-input-icons--text" type="text" onfocusin="(type='date')" onfocusout="(type='text')" placeholder="Search by reg date">
                 </div>
                 <div class="main__block-input-icons__radio-button-level">
                     <div class="main__block-input-icons__radio-button-level">
@@ -180,17 +180,18 @@
                     </div>
                 </div>
                 <div class="main__block-input-icons__dropdown">
-                    <button class="main__block-input-icons__dropdown-btn" id="show-dropdown-scenario">One-match confrontation<div class="main__block-input-icons__dropdown-btn--icon"></div></button>
-                    <div class="main__block-input-icons__dropdown-content" id="scenarioForTournament">
-                        <div class="main__block-input-icons__dropdown-content--content-hover" value="two-match-confrontation">Two-match confrontation</div>
-                        <div class="main__block-input-icons__dropdown-content--content-hover" value="two-three-wins">Two-three-wins</div>
-                    </div>
+                    <select class="main__block-input-icons__dropdown-btn" id="show-dropdown-scenario">
+                        <option class="" selected>One-match confrontation</option>
+                        <option class="">Two-match confrontation</option>
+                        <option class="">Two-three-wins</option>
+                    </select>
                 </div>
                 <div class="main__block-input-icons__dropdown">
-                    <button class="main__block-input-icons__dropdown-btn">Invited players<div class="main__block-input-icons__dropdown-btn--icon"></div></button>
-                    <div class="main__block-input-icons__dropdown-content" id="scenarioForTournament">
-                        <div class="main__block-input-icons__dropdown-content--content-hover" value="two-match-confrontation">Two-match confrontation</div>
-                    </div>
+                    <select class="main__block-input-icons__dropdown-btn">
+                        <option class=".option" selected>Invited players</option>
+                        <option class="">Invited one player</option>
+                        <option class="">Invited two players</option>
+                    </select>
                 </div>
                 <button class="main__block-input-icons--submit" id="submit-date">Submit</button>
             </div>
