@@ -1,6 +1,7 @@
 @import './const.scss';
 @import './header.scss';
 @import './mainPage.scss';
+@import './reqPage.scss';
 *{
   //  box-sizing: border-box;
     margin: 0;
@@ -31,9 +32,14 @@ select{
     border: none;
     outline: none;
 }
+a{
+    color: #497AFA;
+    font-size: 16px;
+    padding: 10px;
+}
 .content-block{
     width: 30%;
-    height: 70vh;
+    height: 60vh;
     background: $content-bg;
     border-radius: 10px;position: absolute;
     top: 50%;
@@ -43,26 +49,92 @@ select{
     padding: 20px;
     &--name-page{
         text-align: center;
+        font-size: 32px;
         color: $color-text;
     }
     &__main{
         width: 80%;
-        height: 55vh;
-        background: darkblue;
-        margin: 2% auto;
-      /*  &__dropdown{
+        height: 50vh;
+        margin: 10% auto;
+        &__block{
             width: 100%;
             height: 40px;
-            background: $color-inpt;
+            background: $color-input-bg;
             border-radius: 5px;
-            &--icon{
+            display: flex;
+            margin: 0 0 5% 0;
+            &--login{
                 width: 24px;
                 height: 24px;
-                background: darkgoldenrod;
+                background: url(./img/login.png);
+                background-size: cover;
+                margin-top: 2%;
             }
-        }*/
+            &--password{
+                width: 24px;
+                height: 24px;
+                background: url(./img/password.png);
+                background-size: cover;
+                margin-top: 2%;
+            }
+            &--show{
+                width: 30px;
+                height: 24px;
+                background: url(./img/view-black.png);
+                background-size: cover;
+                margin: 3%;
+            }
+        }
+        &--btn{
+            width: 100%;
+            height: 40px;
+            background: $color-text-input;
+            border-radius: 10px;
+            margin: 0 0 5% 0;
+            color: #D7D9CE;
+        }
+        &--text{
+            font-size: 16px;
+            text-align: center;
+            color: #757575;
+        }
+        &--password{
+            text-align: center;
+            padding: 10px 0 10px ;
+        }
+        &--google{
+            width: 40px;
+            height: 40px;
+            background: $color-text-input;
+            border-radius: 10px;
+            margin: 0 0 5% 0;
+            margin: 0 45%;
+            color: #D7D9CE;
+            padding: 2%;
+        }
+       
     }
+    
 }
 .hide{ //role hide
     display: none;
+}
+.login__inpt{
+    margin-left: 5%;
+}
+.view{
+    background: url(./img/setting.png);
+}
+.google{
+    width: 24px;
+    height: 24px;
+    background: url(./img/logo-google.png);
+    background-size: cover;
+}
+
+//registration
+.fds{
+    background: gold;
+    height: 500px;
+    width: 500px;
 }
