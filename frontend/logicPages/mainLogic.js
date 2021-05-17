@@ -42,9 +42,9 @@ function getTournamentsAndRender (){
     var role = localStorage.getItem('role')
     if (role || role !== "GUEST"){
         getRequestWithToken(urls.mainTourUrl).then(function(data){
-            data = JSON.parse(data)
-            console.log(data);
-            renderTournamentsTable(data)
+            // data = JSON.parse(data)
+            console.log(data.response);
+            renderTournamentsTable(data.response)
         })
     }
     if (!role || role === "GUEST"){
