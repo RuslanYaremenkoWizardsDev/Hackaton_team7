@@ -2,7 +2,6 @@ package com.github.server.handlers;
 
 import com.github.server.controllers.IAdminController;
 import com.github.server.controllers.IUserController;
-import com.github.server.controllers.UserController;
 import com.github.server.dto.UserAuthDto;
 import com.github.server.dto.UserRegDto;
 import com.github.server.entity.Tournament;
@@ -13,8 +12,6 @@ import com.github.server.exceptions.ForbiddenException;
 import com.github.server.exceptions.NotFound;
 import com.github.server.payload.PrivateToken;
 import com.github.server.payload.Role;
-import com.github.server.services.IUserService;
-import com.github.server.services.UserService;
 import com.github.server.utils.JsonHelper;
 import com.github.server.utils.TokenProvider;
 import org.hibernate.exception.ConstraintViolationException;
@@ -156,6 +153,7 @@ public class HttpHandler extends HttpServlet {
                         }
                         this.adminController.createTournament(tournament);
                         resp.setStatus(HttpServletResponse.SC_OK);
+                        break;
                     case "/main/tournamentInvite":
                         Tournament tourCreateInv = JsonHelper.fromJson(body, Tournament.class).orElseThrow(BadRequest::new);
                         User userCreateInv = JsonHelper.fromJson(body, User.class).orElseThrow(BadRequest::new);
@@ -164,14 +162,34 @@ public class HttpHandler extends HttpServlet {
                         }
                         this.adminController.createInvite(userCreateInv.getLogin(), tourCreateInv.getName());
                         resp.setStatus(HttpServletResponse.SC_OK);
-                    case " /main/tournamentRequest":
+                        break;
+                    case "/main/tournamentRequest":
                         Tournament tourCreateReq = JsonHelper.fromJson(body, Tournament.class).orElseThrow(BadRequest::new);
                         User userCreateReq = JsonHelper.fromJson(body, User.class).orElseThrow(BadRequest::new);
-                        if (tourCreateReq == null) {
+                        if (tourCreateReq == null || userCreateReq == null) {
                             throw new BadRequest();
                         }
                         this.userController.createRequest(userCreateReq.getEmail(), tourCreateReq.getName());
                         resp.setStatus(HttpServletResponse.SC_OK);
+                        break;
+                    case "/main/tournamentInvite/accept":
+                        Tournament tournamentAcceptInv = JsonHelper.fromJson(body, Tournament.class).orElseThrow(BadRequest::new);
+                        User userAcceptInv = JsonHelper.fromJson(body, User.class).orElseThrow(BadRequest::new);
+                        if (tournamentAcceptInv == null || userAcceptInv == null) {
+                            throw new BadRequest();
+                        }
+                        this.userController.acceptInvite(userAcceptInv.getEmail(), tournamentAcceptInv.getName());
+                        resp.setStatus(HttpServletResponse.SC_OK);
+                        break;
+                    case "/main/tournamentRequest/accept":
+                        Tournament tournamentAcceptReq = JsonHelper.fromJson(body, Tournament.class).orElseThrow(BadRequest::new);
+                        User userAcceptReq = JsonHelper.fromJson(body, User.class).orElseThrow(BadRequest::new);
+                        if (tournamentAcceptReq == null || userAcceptReq == null) {
+                            throw new BadRequest();
+                        }
+                        this.adminController.acceptRequest(userAcceptReq.getLogin(), tournamentAcceptReq.getName());
+                        resp.setStatus(HttpServletResponse.SC_OK);
+                        break;
                     default:
                         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
                         break;
