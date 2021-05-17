@@ -23,20 +23,22 @@ var mainUpdateUser = mainUrl + "/updateUser"
 var mainAdminCreate = mainUrl + "/create"
 
 
-// ГЕТ для получения инвайтов у которых адресат совпадает с юзером в токене и ПОСТ для админа или юзера - создать инвайт
-var mainInvite = mainUrl + "/invite"
+// ГЕТ и ПОСТ для админа 
+var mainTournamentInvite = mainUrl + "/tournamentRequest"
+var mainTournamentInviteAccept = mainUrl + "/main/tournamentRequest/accept"
 // https://hackatonteam7.herokuapp.com/main/invite
 
-const urls = {
+export default {
     authUrl: authUrl,
     regUrl: regUrl,
     mainUrl: mainUrl,
     mainTourUrl: mainTourUrl,
     mainUpdateUser: mainUpdateUser,
     mainAdminCreate: mainAdminCreate,
-    mainInvite: mainInvite,
+    mainTournamentInvite: mainTournamentInvite,
+    mainTournamentInviteAccept: mainTournamentInviteAccept
 }
 
 // console.log(urls);
 
-module.exports = urls
+// module.exports = urls
