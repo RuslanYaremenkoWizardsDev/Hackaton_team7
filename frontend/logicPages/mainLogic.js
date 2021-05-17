@@ -116,8 +116,8 @@ function sendTournament(){
     // тут надо собрать торнамент из модалки и отправить на пост реквест
     var nameTour = document.getElementById("tourName")
     var descriptionTour = document.getElementById("tourDesc")
-    var modeCup = document.getElementById("tourModeCup")
-    var modeChamp = document.getElementById("tourModeChamp")
+    var modeCup = document.getElementById("modeCup")
+    var modeChamp = document.getElementById("modeChamp")
     var tourPlace = document.getElementById("tourPlace")
     var tourDateStart = document.getElementById("tourDateStart")
     var tourDateEndReg = document.getElementById("tourDateEndReg")
@@ -178,6 +178,7 @@ function sendTournament(){
 
     postRequestWithToken(urls.mainAdminCreate, body).then(function(data){
         if (data.status === 200){
+            console.log(data);
             console.log('tournament sent');
             getTournamentsAndRender()
         }else {
