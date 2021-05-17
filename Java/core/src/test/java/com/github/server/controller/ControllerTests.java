@@ -13,7 +13,7 @@ public class ControllerTests {
 
     @Test
     public void createRequest(){
-        userController.createRequest("vasya", "football");
+        userController.createRequest("vasya@vasya.com", "football");
     }
 
 }
