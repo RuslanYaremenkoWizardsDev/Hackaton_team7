@@ -45,6 +45,7 @@ function getTournamentsAndRender (){
     }
     if (!role || role === "GUEST"){
         getRequestWithoutToken(urls.mainTourUrl).then(function(data){
+            console.log(data.response);
             renderTournamentsTable(data)
         })
     }
@@ -168,7 +169,7 @@ function sendTournament(){
 
     postRequestWithToken(urls.mainAdminCreate, body).then(function(data){
         if (data.status === 200){
-            console.log(data);
+            // console.log(data);
             console.log('tournament sent');
             getTournamentsAndRender()
         }else {
