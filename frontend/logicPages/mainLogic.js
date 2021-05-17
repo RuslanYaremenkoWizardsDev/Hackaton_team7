@@ -1,9 +1,9 @@
 ///
 import '../style/style.scss';
 
-//import '../Client/modal/modalFields.js';
-
 import '../client/modalWindows/modalFields.js';
+
+//import '../Client/modal/modalFields.js';
 
 import '../style/modalFieldsAdmin.scss';
 import '../../frontend/Client/modal/showModalFields.js';

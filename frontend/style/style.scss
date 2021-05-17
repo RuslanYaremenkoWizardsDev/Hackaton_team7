@@ -27,7 +27,10 @@ input{
     background: none;
     cursor: pointer;
 }
-
+select{
+    border: none;
+    outline: none;
+}
 .content-block{
     width: 30%;
     height: 70vh;

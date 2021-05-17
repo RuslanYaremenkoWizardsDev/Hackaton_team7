@@ -189,22 +189,24 @@
                     <div class="main__block-input-icons__radio-button-level">
                         <input class="main__block-input-icons__radio-button-level--level" type="radio" value="4" name="NumberParticipants">
                         <label for="NumberParticipants">4</label>
-
-                    </div>
-                    <div class="main__block-input-icons__dropdown">
-                        <button class="main__block-input-icons__dropdown-btn" id="show-dropdown-scenario">One-match confrontation<div class="main__block-input-icons__dropdown-btn--icon"></div></button>
-                        <div class="main__block-input-icons__dropdown-content" id="scenarioForTournament">
-                            <div class="main__block-input-icons__dropdown-content--content-hover" value="two-match-confrontation">Two-match confrontation</div>
-                            <div class="main__block-input-icons__dropdown-content--content-hover" value="two-three-wins">Two-three-wins</div>
-                        </div>
-                    </div>
-                    <div class="main__block-input-icons__dropdown">
-                        <button class="main__block-input-icons__dropdown-btn">Invited players<div class="main__block-input-icons__dropdown-btn--icon"></div></button>
-                        <div class="main__block-input-icons__dropdown-content" id="scenarioForTournament">
-                            <div class="main__block-input-icons__dropdown-content--content-hover" value="two-match-confrontation">Two-match confrontation</div>
-                        </div>
                     </div>
                 </div>
+              <-- dropDown block -->
+                <div class="main__block-input-icons__dropdown">
+                    <select class="main__block-input-icons__dropdown-btn" id="show-dropdown-scenario">
+                        <option class="" selected>One-match confrontation</option>
+                        <option class="">Two-match confrontation</option>
+                        <option class="">Two-three-wins</option>
+                    </select>
+                </div>
+                <div class="main__block-input-icons__dropdown">
+                    <select class="main__block-input-icons__dropdown-btn">
+                        <option class=".option" selected>Invited players</option>
+                        <option class="">Invited one player</option>
+                        <option class="">Invited two players</option>
+                    </select>
+                </div>
+                <-- dropDown block -->
                 <button class="main__block-input-icons--submit" id="submit-date">Submit</button>
             </div>
         </div>
