@@ -100,6 +100,7 @@ public class UserController implements IUserController {
 
     @Override
     public void createRequest(String email, String tournamentName) {
+        User user = userService.findByEmail(email);
         String userLogin = userService.findByEmail(email).getLogin();
         playerRequestService.createRequest(
                 new PlayerRequest(
